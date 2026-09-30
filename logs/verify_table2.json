@@ -1,0 +1,998 @@
+{
+ "mosi_data.pkl": {
+  "train": {
+   "keys": [
+    "audio",
+    "id",
+    "labels",
+    "text",
+    "vision"
+   ],
+   "len_keys": [],
+   "text": {
+    "dtype": "float32",
+    "nan": 0,
+    "neginf": 0,
+    "posinf": 0,
+    "pad_frac": 0.7612,
+    "len_min": 1,
+    "len_med": 10.0,
+    "len_max": 50,
+    "n_full": 4,
+    "n_empty": 0,
+    "left_pad": false,
+    "right_pad": false,
+    "interior_zero_rows": 52
+   },
+   "audio": {
+    "dtype": "float64",
+    "nan": 0,
+    "neginf": 0,
+    "posinf": 0,
+    "pad_frac": 0.7674,
+    "len_min": 1,
+    "len_med": 10.0,
+    "len_max": 50,
+    "n_full": 2,
+    "n_empty": 0,
+    "left_pad": false,
+    "right_pad": false,
+    "interior_zero_rows": 406
+   },
+   "vision": {
+    "dtype": "float64",
+    "nan": 0,
+    "neginf": 0,
+    "posinf": 0,
+    "pad_frac": 0.7688,
+    "len_min": 0,
+    "len_med": 10.0,
+    "len_max": 50,
+    "n_full": 1,
+    "n_empty": 1,
+    "left_pad": false,
+    "right_pad": false,
+    "interior_zero_rows": 477
+   },
+   "checks": {
+    "N": [
+     1284,
+     1284,
+     true
+    ],
+    "text": [
+     [
+      1284,
+      50,
+      300
+     ],
+     [
+      1284,
+      50,
+      300
+     ],
+     true
+    ],
+    "audio": [
+     [
+      1284,
+      50,
+      5
+     ],
+     [
+      1284,
+      50,
+      5
+     ],
+     true
+    ],
+    "vision": [
+     [
+      1284,
+      50,
+      20
+     ],
+     [
+      1284,
+      50,
+      20
+     ],
+     true
+    ]
+   },
+   "labels": {
+    "shape": [
+     1284,
+     1,
+     1
+    ],
+    "min": -3.0,
+    "max": 3.0
+   }
+  },
+  "valid": {
+   "keys": [
+    "audio",
+    "id",
+    "labels",
+    "text",
+    "vision"
+   ],
+   "len_keys": [],
+   "text": {
+    "dtype": "float32",
+    "nan": 0,
+    "neginf": 0,
+    "posinf": 0,
+    "pad_frac": 0.7771,
+    "len_min": 2,
+    "len_med": 9.0,
+    "len_max": 44,
+    "n_full": 0,
+    "n_empty": 0,
+    "left_pad": false,
+    "right_pad": false,
+    "interior_zero_rows": 5
+   },
+   "audio": {
+    "dtype": "float64",
+    "nan": 0,
+    "neginf": 0,
+    "posinf": 0,
+    "pad_frac": 0.7808,
+    "len_min": 1,
+    "len_med": 9.0,
+    "len_max": 43,
+    "n_full": 0,
+    "n_empty": 0,
+    "left_pad": false,
+    "right_pad": false,
+    "interior_zero_rows": 44
+   },
+   "vision": {
+    "dtype": "float64",
+    "nan": 0,
+    "neginf": 0,
+    "posinf": 0,
+    "pad_frac": 0.782,
+    "len_min": 1,
+    "len_med": 9.0,
+    "len_max": 41,
+    "n_full": 0,
+    "n_empty": 0,
+    "left_pad": false,
+    "right_pad": false,
+    "interior_zero_rows": 55
+   },
+   "checks": {
+    "N": [
+     229,
+     229,
+     true
+    ],
+    "text": [
+     [
+      229,
+      50,
+      300
+     ],
+     [
+      229,
+      50,
+      300
+     ],
+     true
+    ],
+    "audio": [
+     [
+      229,
+      50,
+      5
+     ],
+     [
+      229,
+      50,
+      5
+     ],
+     true
+    ],
+    "vision": [
+     [
+      229,
+      50,
+      20
+     ],
+     [
+      229,
+      50,
+      20
+     ],
+     true
+    ]
+   },
+   "labels": {
+    "shape": [
+     229,
+     1,
+     1
+    ],
+    "min": -3.0,
+    "max": 3.0
+   }
+  },
+  "test": {
+   "keys": [
+    "audio",
+    "id",
+    "labels",
+    "text",
+    "vision"
+   ],
+   "len_keys": [],
+   "text": {
+    "dtype": "float32",
+    "nan": 0,
+    "neginf": 0,
+    "posinf": 0,
+    "pad_frac": 0.7296,
+    "len_min": 1,
+    "len_med": 11.0,
+    "len_max": 50,
+    "n_full": 10,
+    "n_empty": 0,
+    "left_pad": false,
+    "right_pad": false,
+    "interior_zero_rows": 35
+   },
+   "audio": {
+    "dtype": "float64",
+    "nan": 0,
+    "neginf": 0,
+    "posinf": 0,
+    "pad_frac": 0.7364,
+    "len_min": 1,
+    "len_med": 11.0,
+    "len_max": 50,
+    "n_full": 3,
+    "n_empty": 0,
+    "left_pad": false,
+    "right_pad": false,
+    "interior_zero_rows": 245
+   },
+   "vision": {
+    "dtype": "float64",
+    "nan": 0,
+    "neginf": 0,
+    "posinf": 0,
+    "pad_frac": 0.7385,
+    "len_min": 0,
+    "len_med": 11.0,
+    "len_max": 50,
+    "n_full": 3,
+    "n_empty": 1,
+    "left_pad": false,
+    "right_pad": false,
+    "interior_zero_rows": 293
+   },
+   "checks": {
+    "N": [
+     686,
+     686,
+     true
+    ],
+    "text": [
+     [
+      686,
+      50,
+      300
+     ],
+     [
+      686,
+      50,
+      300
+     ],
+     true
+    ],
+    "audio": [
+     [
+      686,
+      50,
+      5
+     ],
+     [
+      686,
+      50,
+      5
+     ],
+     true
+    ],
+    "vision": [
+     [
+      686,
+      50,
+      20
+     ],
+     [
+      686,
+      50,
+      20
+     ],
+     true
+    ]
+   },
+   "labels": {
+    "shape": [
+     686,
+     1,
+     1
+    ],
+    "min": -3.0,
+    "max": 3.0
+   }
+  }
+ },
+ "mosi_data_noalign.pkl": {
+  "train": {
+   "keys": [
+    "audio",
+    "id",
+    "labels",
+    "text",
+    "vision"
+   ],
+   "len_keys": [],
+   "text": {
+    "dtype": "float32",
+    "nan": 0,
+    "neginf": 0,
+    "posinf": 0,
+    "pad_frac": 0.7612,
+    "len_min": 1,
+    "len_med": 10.0,
+    "len_max": 50,
+    "n_full": 4,
+    "n_empty": 0,
+    "left_pad": false,
+    "right_pad": false,
+    "interior_zero_rows": 52
+   },
+   "audio": {
+    "dtype": "float64",
+    "nan": 0,
+    "neginf": 0,
+    "posinf": 0,
+    "pad_frac": 0.8938,
+    "len_min": 4,
+    "len_med": 32.0,
+    "len_max": 375,
+    "n_full": 1,
+    "n_empty": 0,
+    "left_pad": false,
+    "right_pad": false,
+    "interior_zero_rows": 45
+   },
+   "vision": {
+    "dtype": "float64",
+    "nan": 0,
+    "neginf": 0,
+    "posinf": 0,
+    "pad_frac": 0.9048,
+    "len_min": 0,
+    "len_med": 38.0,
+    "len_max": 472,
+    "n_full": 0,
+    "n_empty": 1,
+    "left_pad": false,
+    "right_pad": false,
+    "interior_zero_rows": 220
+   },
+   "checks": {
+    "N": [
+     1284,
+     1284,
+     true
+    ],
+    "text": [
+     [
+      1284,
+      50,
+      300
+     ],
+     [
+      1284,
+      50,
+      300
+     ],
+     true
+    ],
+    "audio": [
+     [
+      1284,
+      375,
+      5
+     ],
+     [
+      1284,
+      375,
+      5
+     ],
+     true
+    ],
+    "vision": [
+     [
+      1284,
+      500,
+      20
+     ],
+     [
+      1284,
+      500,
+      20
+     ],
+     true
+    ]
+   },
+   "labels": {
+    "shape": [
+     1284,
+     1,
+     1
+    ],
+    "min": -3.0,
+    "max": 3.0
+   }
+  },
+  "valid": {
+   "keys": [
+    "audio",
+    "id",
+    "labels",
+    "text",
+    "vision"
+   ],
+   "len_keys": [],
+   "text": {
+    "dtype": "float32",
+    "nan": 0,
+    "neginf": 0,
+    "posinf": 0,
+    "pad_frac": 0.7771,
+    "len_min": 2,
+    "len_med": 9.0,
+    "len_max": 44,
+    "n_full": 0,
+    "n_empty": 0,
+    "left_pad": false,
+    "right_pad": false,
+    "interior_zero_rows": 5
+   },
+   "audio": {
+    "dtype": "float64",
+    "nan": 0,
+    "neginf": 0,
+    "posinf": 0,
+    "pad_frac": 0.8962,
+    "len_min": 4,
+    "len_med": 31.0,
+    "len_max": 156,
+    "n_full": 0,
+    "n_empty": 0,
+    "left_pad": false,
+    "right_pad": false,
+    "interior_zero_rows": 5
+   },
+   "vision": {
+    "dtype": "float64",
+    "nan": 0,
+    "neginf": 0,
+    "posinf": 0,
+    "pad_frac": 0.9068,
+    "len_min": 5,
+    "len_med": 36.0,
+    "len_max": 187,
+    "n_full": 0,
+    "n_empty": 0,
+    "left_pad": false,
+    "right_pad": false,
+    "interior_zero_rows": 18
+   },
+   "checks": {
+    "N": [
+     229,
+     229,
+     true
+    ],
+    "text": [
+     [
+      229,
+      50,
+      300
+     ],
+     [
+      229,
+      50,
+      300
+     ],
+     true
+    ],
+    "audio": [
+     [
+      229,
+      375,
+      5
+     ],
+     [
+      229,
+      375,
+      5
+     ],
+     true
+    ],
+    "vision": [
+     [
+      229,
+      500,
+      20
+     ],
+     [
+      229,
+      500,
+      20
+     ],
+     true
+    ]
+   },
+   "labels": {
+    "shape": [
+     229,
+     1,
+     1
+    ],
+    "min": -3.0,
+    "max": 3.0
+   }
+  },
+  "test": {
+   "keys": [
+    "audio",
+    "id",
+    "labels",
+    "text",
+    "vision"
+   ],
+   "len_keys": [],
+   "text": {
+    "dtype": "float32",
+    "nan": 0,
+    "neginf": 0,
+    "posinf": 0,
+    "pad_frac": 0.7296,
+    "len_min": 1,
+    "len_med": 11.0,
+    "len_max": 50,
+    "n_full": 10,
+    "n_empty": 0,
+    "left_pad": false,
+    "right_pad": false,
+    "interior_zero_rows": 35
+   },
+   "audio": {
+    "dtype": "float64",
+    "nan": 0,
+    "neginf": 0,
+    "posinf": 0,
+    "pad_frac": 0.8672,
+    "len_min": 1,
+    "len_med": 40.0,
+    "len_max": 329,
+    "n_full": 0,
+    "n_empty": 0,
+    "left_pad": false,
+    "right_pad": false,
+    "interior_zero_rows": 24
+   },
+   "vision": {
+    "dtype": "float64",
+    "nan": 0,
+    "neginf": 0,
+    "posinf": 0,
+    "pad_frac": 0.8813,
+    "len_min": 0,
+    "len_med": 47.0,
+    "len_max": 395,
+    "n_full": 0,
+    "n_empty": 1,
+    "left_pad": false,
+    "right_pad": false,
+    "interior_zero_rows": 130
+   },
+   "checks": {
+    "N": [
+     686,
+     686,
+     true
+    ],
+    "text": [
+     [
+      686,
+      50,
+      300
+     ],
+     [
+      686,
+      50,
+      300
+     ],
+     true
+    ],
+    "audio": [
+     [
+      686,
+      375,
+      5
+     ],
+     [
+      686,
+      375,
+      5
+     ],
+     true
+    ],
+    "vision": [
+     [
+      686,
+      500,
+      20
+     ],
+     [
+      686,
+      500,
+      20
+     ],
+     true
+    ]
+   },
+   "labels": {
+    "shape": [
+     686,
+     1,
+     1
+    ],
+    "min": -3.0,
+    "max": 3.0
+   }
+  }
+ },
+ "mosei_senti_data.pkl": {
+  "train": {
+   "keys": [
+    "audio",
+    "id",
+    "labels",
+    "text",
+    "vision"
+   ],
+   "len_keys": [],
+   "text": {
+    "dtype": "float64",
+    "nan": 0,
+    "neginf": 0,
+    "posinf": 0,
+    "pad_frac": 0.5033,
+    "len_min": 1,
+    "len_med": 22.0,
+    "len_max": 50,
+    "n_full": 1161,
+    "n_empty": 0,
+    "left_pad": false,
+    "right_pad": false,
+    "interior_zero_rows": 97
+   },
+   "audio": {
+    "dtype": "float64",
+    "nan": 0,
+    "neginf": 1249,
+    "posinf": 0,
+    "pad_frac": 0.5032,
+    "len_min": 1,
+    "len_med": 22.0,
+    "len_max": 50,
+    "n_full": 1173,
+    "n_empty": 0,
+    "left_pad": true,
+    "right_pad": false,
+    "interior_zero_rows": 0
+   },
+   "vision": {
+    "dtype": "float64",
+    "nan": 0,
+    "neginf": 0,
+    "posinf": 0,
+    "pad_frac": 0.5202,
+    "len_min": 0,
+    "len_med": 22.0,
+    "len_max": 50,
+    "n_full": 1067,
+    "n_empty": 82,
+    "left_pad": false,
+    "right_pad": false,
+    "interior_zero_rows": 5725
+   },
+   "checks": {
+    "N": [
+     16265,
+     16265,
+     true
+    ],
+    "text": [
+     [
+      16265,
+      50,
+      300
+     ],
+     [
+      16265,
+      50,
+      300
+     ],
+     true
+    ],
+    "audio": [
+     [
+      16265,
+      50,
+      74
+     ],
+     [
+      16265,
+      50,
+      74
+     ],
+     true
+    ],
+    "vision": [
+     [
+      16265,
+      50,
+      35
+     ],
+     [
+      16265,
+      50,
+      35
+     ],
+     true
+    ]
+   },
+   "labels": {
+    "shape": [
+     16265,
+     1,
+     1
+    ],
+    "min": -3.0,
+    "max": 3.0
+   }
+  },
+  "valid": {
+   "keys": [
+    "audio",
+    "id",
+    "labels",
+    "text",
+    "vision"
+   ],
+   "len_keys": [],
+   "text": {
+    "dtype": "float64",
+    "nan": 0,
+    "neginf": 0,
+    "posinf": 0,
+    "pad_frac": 0.4867,
+    "len_min": 1,
+    "len_med": 23.0,
+    "len_max": 50,
+    "n_full": 122,
+    "n_empty": 0,
+    "left_pad": false,
+    "right_pad": false,
+    "interior_zero_rows": 12
+   },
+   "audio": {
+    "dtype": "float64",
+    "nan": 0,
+    "neginf": 191,
+    "posinf": 0,
+    "pad_frac": 0.4866,
+    "len_min": 1,
+    "len_med": 23.0,
+    "len_max": 50,
+    "n_full": 123,
+    "n_empty": 0,
+    "left_pad": true,
+    "right_pad": false,
+    "interior_zero_rows": 0
+   },
+   "vision": {
+    "dtype": "float64",
+    "nan": 0,
+    "neginf": 0,
+    "posinf": 0,
+    "pad_frac": 0.4983,
+    "len_min": 0,
+    "len_med": 23.0,
+    "len_max": 50,
+    "n_full": 112,
+    "n_empty": 2,
+    "left_pad": false,
+    "right_pad": false,
+    "interior_zero_rows": 556
+   },
+   "checks": {
+    "N": [
+     1869,
+     1869,
+     true
+    ],
+    "text": [
+     [
+      1869,
+      50,
+      300
+     ],
+     [
+      1869,
+      50,
+      300
+     ],
+     true
+    ],
+    "audio": [
+     [
+      1869,
+      50,
+      74
+     ],
+     [
+      1869,
+      50,
+      74
+     ],
+     true
+    ],
+    "vision": [
+     [
+      1869,
+      50,
+      35
+     ],
+     [
+      1869,
+      50,
+      35
+     ],
+     true
+    ]
+   },
+   "labels": {
+    "shape": [
+     1869,
+     1,
+     1
+    ],
+    "min": -3.0,
+    "max": 3.0
+   }
+  },
+  "test": {
+   "keys": [
+    "audio",
+    "id",
+    "labels",
+    "text",
+    "vision"
+   ],
+   "len_keys": [],
+   "text": {
+    "dtype": "float64",
+    "nan": 0,
+    "neginf": 0,
+    "posinf": 0,
+    "pad_frac": 0.498,
+    "len_min": 1,
+    "len_med": 23.0,
+    "len_max": 50,
+    "n_full": 319,
+    "n_empty": 0,
+    "left_pad": false,
+    "right_pad": false,
+    "interior_zero_rows": 29
+   },
+   "audio": {
+    "dtype": "float64",
+    "nan": 0,
+    "neginf": 425,
+    "posinf": 0,
+    "pad_frac": 0.4979,
+    "len_min": 1,
+    "len_med": 23.0,
+    "len_max": 50,
+    "n_full": 322,
+    "n_empty": 0,
+    "left_pad": true,
+    "right_pad": false,
+    "interior_zero_rows": 0
+   },
+   "vision": {
+    "dtype": "float64",
+    "nan": 0,
+    "neginf": 0,
+    "posinf": 0,
+    "pad_frac": 0.5186,
+    "len_min": 0,
+    "len_med": 22.0,
+    "len_max": 50,
+    "n_full": 290,
+    "n_empty": 49,
+    "left_pad": false,
+    "right_pad": false,
+    "interior_zero_rows": 1673
+   },
+   "checks": {
+    "N": [
+     4643,
+     4643,
+     true
+    ],
+    "text": [
+     [
+      4643,
+      50,
+      300
+     ],
+     [
+      4643,
+      50,
+      300
+     ],
+     true
+    ],
+    "audio": [
+     [
+      4643,
+      50,
+      74
+     ],
+     [
+      4643,
+      50,
+      74
+     ],
+     true
+    ],
+    "vision": [
+     [
+      4643,
+      50,
+      35
+     ],
+     [
+      4643,
+      50,
+      35
+     ],
+     true
+    ]
+   },
+   "labels": {
+    "shape": [
+     4643,
+     1,
+     1
+    ],
+    "min": -3.0,
+    "max": 3.0
+   }
+  }
+ }
+}

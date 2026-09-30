@@ -1,0 +1,156 @@
+[Tue Sep 29 10:57:43 PM IST 2026] start
+--2026-09-29 22:57:43--  https://www.dropbox.com/sh/hyzpgx1hp9nj37s/AADfY2s7gD_MkR76m03KS0K1a/Archive.zip?dl=1
+Resolving www.dropbox.com (www.dropbox.com)... 162.125.81.18, 2620:100:6031:18::a27d:5112
+Connecting to www.dropbox.com (www.dropbox.com)|162.125.81.18|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://www.dropbox.com/scl/fo/l2mla2gzqbiksyieylmyd/AJ1cwKZuxvPIeFZqdCaD7Dw/Archive.zip?rlkey=5bj4n59ypou9l81m1lcocpxrb&dl=1 [following]
+--2026-09-29 22:57:43--  https://www.dropbox.com/scl/fo/l2mla2gzqbiksyieylmyd/AJ1cwKZuxvPIeFZqdCaD7Dw/Archive.zip?rlkey=5bj4n59ypou9l81m1lcocpxrb&dl=1
+Reusing existing connection to www.dropbox.com:443.
+HTTP request sent, awaiting response... 302 Found
+Location: https://uc8981eb9b61cefa590a38f094ef.dl.dropboxusercontent.com/cd/0/inline/DJDnfh8rkYOt_ZMBHAWQUbDNt-BCiKOYQBB7VVREcWp4Nt4xZoCMCXH850QrJPflxpQ0pF4ZnTjZmjIx7H2q8AmDyRV9ORHarapwvRXGFhdMKckYihvp9JDGucs1n3YSscY/file?dl=1# [following]
+--2026-09-29 22:57:44--  https://uc8981eb9b61cefa590a38f094ef.dl.dropboxusercontent.com/cd/0/inline/DJDnfh8rkYOt_ZMBHAWQUbDNt-BCiKOYQBB7VVREcWp4Nt4xZoCMCXH850QrJPflxpQ0pF4ZnTjZmjIx7H2q8AmDyRV9ORHarapwvRXGFhdMKckYihvp9JDGucs1n3YSscY/file?dl=1
+Resolving uc8981eb9b61cefa590a38f094ef.dl.dropboxusercontent.com (uc8981eb9b61cefa590a38f094ef.dl.dropboxusercontent.com)... 162.125.81.15, 2620:100:6031:15::a27d:510f
+Connecting to uc8981eb9b61cefa590a38f094ef.dl.dropboxusercontent.com (uc8981eb9b61cefa590a38f094ef.dl.dropboxusercontent.com)|162.125.81.15|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: /cd/0/inline2/DJBsDR3tfVM369lX6cTzrCMHsT3crKsZ9RPIGqc3wGrnlFDRFL0eDmiJz3mhyrOzrlIxqJOfIohzINIF2qp2Rq2x5ZR58gJA0cNXjLZabLypYbLs2asS5fljaKP1GUD9NMMh0ti29K_69SCaj8L2BkJ2kxuU0fnODGC3HSsL_lmumOfe8BMAx2r0cqB-mZ1TLWgOhrP0xYozKbLxwbZVcHKMIOQS_N8dnk1Qkwlh-qZmWam4mrHHPKiDEd_mjPFVkZ_K2L2cXgdqHauprM4KA9nsAd1osmsSXURoB0T2n72FEPVVUmw7vM7PUKTNLjgbYzsKmS_CzvgzelCkauZL0QPrQd1jlZ8KhXvmxIRz7oPdFA/file?dl=1 [following]
+--2026-09-29 22:57:46--  https://uc8981eb9b61cefa590a38f094ef.dl.dropboxusercontent.com/cd/0/inline2/DJBsDR3tfVM369lX6cTzrCMHsT3crKsZ9RPIGqc3wGrnlFDRFL0eDmiJz3mhyrOzrlIxqJOfIohzINIF2qp2Rq2x5ZR58gJA0cNXjLZabLypYbLs2asS5fljaKP1GUD9NMMh0ti29K_69SCaj8L2BkJ2kxuU0fnODGC3HSsL_lmumOfe8BMAx2r0cqB-mZ1TLWgOhrP0xYozKbLxwbZVcHKMIOQS_N8dnk1Qkwlh-qZmWam4mrHHPKiDEd_mjPFVkZ_K2L2cXgdqHauprM4KA9nsAd1osmsSXURoB0T2n72FEPVVUmw7vM7PUKTNLjgbYzsKmS_CzvgzelCkauZL0QPrQd1jlZ8KhXvmxIRz7oPdFA/file?dl=1
+Reusing existing connection to uc8981eb9b61cefa590a38f094ef.dl.dropboxusercontent.com:443.
+HTTP request sent, awaiting response... 200 OK
+Length: 3452484860 (3.2G) [application/binary]
+Saving to: ‘/home/user/Downloads/ML-project/data/raw/MulT_Archive.zip’
+
+     0K ........ ........ ........ ........  0% 18.4M 2m57s
+ 32768K ........ ........ ........ ........  1% 19.1M 2m52s
+ 65536K ........ ........ ........ ........  2% 18.7M 2m50s
+ 98304K ........ ........ ........ ........  3% 13.2M 3m6s
+131072K ........ ........ ........ ........  4% 13.4M 3m15s
+163840K ........ ........ ........ ........  5% 13.1M 3m20s
+196608K ........ ........ ........ ........  6% 11.7M 3m27s
+229376K ........ ........ ........ ........  7% 13.1M 3m28s
+262144K ........ ........ ........ ........  8% 13.5M 3m28s
+294912K ........ ........ ........ ........  9% 13.2M 3m28s
+327680K ........ ........ ........ ........ 10% 13.6M 3m26s
+360448K ........ ........ ........ ........ 11% 13.1M 3m26s
+393216K ........ ........ ........ ........ 12% 11.5M 3m27s
+425984K ........ ........ ........ ........ 13% 13.8M 3m25s
+458752K ........ ........ ........ ........ 14% 13.3M 3m23s
+491520K ........ ........ ........ ........ 15% 11.9M 3m23s
+524288K ........ ........ ........ ........ 16% 15.5M 3m19s
+557056K ........ ........ ........ ........ 17% 11.7M 3m19s
+589824K ........ ........ ........ ........ 18% 14.9M 3m16s
+622592K ........ ........ ........ ........ 19% 12.3M 3m14s
+655360K ........ ........ ........ ........ 20% 13.5M 3m12s
+688128K ........ ........ ........ ........ 21% 12.0M 3m11s
+720896K ........ ........ ........ ........ 22% 13.1M 3m9s
+753664K ........ ........ ........ ........ 23% 13.5M 3m7s
+786432K ........ ........ ........ ........ 24% 13.3M 3m4s
+819200K ........ ........ ........ ........ 25% 13.2M 3m2s
+851968K ........ ........ ........ ........ 26% 11.5M 3m1s
+884736K ........ ........ ........ ........ 27% 13.1M 2m59s
+917504K ........ ........ ........ ........ 28% 13.3M 2m56s
+950272K ........ ........ ........ ........ 29% 12.0M 2m55s
+983040K ........ ........ ........ ........ 30% 14.5M 2m52s
+1015808K ........ ........ ........ ........ 31% 12.7M 2m50s
+1048576K ........ ........ ........ ........ 32% 13.1M 2m47s
+1081344K ........ ........ ........ ........ 33% 13.8M 2m45s
+1114112K ........ ........ ........ ........ 34% 11.6M 2m43s
+1146880K ........ ........ ........ ........ 34% 14.0M 2m41s
+1179648K ........ ........ ........ ........ 35% 14.3M 2m38s
+1212416K ........ ........ ........ ........ 36% 13.6M 2m35s
+1245184K ........ ........ ........ ........ 37% 12.3M 2m33s
+1277952K ........ ........ ........ ........ 38% 13.6M 2m31s
+1310720K ........ ........ ........ ........ 39% 11.9M 2m29s
+1343488K ........ ........ ........ ........ 40% 13.1M 2m27s
+1376256K ........ ........ ........ ........ 41% 13.1M 2m24s
+1409024K ........ ........ ........ ........ 42% 13.2M 2m22s
+1441792K ........ ........ ........ ........ 43% 13.2M 2m19s
+1474560K ........ ........ ........ ........ 44% 13.1M 2m17s
+1507328K ........ ........ ........ ........ 45% 11.6M 2m15s
+1540096K ........ ........ ........ ........ 46% 12.4M 2m13s
+1572864K ........ ........ ........ ........ 47% 15.1M 2m10s
+1605632K ........ ........ ........ ........ 48% 13.5M 2m8s
+1638400K ........ ........ ........ ........ 49% 13.7M 2m5s
+1671168K ........ ........ ........ ........ 50% 14.0M 2m3s
+1703936K ........ ........ ........ ........ 51% 13.1M 2m0s
+1736704K ........ ........ ........ ........ 52% 12.2M 1m58s
+1769472K ........ ........ ........ ........ 53% 13.1M 1m56s
+1802240K ........ ........ ........ ........ 54% 12.7M 1m53s
+1835008K ........ ........ ........ ........ 55% 14.0M 1m51s
+1867776K ........ ........ ........ ........ 56% 12.7M 1m48s
+1900544K ........ ........ ........ ........ 57% 13.1M 1m46s
+1933312K ........ ........ ........ ........ 58% 11.8M 1m44s
+1966080K ........ ........ ........ ........ 59% 13.8M 1m41s
+1998848K ........ ........ ........ ........ 60% 12.9M 99s
+2031616K ........ ........ ........ ........ 61% 14.9M 96s
+2064384K ........ ........ ........ ........ 62% 13.7M 94s
+2097152K ........ ........ ........ ........ 63% 15.0M 91s
+2129920K ........ ........ ........ ........ 64% 13.2M 89s
+2162688K ........ ........ ........ ........ 65% 13.2M 87s
+2195456K ........ ........ ........ ........ 66% 13.4M 84s
+2228224K ........ ........ ........ ........ 67% 13.2M 82s
+2260992K ........ ........ ........ ........ 68% 14.1M 79s
+2293760K ........ ........ ........ ........ 69% 14.4M 77s
+2326528K ........ ........ ........ ........ 69% 12.8M 74s
+2359296K ........ ........ ........ ........ 70% 15.1M 72s
+2392064K ........ ........ ........ ........ 71% 13.2M 69s
+2424832K ........ ........ ........ ........ 72% 13.1M 67s
+2457600K ........ ........ ........ ........ 73% 13.3M 65s
+2490368K ........ ........ ........ ........ 74% 13.2M 62s
+2523136K ........ ........ ........ ........ 75% 13.2M 60s
+2555904K ........ ........ ........ ........ 76% 11.7M 58s
+2588672K ........ ........ ........ ........ 77% 13.6M 55s
+2621440K ........ ........ ........ ........ 78% 13.1M 53s
+2654208K ........ ........ ........ ........ 79% 12.2M 50s
+2686976K ........ ........ ........ ........ 80% 15.0M 48s
+2719744K ........ ........ ........ ........ 81% 11.6M 46s
+2752512K ........ ........ ........ ........ 82% 12.9M 43s
+2785280K ........ ........ ........ ........ 83% 13.4M 41s
+2818048K ........ ........ ........ ........ 84% 12.8M 38s
+2850816K ........ ........ ........ ........ 85% 13.4M 36s
+2883584K ........ ........ ........ ........ 86% 7.13M 34s
+2916352K ........ ........ ........ ........ 87% 7.45M 32s
+2949120K ........ ........ ........ ........ 88% 15.2M 29s
+2981888K ........ ........ ........ ........ 89% 12.7M 27s
+3014656K ........ ........ ........ ........ 90% 13.6M 24s
+3047424K ........ ........ ........ ........ 91% 13.5M 22s
+3080192K ........ ........ ........ ........ 92% 13.2M 19s
+3112960K ........ ........ ........ ........ 93% 13.2M 17s
+3145728K ........ ........ ........ ........ 94% 12.8M 14s
+3178496K ........ ........ ........ ........ 95% 11.9M 12s
+3211264K ........ ........ ........ ........ 96% 13.1M 10s
+3244032K ........ ........ ........ ........ 97% 13.6M 7s
+3276800K ........ ........ ........ ........ 98% 13.0M 5s
+3309568K ........ ........ ........ ........ 99% 13.3M 2s
+3342336K ........ ........ ........ ....    100% 13.2M=4m12s
+
+2026-09-29 23:01:59 (13.0 MB/s) - ‘/home/user/Downloads/ML-project/data/raw/MulT_Archive.zip’ saved [3452484860/3452484860]
+
+-rw-rw-r-- 1 user user 3452484860 Sep 29 23:01 /home/user/Downloads/ML-project/data/raw/MulT_Archive.zip
+Archive:  /home/user/Downloads/ML-project/data/raw/MulT_Archive.zip
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+3730509179  2019-02-18 03:45   mosei_senti_data.pkl
+        0  2019-06-02 01:34   __MACOSX/
+      176  2019-02-18 03:45   __MACOSX/._mosei_senti_data.pkl
+291690383  2019-02-18 02:58   iemocap_data.pkl
+      212  2019-02-18 02:58   __MACOSX/._iemocap_data.pkl
+4122207933  2019-02-18 03:47   mosei_senti_data_noalign.pkl
+      176  2019-02-18 03:47   __MACOSX/._mosei_senti_data_noalign.pkl
+154041300  2019-02-18 07:09   mosi_data.pkl
+      176  2019-02-18 07:09   __MACOSX/._mosi_data.pkl
+340956297  2019-02-18 03:59   mosi_data_noalign.pkl
+      176  2019-02-18 03:59   __MACOSX/._mosi_data_noalign.pkl
+1891920469  2019-02-18 03:12   iemocap_data_noalign.pkl
+      212  2019-02-18 03:12   __MACOSX/._iemocap_data_noalign.pkl
+---------                     -------
+10531326689                     13 files
+Archive:  /home/user/Downloads/ML-project/data/raw/MulT_Archive.zip
+  inflating: /home/user/Downloads/ML-project/data/mosi_data.pkl  
+Archive:  /home/user/Downloads/ML-project/data/raw/MulT_Archive.zip
+  inflating: /home/user/Downloads/ML-project/data/mosi_data_noalign.pkl  
+Archive:  /home/user/Downloads/ML-project/data/raw/MulT_Archive.zip
+  inflating: /home/user/Downloads/ML-project/data/mosei_senti_data.pkl  
+1a113ad5edc8b9b625a7e29e6b94a97ecade70494c4e022d9f7ba5affca3bbdc  mosi_data.pkl
+637d72469fe19333d7acfe9ca543f0f45af8004f103ed05649881b713c769e45  mosi_data_noalign.pkl
+31007381c01dd346945ed8a64c7321239de5aaf1ef05bf112e952848a823186d  mosei_senti_data.pkl
+[Tue Sep 29 11:02:18 PM IST 2026] DONE

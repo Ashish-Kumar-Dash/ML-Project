@@ -1,0 +1,15 @@
+torch 2.14.0+cu130 cuda 13.0 avail True NVIDIA GeForce RTX 3060
+h5py 3.16.0 numpy 2.5.3 sklearn 1.9.1 mpl 3.11.2
+gpu matmul ok 1.0
+== mosi_data.pkl splits ['valid', 'test', 'train']
+   valid {'vision': (229, 50, 20), 'labels': (229, 1, 1), 'text': (229, 50, 300), 'audio': (229, 50, 5), 'id': (229, 3)}
+   test {'vision': (686, 50, 20), 'labels': (686, 1, 1), 'text': (686, 50, 300), 'audio': (686, 50, 5), 'id': (686, 3)}
+   train {'vision': (1284, 50, 20), 'labels': (1284, 1, 1), 'text': (1284, 50, 300), 'audio': (1284, 50, 5), 'id': (1284, 3)}
+== mosi_data_noalign.pkl splits ['train', 'valid', 'test']
+   train {'id': (1284, 3), 'labels': (1284, 1, 1), 'vision': (1284, 500, 20), 'text': (1284, 50, 300), 'audio': (1284, 375, 5)}
+   valid {'id': (229, 3), 'labels': (229, 1, 1), 'vision': (229, 500, 20), 'text': (229, 50, 300), 'audio': (229, 375, 5)}
+   test {'id': (686, 3), 'labels': (686, 1, 1), 'vision': (686, 500, 20), 'text': (686, 50, 300), 'audio': (686, 375, 5)}
+== mosei_senti_data.pkl splits ['train', 'test', 'valid']
+   train {'vision': (16265, 50, 35), 'audio': (16265, 50, 74), 'text': (16265, 50, 300), 'labels': (16265, 1, 1), 'id': (16265, 3)}
+   test {'vision': (4643, 50, 35), 'audio': (4643, 50, 74), 'text': (4643, 50, 300), 'labels': (4643, 1, 1), 'id': (4643, 3)}
+   valid {'vision': (1869, 50, 35), 'audio': (1869, 50, 74), 'text': (1869, 50, 300), 'labels': (1869, 1, 1), 'id': (1869, 3)}
