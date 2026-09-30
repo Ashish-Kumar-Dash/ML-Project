@@ -1,0 +1,27 @@
+========================================================================
+Receptive-field probe -- MPLMM time-mixing layer (MLPLayer, is_Fusion=True)
+repo: github.com/zrguo/MPLMM   file: src/model.py:466-476
+========================================================================
+
+l_avp, MOSI aligned   (l=50, a=50,  v=50)
+  input  (prompt_dim=30, time=116)   ->   output (prompt_dim=30, time=50)
+  perturb 1 input TIME position    ->   50 of   50 output time positions move   [dense over time]
+  perturb 1 input FEATURE channel  ->    1 of   30 output feature indices move   [pointwise over features]
+
+l_avp, MOSI unaligned (l=50, a=375, v=500)
+  input  (prompt_dim=30, time=891)   ->   output (prompt_dim=30, time=50)
+  perturb 1 input TIME position    ->   50 of   50 output time positions move   [dense over time]
+  perturb 1 input FEATURE channel  ->    1 of   30 output feature indices move   [pointwise over features]
+
+a_lvp, MOSI unaligned (a=375)
+  input  (prompt_dim=30, time=566)   ->   output (prompt_dim=30, time=375)
+  perturb 1 input TIME position    ->  375 of  375 output time positions move   [dense over time]
+  perturb 1 input FEATURE channel  ->    1 of   30 output feature indices move   [pointwise over features]
+
+========================================================================
+Result: the layer mixes time globally and features not at all.
+kernel_size=1 constrains the FEATURE axis, because the transpose put
+time in the convolution's channel slot. There is no weight sharing
+across time and no translation-equivariance: a shifted input produces
+an unrelated output, and the weight count is bound to the exact
+sequence length the layer was instantiated at.

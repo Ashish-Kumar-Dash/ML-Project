@@ -1,0 +1,40 @@
+==========================================================================
+MPLMM generation module -- parameter audit
+repo: github.com/zrguo/MPLMM   file: src/model.py
+==========================================================================
+
+MulT backbone (MULTModel, CMU-MOSI):    1,071,211
+
+                                    aligned      unaligned
+                                   50/50/50     50/375/500
+--------------------------------------------------------------------------
+9 time-mixing layers                 37,650        972,175
+6 channel-mixing layers              19,680         19,680  <- length-independent
+missing-signal prompts                9,000         55,500
+missing-type coupling m_*             9,000         55,500
+--------------------------------------------------------------------------
+length-dependent total               55,650      1,083,175
+trainable after transfer             88,141      1,115,666
+  as % of backbone                    8.23%        104.15%
+==========================================================================
+
+Per-layer detail, nine time-mixing layers
+layer          aligned     unaligned   role
+l_avp            5,850        44,600   language absent
+a_lvp            5,850       212,625   audio absent
+v_alp            5,850       221,000   visual absent
+l_ap             3,350        19,600   language + visual absent
+l_vp             3,350        25,850   language + audio absent
+a_lp             3,350        25,125   audio + visual absent
+a_vp             3,350       193,875   audio + language absent
+v_ap             3,350       196,000   visual + language absent
+v_lp             3,350        33,500   visual + audio absent
+
+All figures above were produced twice -- by instantiating the real
+PromptModel and by closed-form Equation (1) -- and asserted equal.
+
+Reading: the paper states its trainable parameter count does not grow
+with backbone size. True, and not the binding constraint. It grows
+with input sequence length instead, and at unaligned CMU-MOSI lengths
+the trainable parameters (1,115,666) exceed the frozen backbone
+(1,071,211) they exist to avoid fine-tuning.
