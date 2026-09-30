@@ -1,0 +1,35 @@
+diff --git a/src/train.py b/src/train.py
+index f5a28c1..57975fc 100644
+--- a/src/train.py
++++ b/src/train.py
+@@ -24,7 +24,7 @@ def initiate(hyp_params, train_loader, valid_loader, test_loader):
+     criterion = getattr(nn, hyp_params.criterion)()
+ 
+     scheduler = ReduceLROnPlateau(
+-        optimizer, mode="min", patience=hyp_params.when, factor=0.1, verbose=True
++        optimizer, mode="min", patience=hyp_params.when, factor=0.1
+     )
+     settings = {
+         "model": model,
+@@ -156,7 +156,7 @@ def train_model(settings, hyp_params, train_loader, valid_loader, test_loader):
+             torch.save(model, hyp_params.name)
+             best_valid = val_loss
+ 
+-    model = torch.load(hyp_params.name)
++    model = torch.load(hyp_params.name, weights_only=False)
+     _, results, truths = evaluate(model, criterion, test=False)
+ 
+     if hyp_params.dataset == "mosei":
+diff --git a/src/utils.py b/src/utils.py
+index 0bf833b..eae0f1c 100644
+--- a/src/utils.py
++++ b/src/utils.py
+@@ -78,7 +78,7 @@ def get_loader(args):
+ 
+ 
+ def transfer_model(new_model, pretrained):
+-    model = torch.load(pretrained)
++    model = torch.load(pretrained, weights_only=False)
+     pretrain_dict = model.state_dict()
+     new_dict = new_model.state_dict()
+     state_dict = {}

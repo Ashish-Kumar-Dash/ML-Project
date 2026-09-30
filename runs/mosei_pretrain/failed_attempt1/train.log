@@ -1,0 +1,10 @@
+/home/user/Downloads/ML-project/ML-Project/.venv/lib/python3.12/site-packages/torch/__init__.py:1700: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)
+Traceback (most recent call last):
+  File "/home/user/Downloads/ML-project/ML-Project/runs/mosei_pretrain/MPLMM/main.py", line 6, in <module>
+    from src.utils import *
+  File "/home/user/Downloads/ML-project/ML-Project/runs/mosei_pretrain/MPLMM/src/utils.py", line 3, in <module>
+    from src.iemodata import IEMOData
+  File "/home/user/Downloads/ML-project/ML-Project/runs/mosei_pretrain/MPLMM/src/iemodata.py", line 9, in <module>
+    import torchvision.transforms as transforms
+ModuleNotFoundError: No module named 'torchvision'

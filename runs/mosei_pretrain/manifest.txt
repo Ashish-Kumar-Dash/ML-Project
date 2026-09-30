@@ -1,0 +1,7 @@
+cmd: python -u main.py --dataset mosei --data_path /home/user/Downloads/ML-project/ML-Project/data/mosei_senti_data.pkl --drop_rate 0 --batch_size 64 --name /home/user/Downloads/ML-project/ML-Project/pretrained/mosei.pt
+mplmm_commit: c6f8d18e9222bd65165a3214820201dc51a35f19 (+ compat_torch2.14.patch)
+data_sha256: 31007381c01dd346945ed8a64c7321239de5aaf1ef05bf112e952848a823186d  mosei_senti_data.pkl
+defaults: epochs=40 lr=1e-3 Adam when=10 clip=0.8 seed=666 nlevels=5 proj_dim=30 heads=5
+NVIDIA GeForce RTX 3060, 580.173.02, 12288 MiB
+torch 2.14.0+cu130
+host_users_logged_in: 2
