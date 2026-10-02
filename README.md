@@ -46,7 +46,35 @@ Upstream defaulted to `--batch_size 64` without gradient accumulation. Using [`t
 
 ---
 
-## 4. Experimental Results
+## 4. Sequence Ladder Pricing: 1-Epoch Training Duration Benchmark
+
+Using [`tools/benchmark_epoch_timing.py`](tools/benchmark_epoch_timing.py), we timed 1 full training epoch (1,284 samples, 81 batches, `batch_size=16`, `accum_steps=4`) on an NVIDIA GeForce RTX 3060 across all 4 sequence ladder lengths. Timings reflect the mean ± standard deviation over 3 steady-state epochs after 1 warmup epoch:
+
+| Ladder Rung | Sequence Lengths ($L/A/V$) | Variant | Time-Mixing Params | Train Epoch (s) | Throughput | Peak VRAM | 40-Epoch Runtime |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **L50** | $50 / 50 / 50$ | Dense | 37,650 | 4.108s ± 0.28s | 312.5 smp/s | 0.19 GiB | 2.9 min |
+| **L50** | $50 / 50 / 50$ | Invariant | **46,980** | 4.871s ± 0.29s | 263.6 smp/s | 0.19 GiB | 3.5 min |
+| **L100** | $50 / 100 / 100$ | Dense | 92,750 | 4.198s ± 0.38s | 305.8 smp/s | 0.39 GiB | 3.0 min |
+| **L100** | $50 / 100 / 100$ | Invariant | **46,980** | 4.987s ± 0.11s | 257.5 smp/s | 0.39 GiB | 3.6 min |
+| **L200** | $50 / 200 / 200$ | Dense | 262,950 | 6.291s ± 0.05s | 204.1 smp/s | 0.98 GiB | 4.6 min |
+| **L200** | $50 / 200 / 200$ | Invariant | **46,980** | 6.766s ± 0.07s | 189.8 smp/s | 0.99 GiB | 4.9 min |
+| **Native** | $50 / 375 / 500$ | Dense | 972,175 *(Explosion)* | 16.699s ± 0.27s | 76.9 smp/s | 3.56 GiB | 12.0 min |
+| **Native** | $50 / 375 / 500$ | Invariant | **46,980** *(-95.2%)* | 17.404s ± 0.13s | 73.8 smp/s | 3.57 GiB | 12.5 min |
+
+### Pricing Relative Overhead:
+| Ladder Rung | Sequence Lengths | Dense Epoch | Invariant Epoch | Relative Overhead | Parameter Savings |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **L50** | $50 / 50 / 50$ | 4.108s | 4.871s | 1.19x (+0.76s) | Invariant +24.8% params ($K=50$ canonical query) |
+| **L100** | $50 / 100 / 100$ | 4.198s | 4.987s | 1.19x (+0.79s) | Invariant **-49.3%** params |
+| **L200** | $50 / 200 / 200$ | 6.291s | 6.766s | 1.08x (+0.48s) | Invariant **-82.1%** params |
+| **Native** | $50 / 375 / 500$ | 16.699s | 17.404s | **1.04x (+0.70s, only 4.2%!)** | Invariant **-95.2%** params ($46,980$ vs $972,175$) |
+
+> [!TIP]
+> **Ladder Pricing Finding**: While cross-attention incurs ~19% overhead on short sequences due to attention matrices, this overhead asymptotically shrinks to just **4.2%** on native unaligned sequences ($50/375/500$). The invariant generator completely avoids the 95.2% parameter explosion without any meaningful compute penalty.
+
+---
+
+## 5. Experimental Results
 
 All experiments were trained for 40 epochs on an RTX 3060, reloaded their lowest validation loss checkpoint, and evaluated strictly on the test set across all 7 modality conditions ($0 \dots 6$). Every run records upstream commit hash `c6f8d18e9222bd65165a3214820201dc51a35f19` in structured JSON:
 
@@ -67,7 +95,7 @@ All experiments were trained for 40 epochs on an RTX 3060, reloaded their lowest
 
 ---
 
-## 5. Repository Layout
+## 6. Repository Layout
 
 ```text
 ├── docs/
@@ -85,10 +113,11 @@ All experiments were trained for 40 epochs on an RTX 3060, reloaded their lowest
 ├── pretrained/
 │   └── mosei.pt                   # Pretrained MOSEI aligned backbone checkpoint
 ├── runs/                          # JSON results tracking upstream commit hash
-├── tests/                         # Pytest / Unittest test suite (18 tests passing)
+├── tests/                         # Pytest / Unittest test suite (19 tests passing)
 │   ├── test_dead_prompts.py       # Zero-gradient trap verification on upstream prompts
 │   ├── test_forward.py            # Forward pass across missing codes 0 to 6
 │   ├── test_hooks.py              # Generation hook capture and CKA property tests
+│   ├── test_ladder_benchmark.py   # Sequence ladder benchmark artifact & scaling test
 │   ├── test_memory.py             # CUDA peak memory benchmark and OOM regression test
 │   ├── test_operator.py           # Parameter constancy across lengths & gradient flow
 │   ├── test_trainer.py            # Gradient accumulation and checkpoint reload tests
@@ -96,6 +125,7 @@ All experiments were trained for 40 epochs on an RTX 3060, reloaded their lowest
 ├── third_party/
 │   └── MPLMM/                     # Pristine upstream submodule (read-only, commit c6f8d18)
 ├── tools/
+│   ├── benchmark_epoch_timing.py  # Ladder 1-epoch training timing benchmark
 │   ├── count_params.py            # Detailed parameter breakdown
 │   ├── make_fake_mosi.py          # Synthetic dataset generator for rapid testing
 │   └── measure_peak_memory.py     # CUDA peak memory measurement tool
@@ -105,7 +135,7 @@ All experiments were trained for 40 epochs on an RTX 3060, reloaded their lowest
 
 ---
 
-## 6. How to Run
+## 7. How to Run
 
 ### Run Unit Tests
 ```bash
@@ -115,6 +145,11 @@ pytest -v
 ### Run Peak Memory Benchmark (Confirm OOM)
 ```bash
 python tools/measure_peak_memory.py --all
+```
+
+### Run Sequence Ladder Timing Benchmark
+```bash
+python tools/benchmark_epoch_timing.py --num_timed_epochs 3
 ```
 
 ### Run Training Experiments
@@ -134,7 +169,7 @@ python run.py --variant invariant --data_path data/ladder/mosi_data_noalign_l200
 
 ---
 
-## 7. Project Status
+## 8. Project Status
 
 - [x] Parameter audit analytical derivation and verification (`tools/count_params.py`)
 - [x] Pretrained MOSEI aligned backbone (`runs/mosei_pretrain/RUN_RECORD.md`, `pretrained/mosei.pt`)
@@ -145,11 +180,12 @@ python run.py --variant invariant --data_path data/ladder/mosi_data_noalign_l200
 - [x] Unit test suite verifying parameter constancy across 4 lengths (`tests/test_operator.py`)
 - [x] Instrumented forward hooks capturing generation fidelity & CKA (`lenmod/hooks.py`)
 - [x] 12 GB GPU OOM empirical proof and batch 16 sizing (`tools/measure_peak_memory.py`)
+- [x] Sequence ladder training duration pricing benchmark across 4 lengths (`tools/benchmark_epoch_timing.py`)
 - [x] Experimental validation across aligned, unaligned, and ladder datasets (`runs/`)
 
 ---
 
-## 8. Team
+## 9. Team
 
 - **Tanmay Jaiswal** (Member 1) — Feature pipeline and data engineering
 - **Sujal Som** (Member 2) — Model and training

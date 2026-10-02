@@ -1,0 +1,252 @@
+{
+  "timestamp_utc": "2026-10-02T20:11:26.702390+00:00",
+  "upstream_commit": "c6f8d18e9222bd65165a3214820201dc51a35f19",
+  "project_commit": "5c3df66aa1d87c51124fc86ddd14b50359433f3f",
+  "device": "cuda:0",
+  "gpu_name": "NVIDIA GeForce RTX 3060",
+  "batch_size": 16,
+  "accum_steps": 4,
+  "num_timed_epochs": 3,
+  "results": [
+    {
+      "variant": "baseline",
+      "lengths": [
+        50,
+        50,
+        50
+      ],
+      "num_samples": 1284,
+      "num_batches": 81,
+      "total_params": 1149421,
+      "trainable_params": 88141,
+      "time_mixing_params": 37650,
+      "warmup_time_sec": 5.028446382959373,
+      "timed_epochs_sec": [
+        4.299903595005162,
+        4.309622471046168,
+        3.7152161769918166
+      ],
+      "mean_epoch_time_sec": 4.108247414347716,
+      "std_epoch_time_sec": 0.2779433746778972,
+      "mean_fwd_time_sec": 2.2734335463804505,
+      "mean_bwd_time_sec": 1.7463107564641784,
+      "mean_opt_time_sec": 0.03348815730229641,
+      "val_time_sec": 0.29840317595517263,
+      "throughput_samples_per_sec": 312.5420332562581,
+      "full_40_epoch_est_min": 2.9377670602019257,
+      "peak_vram_gib": 0.19031763076782227,
+      "ladder_name": "L50",
+      "ladder_label": "50 / 50 / 50"
+    },
+    {
+      "variant": "invariant",
+      "lengths": [
+        50,
+        50,
+        50
+      ],
+      "num_samples": 1284,
+      "num_batches": 81,
+      "total_params": 1158751,
+      "trainable_params": 97471,
+      "time_mixing_params": 46980,
+      "warmup_time_sec": 4.583708162012044,
+      "timed_epochs_sec": [
+        4.643066184013151,
+        5.282410057960078,
+        4.688916156999767
+      ],
+      "mean_epoch_time_sec": 4.871464132990998,
+      "std_epoch_time_sec": 0.29118490109921297,
+      "mean_fwd_time_sec": 2.643265809339937,
+      "mean_bwd_time_sec": 2.1324916809098795,
+      "mean_opt_time_sec": 0.03983206922809283,
+      "val_time_sec": 0.3340053929714486,
+      "throughput_samples_per_sec": 263.5757884994722,
+      "full_40_epoch_est_min": 3.470313017308298,
+      "peak_vram_gib": 0.19195985794067383,
+      "ladder_name": "L50",
+      "ladder_label": "50 / 50 / 50"
+    },
+    {
+      "variant": "baseline",
+      "lengths": [
+        50,
+        100,
+        100
+      ],
+      "num_samples": 1284,
+      "num_batches": 81,
+      "total_params": 1216521,
+      "trainable_params": 155241,
+      "time_mixing_params": 92750,
+      "warmup_time_sec": 4.463735633995384,
+      "timed_epochs_sec": [
+        4.7240651290048845,
+        4.0047561199753545,
+        3.8658010470098816
+      ],
+      "mean_epoch_time_sec": 4.198207431996707,
+      "std_epoch_time_sec": 0.3761399262710339,
+      "mean_fwd_time_sec": 2.3936987800019174,
+      "mean_bwd_time_sec": 1.7015794628338579,
+      "mean_opt_time_sec": 0.03742689200832198,
+      "val_time_sec": 0.34316551499068737,
+      "throughput_samples_per_sec": 305.844820866633,
+      "full_40_epoch_est_min": 3.0275819646582627,
+      "peak_vram_gib": 0.3874187469482422,
+      "ladder_name": "L100",
+      "ladder_label": "50 / 100 / 100"
+    },
+    {
+      "variant": "invariant",
+      "lengths": [
+        50,
+        100,
+        100
+      ],
+      "num_samples": 1284,
+      "num_batches": 81,
+      "total_params": 1170751,
+      "trainable_params": 109471,
+      "time_mixing_params": 46980,
+      "warmup_time_sec": 4.827791352989152,
+      "timed_epochs_sec": [
+        5.086000873008743,
+        4.83489906595787,
+        5.040268226992339
+      ],
+      "mean_epoch_time_sec": 4.987056055319651,
+      "std_epoch_time_sec": 0.10919914769705893,
+      "mean_fwd_time_sec": 2.7178551537023545,
+      "mean_bwd_time_sec": 2.171738535592643,
+      "mean_opt_time_sec": 0.03932711231755093,
+      "val_time_sec": 0.39861237100558355,
+      "throughput_samples_per_sec": 257.4665264951991,
+      "full_40_epoch_est_min": 3.5904456175501567,
+      "peak_vram_gib": 0.3900003433227539,
+      "ladder_name": "L100",
+      "ladder_label": "50 / 100 / 100"
+    },
+    {
+      "variant": "baseline",
+      "lengths": [
+        50,
+        200,
+        200
+      ],
+      "num_samples": 1284,
+      "num_batches": 81,
+      "total_params": 1410721,
+      "trainable_params": 349441,
+      "time_mixing_params": 262950,
+      "warmup_time_sec": 6.274534772033803,
+      "timed_epochs_sec": [
+        6.355721644998994,
+        6.240729698969517,
+        6.276413112995215
+      ],
+      "mean_epoch_time_sec": 6.290954818987909,
+      "std_epoch_time_sec": 0.04805817878915086,
+      "mean_fwd_time_sec": 3.45854742085794,
+      "mean_bwd_time_sec": 2.7250017624658844,
+      "mean_opt_time_sec": 0.03675828109650562,
+      "val_time_sec": 0.5401994769927114,
+      "throughput_samples_per_sec": 204.1025626387459,
+      "full_40_epoch_est_min": 4.55410286398708,
+      "peak_vram_gib": 0.9806652069091797,
+      "ladder_name": "L200",
+      "ladder_label": "50 / 200 / 200"
+    },
+    {
+      "variant": "invariant",
+      "lengths": [
+        50,
+        200,
+        200
+      ],
+      "num_samples": 1284,
+      "num_batches": 81,
+      "total_params": 1194751,
+      "trainable_params": 133471,
+      "time_mixing_params": 46980,
+      "warmup_time_sec": 6.736034569039475,
+      "timed_epochs_sec": [
+        6.7039089479949325,
+        6.8651282920036465,
+        6.728624042996671
+      ],
+      "mean_epoch_time_sec": 6.76588709433175,
+      "std_epoch_time_sec": 0.07089579426524802,
+      "mean_fwd_time_sec": 3.7260190671077,
+      "mean_bwd_time_sec": 2.9372476128822504,
+      "mean_opt_time_sec": 0.0410196137187692,
+      "val_time_sec": 0.5763357289833948,
+      "throughput_samples_per_sec": 189.77555819335137,
+      "full_40_epoch_est_min": 4.89481521554343,
+      "peak_vram_gib": 0.9852614402770996,
+      "ladder_name": "L200",
+      "ladder_label": "50 / 200 / 200"
+    },
+    {
+      "variant": "baseline",
+      "lengths": [
+        50,
+        375,
+        500
+      ],
+      "num_samples": 1284,
+      "num_batches": 81,
+      "total_params": 2176946,
+      "trainable_params": 1115666,
+      "time_mixing_params": 972175,
+      "warmup_time_sec": 16.371607773005962,
+      "timed_epochs_sec": [
+        16.527468250016682,
+        17.082826257974375,
+        16.486610986001324
+      ],
+      "mean_epoch_time_sec": 16.69896849799746,
+      "std_epoch_time_sec": 0.2719404517249763,
+      "mean_fwd_time_sec": 8.41840459627565,
+      "mean_bwd_time_sec": 8.165792471554596,
+      "mean_opt_time_sec": 0.038302153329520174,
+      "val_time_sec": 1.288145867001731,
+      "throughput_samples_per_sec": 76.89097683811892,
+      "full_40_epoch_est_min": 11.991409576666126,
+      "peak_vram_gib": 3.5578980445861816,
+      "ladder_name": "Native",
+      "ladder_label": "50 / 375 / 500"
+    },
+    {
+      "variant": "invariant",
+      "lengths": [
+        50,
+        375,
+        500
+      ],
+      "num_samples": 1284,
+      "num_batches": 81,
+      "total_params": 1251751,
+      "trainable_params": 190471,
+      "time_mixing_params": 46980,
+      "warmup_time_sec": 17.199273318052292,
+      "timed_epochs_sec": [
+        17.243548250000458,
+        17.41657950001536,
+        17.55167287000222
+      ],
+      "mean_epoch_time_sec": 17.403933540006012,
+      "std_epoch_time_sec": 0.1261087773609916,
+      "mean_fwd_time_sec": 8.764940060558729,
+      "mean_bwd_time_sec": 8.520217300082246,
+      "mean_opt_time_sec": 0.044128083003064,
+      "val_time_sec": 1.329620842996519,
+      "throughput_samples_per_sec": 73.7764251425403,
+      "full_40_epoch_est_min": 12.48903625533502,
+      "peak_vram_gib": 3.5705347061157227,
+      "ladder_name": "Native",
+      "ladder_label": "50 / 375 / 500"
+    }
+  ]
+}
