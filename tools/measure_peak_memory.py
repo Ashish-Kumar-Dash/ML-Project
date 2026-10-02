@@ -135,7 +135,13 @@ def measure_single_batch(
     }
 
 
-def run_in_subprocess(batch_size: int, variant: str) -> dict:
+def run_in_subprocess(
+    batch_size: int,
+    variant: str,
+    len_l: int = 50,
+    len_a: int = 375,
+    len_v: int = 500,
+) -> dict:
     """Run single configuration measurement in an isolated subprocess."""
     code = f"""
 import sys
@@ -145,7 +151,13 @@ if repo_dir not in sys.path:
     sys.path.insert(0, repo_dir)
 import json
 from tools.measure_peak_memory import measure_single_batch
-res = measure_single_batch(batch_size={batch_size}, variant='{variant}')
+res = measure_single_batch(
+    batch_size={batch_size},
+    variant='{variant}',
+    len_l={len_l},
+    len_a={len_a},
+    len_v={len_v},
+)
 print('__RESULT__' + json.dumps(res))
 """
     cmd = [sys.executable, "-c", code]
@@ -173,7 +185,7 @@ def main():
     parser.add_argument("--batch_size", type=int, default=16, help="Batch size (e.g. 16, 32, 64)")
     parser.add_argument("--variant", type=str, choices=["baseline", "invariant"], default="baseline")
     parser.add_argument("--all", action="store_true", help="Run full comparison matrix across batch 16 and batch 64")
-
+    parser.add_argument("--ladder", action="store_true", help="Run peak memory measurement across all ladder rungs")
     args = parser.parse_args()
 
     if not torch.cuda.is_available():
@@ -183,11 +195,33 @@ def main():
     device_name = torch.cuda.get_device_name(0)
     total_mem = torch.cuda.get_device_properties(0).total_memory / (1024 ** 3)
     print("=" * 78)
-    print(f"CUDA MEMORY BENCHMARK: CMU-MOSI Unaligned (L=50, A=375, V=500)")
+    print(f"CUDA MEMORY BENCHMARK")
     print(f"Device: {device_name} ({total_mem:.2f} GiB total VRAM)")
     print("=" * 78)
 
-    if args.all:
+    if args.ladder:
+        ladder_configs = [
+            ("L50", (50, 50, 50)),
+            ("L100", (50, 100, 100)),
+            ("L200", (50, 200, 200)),
+            ("Native", (50, 375, 500)),
+        ]
+        header = f"| {'Rung':<8} | {'Lengths':<14} | {'Variant':<10} | {'Batch':<6} | {'Fwd Peak':<11} | {'Bwd Peak':<11} | {'Status':<14} |"
+        sep = "|" + "-"*10 + "|" + "-"*16 + "|" + "-"*12 + "|" + "-"*8 + "|" + "-"*13 + "|" + "-"*13 + "|" + "-"*16 + "|"
+        print(header)
+        print(sep)
+
+        for name, (l, a, v) in ladder_configs:
+            l_str = f"{l}/{a}/{v}"
+            for bsz in [16, 64]:
+                for var in ["baseline", "invariant"]:
+                    res = run_in_subprocess(bsz, var, len_l=l, len_a=a, len_v=v)
+                    f_gib = f"{res['fwd_peak_gib']:.2f} GiB" if not str(res['fwd_peak_gib']) == "nan" else "N/A"
+                    b_gib = f"{res['bwd_peak_gib']:.2f} GiB" if not str(res['bwd_peak_gib']) == "nan" else "N/A"
+                    stat = res["status"]
+                    print(f"| {name:<8} | {l_str:<14} | {var:<10} | {bsz:<6} | {f_gib:<11} | {b_gib:<11} | {stat:<14} |")
+        print("=" * 78)
+    elif args.all:
         configs = [
             ("baseline", 16),
             ("baseline", 64),
