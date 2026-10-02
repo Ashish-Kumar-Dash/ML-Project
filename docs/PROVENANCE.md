@@ -45,3 +45,20 @@ MOSEI audio contains `-inf` values; MulT's loader zeroes them (`src/dataset.py` 
 - **Commit hash (`git rev-parse HEAD`):** `c6f8d18e9222bd65165a3214820201dc51a35f19`
 - **State:** Pinned as a git submodule and locked read-only (`chmod -R a-w third_party/MPLMM`). All adaptations are applied at runtime.
 
+## Pretrained Backbone Provenance
+
+- **Path:** `pretrained/mosei.pt`
+- **Source:** Pre-trained on `mosei_senti_data.pkl` (40 epochs, batch 64, Adam lr 1e-3, single-GPU workstation).
+- **Run documentation:** `runs/mosei_pretrain/RUN_RECORD.md`
+- **SHA-256:** `6a29d2c399d977a91624a0d9f68bda7571c3f824bdbbf2c3ff794c37ef841de6`
+- **Size:** 4,614,123 bytes
+
+## Sequence Ladder Provenance
+
+Resampled unaligned MOSI features generated via uniform temporal average pooling (`data/ladder/`):
+- `mosi_data_noalign_l50.pkl`: (50, 50, 50) — SHA-256 `eb2e3bc01bbf5392ef4be8a48ef0d4ba8a6b107073b677a2995383ddc1fb0c24`
+- `mosi_data_noalign_l100.pkl`: (50, 100, 100) — SHA-256 `f8f0f0c057161b0c0f992d9d9685ba368c48560195a6ec89f25cbdb13bf45422`
+- `mosi_data_noalign_l200.pkl`: (50, 200, 200) — SHA-256 `6db9d18b6e8f498c0861a7a24c5fa54fbdbd572db02cb60061e89df96a60db2a`
+- `mosi_data_noalign_native.pkl`: (50, 375, 500) — SHA-256 `71f76d47b5ae1ffc5c2491a620d43a60a4f5f59fa5c15ad29362ea34f9a0c7c8`
+Verification: `sha256sum -c data/ladder/SHA256SUMS`
+
