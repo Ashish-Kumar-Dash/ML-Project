@@ -36,7 +36,7 @@ from lenmod.config import make_hp
 from lenmod.operator import swap_time_mixers
 from src.model import PromptModel
 from src.mosidata import MOSIData
-from src.utils import transfer_model
+from lenmod.transfer import transfer_weights
 
 # Reset default tensor type to CPU FloatTensor (mosidata sets it to cuda)
 torch.set_default_tensor_type("torch.FloatTensor")
@@ -151,7 +151,7 @@ def time_single_config(
         model = swap_time_mixers(model, operator="cross_attn", num_heads=2)
 
     if pretrained_path.exists():
-        transfer_model(model, str(pretrained_path))
+        model, _ = transfer_weights(model, pretrained_path, quiet=True)
 
     model = model.to(dev)
 

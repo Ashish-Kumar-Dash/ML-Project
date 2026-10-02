@@ -109,11 +109,12 @@ All experiments were trained for 40 epochs on an RTX 3060, reloaded their lowest
 │   ├── hooks.py                   # PyTorch forward hooks, Cosine Fidelity, and Linear CKA
 │   ├── invariant.py               # Time-mixer replacements
 │   ├── operator.py                # LengthInvariant operator & swap_time_mixers
-│   └── trainer.py                 # Single-GPU fit, evaluate, and eval_cases loops
+│   ├── trainer.py                 # Single-GPU fit, evaluate, and eval_cases loops
+│   └── transfer.py                # Safe backbone weight transfer and parameter freezing
 ├── pretrained/
 │   └── mosei.pt                   # Pretrained MOSEI aligned backbone checkpoint
 ├── runs/                          # JSON results tracking upstream commit hash
-├── tests/                         # Pytest / Unittest test suite (19 tests passing)
+├── tests/                         # Pytest / Unittest test suite (21 tests passing)
 │   ├── test_dead_prompts.py       # Zero-gradient trap verification on upstream prompts
 │   ├── test_forward.py            # Forward pass across missing codes 0 to 6
 │   ├── test_hooks.py              # Generation hook capture and CKA property tests
@@ -121,6 +122,7 @@ All experiments were trained for 40 epochs on an RTX 3060, reloaded their lowest
 │   ├── test_memory.py             # CUDA peak memory benchmark and OOM regression test
 │   ├── test_operator.py           # Parameter constancy across lengths & gradient flow
 │   ├── test_trainer.py            # Gradient accumulation and checkpoint reload tests
+│   ├── test_transfer.py           # Weight transfer and parameter freeze tests
 │   └── test_upstream_clean.py     # Verifies third_party/MPLMM submodule is pristine
 ├── third_party/
 │   └── MPLMM/                     # Pristine upstream submodule (read-only, commit c6f8d18)

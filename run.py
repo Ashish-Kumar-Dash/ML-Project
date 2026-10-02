@@ -34,7 +34,7 @@ from lenmod.trainer import eval_cases, fit
 # Upstream imports
 from src.model import PromptModel
 from src.mosidata import MOSIData
-from src.utils import transfer_model
+from lenmod.transfer import transfer_weights
 
 # Ensure default tensor type remains standard FloatTensor (mosidata sets it to cuda)
 torch.set_default_tensor_type("torch.FloatTensor")
@@ -267,13 +267,20 @@ def main():
     else:
         print("[2/7] Baseline variant: keeping original dense time-mixers.")
 
-    # Step 3: transfer_model
+    # Step 3: transfer_weights (using lenmod.transfer)
+    missing_keys = []
     if hp.pretrained_model and str(hp.pretrained_model).lower() not in ["none", ""]:
         pretrained_path = Path(hp.pretrained_model)
         if not pretrained_path.is_absolute():
             pretrained_path = repo_root / pretrained_path
-        print(f"[3/7] Transferring backbone weights from {pretrained_path}...")
-        transfer_model(model, str(pretrained_path))
+        print(f"[3/7] Transferring backbone weights from {pretrained_path} via lenmod.transfer...")
+        model, missing_keys = transfer_weights(model, pretrained_path, quiet=False)
+        trainable_cnt = sum(p.numel() for p in model.parameters() if p.requires_grad)
+        print(f"      Missing keys count: {len(missing_keys)} | Trainable parameters: {trainable_cnt:,d}")
+        if len(missing_keys) == 5:
+            print("      [CHECK PASSED] Exactly 5 missing keys found (dimension-dependent projections & output layer).")
+        else:
+            print(f"      [WARNING] Expected 5 missing keys, found {len(missing_keys)}: {missing_keys}")
     else:
         print("[3/7] No pretrained backbone specified, skipping transfer.")
 
@@ -315,6 +322,17 @@ def main():
             loader=test_loader,
             device=device,
         )
+
+    # Pipeline checks and artifact generation
+    missing_type_prompt_all_zeros = None
+    if hasattr(model, "missing_type_prompt"):
+        missing_type_prompt_all_zeros = bool((model.missing_type_prompt == 0).all().item())
+        print(f"\n[PIPELINE CHECK] missing_type_prompt all zeros: {missing_type_prompt_all_zeros}")
+
+    l_avp_path = run_dir / "model_l_avp.pt"
+    if hasattr(model, "l_avp"):
+        torch.save(model.l_avp.state_dict(), l_avp_path)
+        print(f"[PIPELINE ARTIFACT] Saved model.l_avp.state_dict() to: {l_avp_path}")
 
     # Step 7: write the JSON to runs/
     print(f"[7/7] Writing results JSON to {json_path}...")
@@ -358,6 +376,13 @@ def main():
             "best_epoch": fit_result["best_epoch"],
             "best_val_loss": fit_result["best_val_loss"],
             "checkpoint_path": str(checkpoint_path),
+        },
+        "pipeline_checks": {
+            "trainable_parameters": sum(p.numel() for p in model.parameters() if p.requires_grad),
+            "missing_keys_count": len(missing_keys),
+            "missing_keys": missing_keys,
+            "missing_type_prompt_all_zeros": missing_type_prompt_all_zeros,
+            "l_avp_state_dict_path": str(l_avp_path),
         },
         "test_results": test_results_payload,
         "training_history": fit_result["history"],
