@@ -1,0 +1,164 @@
+/home/user/Downloads/ML-project/ML-Project/.venv/lib/python3.12/site-packages/torch/__init__.py:1700: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)
+Missing key(s) in state_dict :proj_l.weight
+Missing key(s) in state_dict :proj_a.weight
+Missing key(s) in state_dict :proj_v.weight
+Missing key(s) in state_dict :out_layer.weight
+Missing key(s) in state_dict :out_layer.bias
+/home/user/Downloads/ML-project/ML-Project/runs/mosi_gate/MPLMM/modules/position_embedding.py:20: UserWarning: The number of elements in the out tensor of shape [50] is 50 which does not match the computed number of elements 66. Note that this may occur as a result of rounding error. The out tensor will be resized to a tensor of shape (66,). (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/cuda/RangeFactories.cu:262.)
+  torch.arange(padding_idx + 1, max_pos, out=getattr(make_positions, buf_name))
+--------------------------------------------------
+Epoch  1 | Time 3.1805 sec | Valid Loss 1.4127 | Test Loss 1.5052
+--------------------------------------------------
+Saved model at /home/user/Downloads/ML-project/ML-Project/runs/mosi_gate/mosi_seed1.pt
+--------------------------------------------------
+Epoch  2 | Time 2.6784 sec | Valid Loss 1.4201 | Test Loss 1.5140
+--------------------------------------------------
+--------------------------------------------------
+Epoch  3 | Time 2.6752 sec | Valid Loss 1.4155 | Test Loss 1.5132
+--------------------------------------------------
+--------------------------------------------------
+Epoch  4 | Time 2.6684 sec | Valid Loss 1.4127 | Test Loss 1.5087
+--------------------------------------------------
+--------------------------------------------------
+Epoch  5 | Time 2.6684 sec | Valid Loss 1.4157 | Test Loss 1.4970
+--------------------------------------------------
+--------------------------------------------------
+Epoch  6 | Time 2.6643 sec | Valid Loss 1.4131 | Test Loss 1.4847
+--------------------------------------------------
+--------------------------------------------------
+Epoch  7 | Time 2.6741 sec | Valid Loss 1.4151 | Test Loss 1.4895
+--------------------------------------------------
+--------------------------------------------------
+Epoch  8 | Time 2.6690 sec | Valid Loss 1.4143 | Test Loss 1.4732
+--------------------------------------------------
+--------------------------------------------------
+Epoch  9 | Time 2.6673 sec | Valid Loss 1.4181 | Test Loss 1.4876
+--------------------------------------------------
+--------------------------------------------------
+Epoch 10 | Time 2.6694 sec | Valid Loss 1.3948 | Test Loss 1.4449
+--------------------------------------------------
+Saved model at /home/user/Downloads/ML-project/ML-Project/runs/mosi_gate/mosi_seed1.pt
+--------------------------------------------------
+Epoch 11 | Time 2.6560 sec | Valid Loss 1.3939 | Test Loss 1.4700
+--------------------------------------------------
+Saved model at /home/user/Downloads/ML-project/ML-Project/runs/mosi_gate/mosi_seed1.pt
+--------------------------------------------------
+Epoch 12 | Time 2.6647 sec | Valid Loss 1.3912 | Test Loss 1.4698
+--------------------------------------------------
+Saved model at /home/user/Downloads/ML-project/ML-Project/runs/mosi_gate/mosi_seed1.pt
+--------------------------------------------------
+Epoch 13 | Time 2.6596 sec | Valid Loss 1.3940 | Test Loss 1.4721
+--------------------------------------------------
+--------------------------------------------------
+Epoch 14 | Time 2.6755 sec | Valid Loss 1.4003 | Test Loss 1.4339
+--------------------------------------------------
+--------------------------------------------------
+Epoch 15 | Time 2.6621 sec | Valid Loss 1.4055 | Test Loss 1.4499
+--------------------------------------------------
+--------------------------------------------------
+Epoch 16 | Time 2.6742 sec | Valid Loss 1.3801 | Test Loss 1.4049
+--------------------------------------------------
+Saved model at /home/user/Downloads/ML-project/ML-Project/runs/mosi_gate/mosi_seed1.pt
+--------------------------------------------------
+Epoch 17 | Time 2.6646 sec | Valid Loss 1.3794 | Test Loss 1.3891
+--------------------------------------------------
+Saved model at /home/user/Downloads/ML-project/ML-Project/runs/mosi_gate/mosi_seed1.pt
+--------------------------------------------------
+Epoch 18 | Time 2.6719 sec | Valid Loss 1.3511 | Test Loss 1.4114
+--------------------------------------------------
+Saved model at /home/user/Downloads/ML-project/ML-Project/runs/mosi_gate/mosi_seed1.pt
+--------------------------------------------------
+Epoch 19 | Time 2.6659 sec | Valid Loss 1.3557 | Test Loss 1.3230
+--------------------------------------------------
+--------------------------------------------------
+Epoch 20 | Time 2.6737 sec | Valid Loss 1.3037 | Test Loss 1.2815
+--------------------------------------------------
+Saved model at /home/user/Downloads/ML-project/ML-Project/runs/mosi_gate/mosi_seed1.pt
+--------------------------------------------------
+Epoch 21 | Time 2.6711 sec | Valid Loss 1.2885 | Test Loss 1.2323
+--------------------------------------------------
+Saved model at /home/user/Downloads/ML-project/ML-Project/runs/mosi_gate/mosi_seed1.pt
+--------------------------------------------------
+Epoch 22 | Time 2.6635 sec | Valid Loss 1.2123 | Test Loss 1.1931
+--------------------------------------------------
+Saved model at /home/user/Downloads/ML-project/ML-Project/runs/mosi_gate/mosi_seed1.pt
+--------------------------------------------------
+Epoch 23 | Time 2.6722 sec | Valid Loss 1.2136 | Test Loss 1.2671
+--------------------------------------------------
+--------------------------------------------------
+Epoch 24 | Time 2.6692 sec | Valid Loss 1.1693 | Test Loss 1.2121
+--------------------------------------------------
+Saved model at /home/user/Downloads/ML-project/ML-Project/runs/mosi_gate/mosi_seed1.pt
+--------------------------------------------------
+Epoch 25 | Time 2.6767 sec | Valid Loss 1.1576 | Test Loss 1.1954
+--------------------------------------------------
+Saved model at /home/user/Downloads/ML-project/ML-Project/runs/mosi_gate/mosi_seed1.pt
+--------------------------------------------------
+Epoch 26 | Time 2.6750 sec | Valid Loss 1.1916 | Test Loss 1.2410
+--------------------------------------------------
+--------------------------------------------------
+Epoch 27 | Time 2.6726 sec | Valid Loss 1.2629 | Test Loss 1.1967
+--------------------------------------------------
+--------------------------------------------------
+Epoch 28 | Time 2.6762 sec | Valid Loss 1.1670 | Test Loss 1.1828
+--------------------------------------------------
+--------------------------------------------------
+Epoch 29 | Time 2.6790 sec | Valid Loss 1.2390 | Test Loss 1.1674
+--------------------------------------------------
+--------------------------------------------------
+Epoch 30 | Time 2.6754 sec | Valid Loss 1.1432 | Test Loss 1.1569
+--------------------------------------------------
+Saved model at /home/user/Downloads/ML-project/ML-Project/runs/mosi_gate/mosi_seed1.pt
+--------------------------------------------------
+Epoch 31 | Time 2.6788 sec | Valid Loss 1.2440 | Test Loss 1.2019
+--------------------------------------------------
+--------------------------------------------------
+Epoch 32 | Time 2.6735 sec | Valid Loss 1.0948 | Test Loss 1.1496
+--------------------------------------------------
+Saved model at /home/user/Downloads/ML-project/ML-Project/runs/mosi_gate/mosi_seed1.pt
+--------------------------------------------------
+Epoch 33 | Time 2.6784 sec | Valid Loss 1.1980 | Test Loss 1.1667
+--------------------------------------------------
+--------------------------------------------------
+Epoch 34 | Time 2.6746 sec | Valid Loss 1.1721 | Test Loss 1.1905
+--------------------------------------------------
+--------------------------------------------------
+Epoch 35 | Time 2.6827 sec | Valid Loss 1.1470 | Test Loss 1.1415
+--------------------------------------------------
+--------------------------------------------------
+Epoch 36 | Time 2.6884 sec | Valid Loss 1.1513 | Test Loss 1.1449
+--------------------------------------------------
+--------------------------------------------------
+Epoch 37 | Time 2.6819 sec | Valid Loss 1.1250 | Test Loss 1.1846
+--------------------------------------------------
+--------------------------------------------------
+Epoch 38 | Time 2.6777 sec | Valid Loss 1.1368 | Test Loss 1.1157
+--------------------------------------------------
+--------------------------------------------------
+Epoch 39 | Time 2.6843 sec | Valid Loss 1.1290 | Test Loss 1.1143
+--------------------------------------------------
+--------------------------------------------------
+Epoch 40 | Time 2.6895 sec | Valid Loss 1.1357 | Test Loss 1.1711
+--------------------------------------------------
+==== GATE final eval split=valid test=False loss=1.1531 n=229
+MAE:  1.153074
+Correlation Coefficient:  0.5580784489409357
+mult_acc_7:  0.2576419213973799
+mult_acc_5:  0.31004366812227074
+F1 score:  0.6791220133785225
+Accuracy:  0.6805555555555556
+==== GATE final eval split=test test=True loss=1.1475 n=686
+MAE:  1.1474817
+Correlation Coefficient:  0.5063196969779723
+mult_acc_7:  0.27696793002915454
+mult_acc_5:  0.3075801749271137
+F1 score:  0.6963356115629851
+Accuracy:  0.698170731707317
+==== UPSTREAM final eval (line 160, test=False) follows
+MAE:  1.153074
+Correlation Coefficient:  0.5580784489409357
+mult_acc_7:  0.2576419213973799
+mult_acc_5:  0.31004366812227074
+F1 score:  0.6791220133785225
+Accuracy:  0.6805555555555556

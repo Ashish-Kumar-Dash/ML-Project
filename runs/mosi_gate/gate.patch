@@ -1,0 +1,81 @@
+diff --git a/src/train.py b/src/train.py
+index f5a28c1..adf33d5 100644
+--- a/src/train.py
++++ b/src/train.py
+@@ -24,7 +24,7 @@ def initiate(hyp_params, train_loader, valid_loader, test_loader):
+     criterion = getattr(nn, hyp_params.criterion)()
+ 
+     scheduler = ReduceLROnPlateau(
+-        optimizer, mode="min", patience=hyp_params.when, factor=0.1, verbose=True
++        optimizer, mode="min", patience=hyp_params.when, factor=0.1
+     )
+     settings = {
+         "model": model,
+@@ -63,7 +63,7 @@ def train_model(settings, hyp_params, train_loader, valid_loader, test_loader):
+                         eval_attr = eval_attr.long()
+ 
+             batch_size = text.size(0)
+-            net = nn.DataParallel(model) if batch_size > 10 else model
++            net = model  # single GPU: DataParallel removed
+             preds = net(text, audio, vision, missing_mod)
+ 
+             if hyp_params.dataset == "iemocap":
+@@ -116,7 +116,7 @@ def train_model(settings, hyp_params, train_loader, valid_loader, test_loader):
+                             eval_attr = eval_attr.long()
+ 
+                 batch_size = text.size(0)
+-                net = nn.DataParallel(model) if batch_size > 10 else model
++                net = model  # single GPU: DataParallel removed
+                 preds = net(text, audio, vision, missing_mod)
+                 if hyp_params.dataset == "iemocap":
+                     preds = preds.view(-1, 4)
+@@ -156,7 +156,35 @@ def train_model(settings, hyp_params, train_loader, valid_loader, test_loader):
+             torch.save(model, hyp_params.name)
+             best_valid = val_loss
+ 
+-    model = torch.load(hyp_params.name)
++    model = torch.load(hyp_params.name, weights_only=False)
++    # ---- GATE: evaluate best checkpoint on valid AND test from the same RNG state ----
++    import random as _r, numpy as _np, json as _json, os as _os
++    _st = (_r.getstate(), _np.random.get_state(), torch.get_rng_state(),
++           torch.cuda.get_rng_state_all() if torch.cuda.is_available() else None)
++    def _restore():
++        _r.setstate(_st[0]); _np.random.set_state(_st[1]); torch.set_rng_state(_st[2])
++        if _st[3] is not None: torch.cuda.set_rng_state_all(_st[3])
++    _out = _os.environ.get("GATE_OUT", ".")
++    for _split, _flag in (("valid", False), ("test", True)):
++        _restore()
++        _l, _res, _tru = evaluate(model, criterion, test=_flag)
++        print(f"==== GATE final eval split={_split} test={_flag} loss={float(_l):.4f} n={_res.numel()}", flush=True)
++        eval_mosi(_res, _tru, True)
++        _np.savez(_os.path.join(_out, f"preds_{_split}.npz"),
++                  preds=_res.view(-1).cpu().numpy(), truths=_tru.view(-1).cpu().numpy())
++    _rows = []
++    for _k in range(int(_os.environ.get("GATE_DRAWS", "20"))):
++        for _split, _flag in (("valid", False), ("test", True)):
++            _r.seed(1000 + _k)
++            _l, _res, _tru = evaluate(model, criterion, test=_flag)
++            _p = _res.view(-1).cpu().numpy(); _t = _tru.view(-1).cpu().numpy(); _nz = _t != 0
++            _rows.append(dict(draw=_k, split=_split, n=int(_p.size), mae=float(_np.abs(_p - _t).mean()),
++                              acc2_nonzero=float(((_p[_nz] > 0) == (_t[_nz] > 0)).mean()),
++                              acc2_has0=float(((_p >= 0) == (_t >= 0)).mean())))
++    _json.dump(_rows, open(_os.path.join(_out, "mask_draws.json"), "w"), indent=1)
++    _restore()
++    print("==== UPSTREAM final eval (line 160, test=False) follows", flush=True)
++    # ---- end GATE ----
+     _, results, truths = evaluate(model, criterion, test=False)
+ 
+     if hyp_params.dataset == "mosei":
+diff --git a/src/utils.py b/src/utils.py
+index 0bf833b..eae0f1c 100644
+--- a/src/utils.py
++++ b/src/utils.py
+@@ -78,7 +78,7 @@ def get_loader(args):
+ 
+ 
+ def transfer_model(new_model, pretrained):
+-    model = torch.load(pretrained)
++    model = torch.load(pretrained, weights_only=False)
+     pretrain_dict = model.state_dict()
+     new_dict = new_model.state_dict()
+     state_dict = {}
