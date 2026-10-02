@@ -1,0 +1,92 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments and setup marker flags
+.env
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.setup_done
+**/.setup_done
+
+# Testing, notebook, and tool caches
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.cache/
+.ipynb_checkpoints/
+wandb/
+
+# PyTorch / ML model weights and binary checkpoints
+*.pt
+*.pth
+*.bin
+*.onnx
+*.ckpt
+
+# Large binary datasets, arrays, and archives
+*.pkl
+*.pickle
+*.npy
+*.npz
+*.h5
+*.hdf5
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.gz
+data/raw/
+**/.fetch_done
+**/.done
+
+# Preserve all dataset provenance verification hashes
+!**/SHA256SUMS
+
+# Transient working trees inside runs/
+runs/**/MPLMM/
+
+# Patch and merge conflict artifacts
+*.orig
+*.rej
+
+# IDE and editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Temporary / machine-specific relocation logs
+logs/venv_relocated_files.txt
