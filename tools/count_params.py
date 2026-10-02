@@ -20,11 +20,14 @@ from pathlib import Path
 
 import torch
 
-# --- make `src.model` importable no matter where this is run from -----------
+# --- make lenmod and upstream importable no matter where this is run from ---
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
-from src.model import MULTModel, PromptModel  # noqa: E402
+import lenmod.compat  # noqa: F401 - Registers third_party/MPLMM & wraps torch.load
+from lenmod.config import make_hp
+from src.model import MULTModel, PromptModel
+
 
 PROMPT_LENGTH = 16
 PROMPT_DIM = 30
@@ -57,28 +60,6 @@ SIGNAL_PROMPTS = ["promptl_m", "prompta_m", "promptv_m",
 COUPLING = ["m_l", "m_a", "m_v"]
 
 
-def make_hyp(seq_len, orig_dims, output_dim=1):
-    """Minimal hyp_params namespace matching main.py's argparse defaults."""
-    h = types.SimpleNamespace()
-    h.orig_d_l, h.orig_d_a, h.orig_d_v = orig_dims
-    h.seq_len = seq_len
-    h.layers = 5
-    h.num_heads = 5
-    h.attn_dropout = 0.1
-    h.attn_dropout_a = 0.1
-    h.attn_dropout_v = 0.1
-    h.relu_dropout = 0.1
-    h.res_dropout = 0.1
-    h.out_dropout = 0.1
-    h.embed_dropout = 0.25
-    h.attn_mask = True
-    h.output_dim = output_dim
-    h.prompt_dim = PROMPT_DIM
-    h.prompt_length = PROMPT_LENGTH
-    h.proj_dim = PROJ_DIM
-    return h
-
-
 def n_params(module):
     return sum(p.numel() for p in module.parameters())
 
@@ -97,7 +78,7 @@ def audit(seq_len, orig_dims, label):
     l_len, a_len, v_len = seq_len
     lens = {"l": l_len, "a": a_len, "v": v_len}
 
-    model = PromptModel(make_hyp(seq_len, orig_dims))
+    model = PromptModel(make_hp(*seq_len, orig_dims=orig_dims))
 
     # --- bucket 1: nine time-mixing layers, both paths -----------------------
     measured_time, derived_time = {}, {}
@@ -147,7 +128,7 @@ def trainable_after_transfer(prompt_model, backbone_dims, seq_len, tmp_path):
     src.iemodata -> h5py, which is not in requirements. The logic below is a
     line-for-line copy of transfer_model (src/utils.py:78-104).
     """
-    pre = MULTModel(make_hyp(seq_len, backbone_dims))
+    pre = MULTModel(make_hp(*seq_len, orig_dims=backbone_dims))
     torch.save(pre, tmp_path)
 
     # PyTorch >= 2.6 defaults weights_only=True; the checkpoint is a pickled
@@ -183,7 +164,7 @@ def main():
     aligned = audit((50, 50, 50), mosi_dims, "MOSI aligned (50/50/50)")
     unaligned = audit((50, 375, 500), mosi_dims, "MOSI unaligned (50/375/500)")
 
-    backbone = MULTModel(make_hyp((50, 50, 50), mosi_dims))
+    backbone = MULTModel(make_hp(50, 50, 50, orig_dims=mosi_dims))
     backbone_n = n_params(backbone)
 
     tmp = REPO_ROOT / "results" / "_tmp_backbone.pt"
