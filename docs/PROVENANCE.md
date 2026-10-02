@@ -37,3 +37,11 @@ Source URL for every file: the archive URL above, member path = the filename (ar
 
 Per-split keys in all three files: `audio, id, labels, text, vision`. Labels span −3.00 to 3.00 in every split. No NaN or +inf anywhere.
 MOSEI audio contains `-inf` values; MulT's loader zeroes them (`src/dataset.py` line 29 at the pinned commit). See `docs/DEVIATIONS.md` → *Sequence padding without length fields*.
+
+## Upstream Code Provenance
+
+- **Repository:** https://github.com/zrguo/MPLMM
+- **Submodule path:** `third_party/MPLMM`
+- **Commit hash (`git rev-parse HEAD`):** `c6f8d18e9222bd65165a3214820201dc51a35f19`
+- **State:** Pinned as a git submodule and locked read-only (`chmod -R a-w third_party/MPLMM`). All adaptations are applied at runtime.
+
