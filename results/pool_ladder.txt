@@ -1,0 +1,63 @@
+Pooled length ladder - unaligned CMU-MOSI (MulT GloVe-300)
+source     : /home/user/Downloads/ML-project/ML-Project/data/mosi_data_noalign.pkl
+sha256     : 637d72469fe19333d7acfe9ca543f0f45af8004f103ed05649881b713c769e45
+resampler  : torch.nn.functional.adaptive_avg_pool1d, unmasked (torch 2.14.0+cu130)
+text       : T=50, not pooled
+
+Bin geometry (adaptive_avg_pool1d; dropped = input steps in no bin,
+shared = input steps counted by two adjacent bins)
+    rung     mod     T ->     l    ratio   width  dropped  shared
+     l50   audio   375 ->    50   7.5000     8-8        0      25
+     l50  vision   500 ->    50  10.0000   10-10        0       0
+    l100   audio   375 ->   100   3.7500     4-5        0      75
+    l100  vision   500 ->   100   5.0000     5-5        0       0
+    l200   audio   375 ->   200   1.8750     2-3        0     175
+    l200  vision   500 ->   200   2.5000     3-3        0     100
+  native   audio   375 ->   375   1.0000     1-1        0       0
+  native  vision   500 ->   500   1.0000     1-1        0       0
+
+Files and shapes (train/valid/test)
+  mosi_data_noalign_l50.pkl  (154.0 MB)
+    sha256 cb29e870d9734eeabdd762ce8318aeef7baa9a0960a6816bda965ad73c2d6201
+    text    1284x50x300 229x50x300 686x50x300
+    audio   1284x50x5 229x50x5 686x50x5
+    vision  1284x50x20 229x50x20 686x50x20
+  mosi_data_noalign_l100.pkl  (176.0 MB)
+    sha256 b526e895d83d9532315f08daaa994901c6a3e047175551f4db73d797a15d1416
+    text    1284x50x300 229x50x300 686x50x300
+    audio   1284x100x5 229x100x5 686x100x5
+    vision  1284x100x20 229x100x20 686x100x20
+  mosi_data_noalign_l200.pkl  (220.0 MB)
+    sha256 f035541d2f019df67f5d25adfef568babbdd41f5c64ee817006e65f5238f5fb0
+    text    1284x50x300 229x50x300 686x50x300
+    audio   1284x200x5 229x200x5 686x200x5
+    vision  1284x200x20 229x200x20 686x200x20
+  mosi_data_noalign_native.pkl  (341.0 MB)
+    sha256 8c75b1a2cdf5e1081efec504ea5b9989018a81b081ad57677f502dd88f1b4891
+    text    1284x50x300 229x50x300 686x50x300
+    audio   1284x375x5 229x375x5 686x375x5
+    vision  1284x500x20 229x500x20 686x500x20
+
+All-zero-timestep fraction, source -> pooled (train/valid/test)
+       l50   audio  0.894->0.884  0.896->0.887  0.867->0.858
+       l50  vision  0.905->0.896  0.907->0.898  0.881->0.872
+      l100   audio  0.894->0.889  0.896->0.891  0.867->0.862
+      l100  vision  0.905->0.900  0.907->0.903  0.881->0.877
+      l200   audio  0.894->0.891  0.896->0.894  0.867->0.865
+      l200  vision  0.905->0.902  0.907->0.905  0.881->0.879
+    native   audio  0.894->0.894  0.896->0.896  0.867->0.867
+    native  vision  0.905->0.905  0.907->0.907  0.881->0.881
+
+Native-length identity check (pool_time at l = T vs source; asserted)
+   split     mod  max_abs_err  max_rel_err outside_tol bit_exact
+   train   audio    0.000e+00    0.000e+00           0      True
+   train  vision    0.000e+00    0.000e+00           0      True
+   valid   audio    0.000e+00    0.000e+00           0      True
+   valid  vision    0.000e+00    0.000e+00           0      True
+    test   audio    0.000e+00    0.000e+00           0      True
+    test  vision    0.000e+00    0.000e+00           0      True
+  tolerance: |pooled - src| <= 1e-06 + 1e-05*|src|
+
+Pooling is unmasked: sequences are front-padded with zero rows and the
+pickles carry no length fields, so the leading bins average padding.
+See docs/DEVIATIONS.md, 'Sequence padding without length fields'.
