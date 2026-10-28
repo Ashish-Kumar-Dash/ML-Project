@@ -1,0 +1,158 @@
+/home/user/Downloads/ML-project/ML-Project/.venv/lib/python3.12/site-packages/torch/__init__.py:1700: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)
+/home/user/Downloads/ML-project/ML-Project/third_party/MPLMM/modules/position_embedding.py:20: UserWarning: The number of elements in the out tensor of shape [50] is 50 which does not match the computed number of elements 66. Note that this may occur as a result of rounding error. The out tensor will be resized to a tensor of shape (66,). (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/cuda/RangeFactories.cu:262.)
+  torch.arange(padding_idx + 1, max_pos, out=getattr(make_positions, buf_name))
+Missing key(s) in state_dict :proj_l.weight
+Missing key(s) in state_dict :proj_a.weight
+Missing key(s) in state_dict :proj_v.weight
+Missing key(s) in state_dict :out_layer.weight
+Missing key(s) in state_dict :out_layer.bias
+--------------------------------------------------
+Epoch  1 | Time 2.8314 sec | Valid Loss 1.4125 | Test Loss 1.5069
+--------------------------------------------------
+Saved model at runs/prompt_nodrop/checkpoint.pt
+--------------------------------------------------
+Epoch  2 | Time 2.5572 sec | Valid Loss 1.4119 | Test Loss 1.5028
+--------------------------------------------------
+Saved model at runs/prompt_nodrop/checkpoint.pt
+--------------------------------------------------
+Epoch  3 | Time 2.5563 sec | Valid Loss 1.4112 | Test Loss 1.5027
+--------------------------------------------------
+Saved model at runs/prompt_nodrop/checkpoint.pt
+--------------------------------------------------
+Epoch  4 | Time 2.5462 sec | Valid Loss 1.4104 | Test Loss 1.4938
+--------------------------------------------------
+Saved model at runs/prompt_nodrop/checkpoint.pt
+--------------------------------------------------
+Epoch  5 | Time 2.5746 sec | Valid Loss 1.4083 | Test Loss 1.4896
+--------------------------------------------------
+Saved model at runs/prompt_nodrop/checkpoint.pt
+--------------------------------------------------
+Epoch  6 | Time 2.5274 sec | Valid Loss 1.4054 | Test Loss 1.4659
+--------------------------------------------------
+Saved model at runs/prompt_nodrop/checkpoint.pt
+--------------------------------------------------
+Epoch  7 | Time 2.5281 sec | Valid Loss 1.3987 | Test Loss 1.4471
+--------------------------------------------------
+Saved model at runs/prompt_nodrop/checkpoint.pt
+--------------------------------------------------
+Epoch  8 | Time 2.5283 sec | Valid Loss 1.3870 | Test Loss 1.4152
+--------------------------------------------------
+Saved model at runs/prompt_nodrop/checkpoint.pt
+--------------------------------------------------
+Epoch  9 | Time 2.5254 sec | Valid Loss 1.3485 | Test Loss 1.3688
+--------------------------------------------------
+Saved model at runs/prompt_nodrop/checkpoint.pt
+--------------------------------------------------
+Epoch 10 | Time 2.5289 sec | Valid Loss 1.2617 | Test Loss 1.2475
+--------------------------------------------------
+Saved model at runs/prompt_nodrop/checkpoint.pt
+--------------------------------------------------
+Epoch 11 | Time 2.5328 sec | Valid Loss 1.1724 | Test Loss 1.1869
+--------------------------------------------------
+Saved model at runs/prompt_nodrop/checkpoint.pt
+--------------------------------------------------
+Epoch 12 | Time 2.5409 sec | Valid Loss 1.2171 | Test Loss 1.0924
+--------------------------------------------------
+--------------------------------------------------
+Epoch 13 | Time 2.5302 sec | Valid Loss 1.0829 | Test Loss 1.0599
+--------------------------------------------------
+Saved model at runs/prompt_nodrop/checkpoint.pt
+--------------------------------------------------
+Epoch 14 | Time 2.5325 sec | Valid Loss 1.1312 | Test Loss 1.0350
+--------------------------------------------------
+--------------------------------------------------
+Epoch 15 | Time 2.5252 sec | Valid Loss 1.0852 | Test Loss 1.0501
+--------------------------------------------------
+--------------------------------------------------
+Epoch 16 | Time 2.5273 sec | Valid Loss 1.1327 | Test Loss 1.0497
+--------------------------------------------------
+--------------------------------------------------
+Epoch 17 | Time 2.5414 sec | Valid Loss 1.1573 | Test Loss 1.0551
+--------------------------------------------------
+--------------------------------------------------
+Epoch 18 | Time 2.5517 sec | Valid Loss 1.1031 | Test Loss 1.0362
+--------------------------------------------------
+--------------------------------------------------
+Epoch 19 | Time 2.5430 sec | Valid Loss 1.0921 | Test Loss 1.0210
+--------------------------------------------------
+--------------------------------------------------
+Epoch 20 | Time 2.5458 sec | Valid Loss 1.1370 | Test Loss 1.0313
+--------------------------------------------------
+--------------------------------------------------
+Epoch 21 | Time 2.5510 sec | Valid Loss 1.0945 | Test Loss 1.0231
+--------------------------------------------------
+--------------------------------------------------
+Epoch 22 | Time 2.5481 sec | Valid Loss 1.1486 | Test Loss 1.0266
+--------------------------------------------------
+--------------------------------------------------
+Epoch 23 | Time 2.5513 sec | Valid Loss 1.1025 | Test Loss 1.0225
+--------------------------------------------------
+--------------------------------------------------
+Epoch 24 | Time 2.5417 sec | Valid Loss 1.0981 | Test Loss 1.0216
+--------------------------------------------------
+--------------------------------------------------
+Epoch 25 | Time 2.5476 sec | Valid Loss 1.0937 | Test Loss 1.0209
+--------------------------------------------------
+--------------------------------------------------
+Epoch 26 | Time 2.5487 sec | Valid Loss 1.0982 | Test Loss 1.0192
+--------------------------------------------------
+--------------------------------------------------
+Epoch 27 | Time 2.5507 sec | Valid Loss 1.0951 | Test Loss 1.0195
+--------------------------------------------------
+--------------------------------------------------
+Epoch 28 | Time 2.5536 sec | Valid Loss 1.0952 | Test Loss 1.0186
+--------------------------------------------------
+--------------------------------------------------
+Epoch 29 | Time 2.5527 sec | Valid Loss 1.0887 | Test Loss 1.0200
+--------------------------------------------------
+--------------------------------------------------
+Epoch 30 | Time 2.5510 sec | Valid Loss 1.0869 | Test Loss 1.0203
+--------------------------------------------------
+--------------------------------------------------
+Epoch 31 | Time 2.5544 sec | Valid Loss 1.0882 | Test Loss 1.0216
+--------------------------------------------------
+--------------------------------------------------
+Epoch 32 | Time 2.5491 sec | Valid Loss 1.0944 | Test Loss 1.0225
+--------------------------------------------------
+--------------------------------------------------
+Epoch 33 | Time 2.5510 sec | Valid Loss 1.0968 | Test Loss 1.0227
+--------------------------------------------------
+--------------------------------------------------
+Epoch 34 | Time 2.5521 sec | Valid Loss 1.0991 | Test Loss 1.0224
+--------------------------------------------------
+--------------------------------------------------
+Epoch 35 | Time 2.5602 sec | Valid Loss 1.0957 | Test Loss 1.0234
+--------------------------------------------------
+--------------------------------------------------
+Epoch 36 | Time 2.5673 sec | Valid Loss 1.0955 | Test Loss 1.0235
+--------------------------------------------------
+--------------------------------------------------
+Epoch 37 | Time 2.5667 sec | Valid Loss 1.0949 | Test Loss 1.0237
+--------------------------------------------------
+--------------------------------------------------
+Epoch 38 | Time 2.5591 sec | Valid Loss 1.0943 | Test Loss 1.0238
+--------------------------------------------------
+--------------------------------------------------
+Epoch 39 | Time 2.5643 sec | Valid Loss 1.0940 | Test Loss 1.0239
+--------------------------------------------------
+--------------------------------------------------
+Epoch 40 | Time 2.5599 sec | Valid Loss 1.0939 | Test Loss 1.0239
+--------------------------------------------------
+MAE:  1.0829189
+Correlation Coefficient:  0.6124062557991853
+mult_acc_7:  0.22707423580786026
+mult_acc_5:  0.22707423580786026
+F1 score:  0.7812512697695653
+Accuracy:  0.7824074074074074
+
+============================================================
+==== TEST SPLIT EVALUATION (test=True) ====
+Test Loss (MAE): 1.0599
+Binary Acc-2:    78.05%
+Weighted F1:     77.99%
+Correlation:     0.5860
+Multiclass Acc-5:26.97%
+Multiclass Acc-7:26.82%
+============================================================
+

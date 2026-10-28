@@ -90,3 +90,4 @@ Thumbs.db
 
 # Temporary / machine-specific relocation logs
 logs/venv_relocated_files.txt
+mplmm-length/.venv/

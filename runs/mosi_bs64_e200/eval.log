@@ -1,0 +1,22 @@
+/home/user/Downloads/ML-project/ML-Project/.venv/lib/python3.12/site-packages/torch/__init__.py:1700: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)
+/home/user/Downloads/ML-project/ML-Project/third_party/MPLMM/modules/position_embedding.py:20: UserWarning: The number of elements in the out tensor of shape [50] is 50 which does not match the computed number of elements 66. Note that this may occur as a result of rounding error. The out tensor will be resized to a tensor of shape (66,). (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/cuda/RangeFactories.cu:262.)
+  torch.arange(padding_idx + 1, max_pos, out=getattr(make_positions, buf_name))
+
+============================================================================
+MODALITY EVALUATION SUMMARY (Forced Missing Codes 0 to 6)
+Case                                Acc-2       F1      MAE     Corr   Acc-5
+----------------------------------------------------------------------------
+Case 0: L_missing ({a,v} present)   56.40%   55.97%   1.4041   0.2268  17.06%
+Case 1: A_missing ({l,v} present)   78.05%   77.74%   0.9932   0.6292  35.86%
+Case 2: V_missing ({l,a} present)   77.59%   77.33%   1.0182   0.5989  31.49%
+Case 3: LA_missing ({v} present)   55.95%   56.14%   1.4107   0.1331  17.06%
+Case 4: LV_missing ({a} present)   59.15%   59.31%   1.3683   0.2652  16.47%
+Case 5: AV_missing ({l} present)   77.90%   77.19%   0.9948   0.6224  40.09%
+----------------------------------------------------------------------------
+MEAN (Cases 0 to 5)                67.51%   67.28%   1.1982   0.4126  26.34%
+----------------------------------------------------------------------------
+Case 6: complete_data ({l,a,v} present)   77.13%   77.12%   1.0442   0.6066  32.80%
+============================================================================
+
+{'cases': {0: {'mae': 1.4040707349777222, 'corr': 0.22676849944593297, 'acc2': 0.5640243902439024, 'acc2_with_zero': 0.5670553935860059, 'f1': 0.5596698336169408, 'mult_acc_5': 0.17055393586005832, 'mult_acc_7': 0.17055393586005832, 'loss': 1.4040707182953727}, 1: {'mae': 0.993248701095581, 'corr': 0.62924255403318, 'acc2': 0.7804878048780488, 'acc2_with_zero': 0.7594752186588921, 'f1': 0.7774480331035428, 'mult_acc_5': 0.358600583090379, 'mult_acc_7': 0.32215743440233235, 'loss': 0.9932487304634673}, 2: {'mae': 1.018223524093628, 'corr': 0.5988743689160784, 'acc2': 0.7759146341463414, 'acc2_with_zero': 0.760932944606414, 'f1': 0.7733039065387629, 'mult_acc_5': 0.31486880466472306, 'mult_acc_7': 0.29737609329446063, 'loss': 1.0182235671896975}, 3: {'mae': 1.4106861352920532, 'corr': 0.1330956122752051, 'acc2': 0.5594512195121951, 'acc2_with_zero': 0.5626822157434402, 'f1': 0.561424770113504, 'mult_acc_5': 0.17055393586005832, 'mult_acc_7': 0.17055393586005832, 'loss': 1.4106860696053019}, 4: {'mae': 1.3682652711868286, 'corr': 0.26519664005819343, 'acc2': 0.5914634146341463, 'acc2_with_zero': 0.5947521865889213, 'f1': 0.5931361401076672, 'mult_acc_5': 0.16472303206997085, 'mult_acc_7': 0.16472303206997085, 'loss': 1.3682652117559584}, 5: {'mae': 0.994769811630249, 'corr': 0.6223767358773458, 'acc2': 0.7789634146341463, 'acc2_with_zero': 0.7565597667638484, 'f1': 0.7718989546166618, 'mult_acc_5': 0.4008746355685131, 'mult_acc_7': 0.3396501457725947, 'loss': 0.9947698104138277}, 6: {'mae': 1.0442029237747192, 'corr': 0.6065590161219018, 'acc2': 0.7713414634146342, 'acc2_with_zero': 0.7580174927113703, 'f1': 0.7712280934308199, 'mult_acc_5': 0.32798833819241985, 'mult_acc_7': 0.30612244897959184, 'loss': 1.0442029951960283}}, 'mean_0_to_5': {'acc2': 0.67505081300813, 'f1': 0.6728136063495133, 'mae': 1.1982106963793437, 'corr': 0.41259240176765594, 'mult_acc_5': 0.2633624878522838, 'mult_acc_7': 0.24416909620991253, 'loss': 1.1982106846206042}, 'complete_data': {'mae': 1.0442029237747192, 'corr': 0.6065590161219018, 'acc2': 0.7713414634146342, 'acc2_with_zero': 0.7580174927113703, 'f1': 0.7712280934308199, 'mult_acc_5': 0.32798833819241985, 'mult_acc_7': 0.30612244897959184, 'loss': 1.0442029951960283}}

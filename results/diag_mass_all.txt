@@ -1,0 +1,26 @@
+==============================================================================================
+Temporal-locality audit — all nine time-mixing layers
+checkpoint: runs/mosi_bs64_e200/checkpoint.pt
+lengths: l=50 a=50 v=50   band=±3
+==============================================================================================
+layer     out   src    params   trained   random   chance   ratio   verdict
+----------------------------------------------------------------------------------------------
+l_avp       l     a     5,800    0.1420   0.1309   0.1400    1.01   no locality
+l_avp       l     v     5,800    0.1401   0.1399   0.1400    1.00   no locality
+a_lvp       a     l     5,800    0.1366   0.1347   0.1400    0.98   no locality
+a_lvp       a     v     5,800    0.1399   0.1365   0.1400    1.00   no locality
+v_alp       v     l     5,800    0.1350   0.1352   0.1400    0.96   no locality
+v_alp       v     a     5,800    0.1377   0.1289   0.1400    0.98   no locality
+l_ap        l     a     3,300    0.1324   0.1372   0.1400    0.95   no locality
+l_vp        l     v     3,300    0.1369   0.1293   0.1400    0.98   no locality
+a_lp        a     l     3,300    0.1268   0.1365   0.1400    0.91   no locality
+a_vp        a     v     3,300    0.1424   0.1374   0.1400    1.02   no locality
+v_ap        v     a     3,300    0.1314   0.1340   0.1400    0.94   no locality
+v_lp        v     l     3,300    0.1355   0.1332   0.1400    0.97   no locality
+----------------------------------------------------------------------------------------------
+ALL                                                          0.97   mean over 12 source blocks (min 0.91, max 1.02)
+
+ratio = trained diag mass / chance. A trained layer that sits at ~1.0 has
+learned no temporal locality: its weight is spread as evenly across input
+positions as an untrained matrix. The 'random' column is the sanity check —
+it should track 'chance' closely.

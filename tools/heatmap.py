@@ -32,7 +32,11 @@ import torch                      # noqa: E402
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
-from src.model import MLPLayer  # noqa: E402
+try:
+    from src.model import MLPLayer  # noqa: E402
+except ModuleNotFoundError:
+    sys.path.insert(0, str(REPO_ROOT / "third_party" / "MPLMM"))
+    from src.model import MLPLayer  # noqa: E402
 
 PROMPT_LENGTH = 16
 FIG_DIR = REPO_ROOT / "figures"
@@ -51,6 +55,11 @@ def get_weight(shape_name, l_out, in_lens, ckpt=None, seed=0):
         sd = torch.load(ckpt, map_location="cpu", weights_only=False)
         if hasattr(sd, "state_dict"):
             sd = sd.state_dict()
+        elif isinstance(sd, dict):
+            for k in ("state_dict", "model_state_dict"):
+                if k in sd:
+                    sd = sd[k]
+                    break
         key = next((k for k in sd if k.endswith("l_avp.conv.weight")), None)
         if key is None:
             raise KeyError(
@@ -135,13 +144,29 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--ckpt", default=None,
                     help="trained checkpoint or state_dict; omit for random init")
+    ap.add_argument("--shape", choices=["aligned", "unaligned"], default=None,
+                    help="specify which shape to plot (default: auto-detect from checkpoint)")
     args = ap.parse_args()
 
     FIG_DIR.mkdir(exist_ok=True)
-    shapes = [
-        ("aligned",   50, (50, 50)),
-        ("unaligned", 50, (375, 500)),
-    ]
+    if args.shape == "unaligned":
+        shapes = [("unaligned", 50, (375, 500))]
+    elif args.shape == "aligned":
+        shapes = [("aligned", 50, (50, 50))]
+    elif args.ckpt is not None:
+        sd = torch.load(args.ckpt, map_location="cpu", weights_only=False)
+        if hasattr(sd, "state_dict"):
+            sd = sd.state_dict()
+        key = next((k for k in sd if k.endswith("l_avp.conv.weight")), None)
+        if key is not None and sd[key].shape[1] > 300:
+            shapes = [("unaligned", 50, (375, 500))]
+        else:
+            shapes = [("aligned", 50, (50, 50))]
+    else:
+        shapes = [
+            ("aligned",   50, (50, 50)),
+            ("unaligned", 50, (375, 500)),
+        ]
 
     print(f"{'shape':<12}{'params':>12}{'diag mass':>12}{'chance':>10}   file")
     for name, l_out, in_lens in shapes:

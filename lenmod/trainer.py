@@ -156,10 +156,12 @@ MODALITY_CASE_NAMES = {
 
 def eval_cases(
     model: nn.Module,
-    loader: DataLoader,
+    loader: Union[DataLoader, str, Path],
     criterion: Optional[nn.Module] = None,
     device: Optional[torch.device] = None,
     quiet: bool = False,
+    split: str = "test",
+    batch_size: int = 128,
 ) -> Dict[str, Any]:
     """Evaluate model under all seven forced missing codes (0 to 6),
 
@@ -167,10 +169,12 @@ def eval_cases(
 
     Args:
         model: PyTorch model instance
-        loader: DataLoader (typically the test loader)
+        loader: DataLoader or file path to dataset pickle (.pkl)
         criterion: Loss function
         device: Device to run evaluation on
         quiet: If True, suppress printed table
+        split: Split name to load if loader is a file path ('train', 'valid', or 'test')
+        batch_size: Batch size to use if loader is a file path
 
     Returns:
         Dictionary with:
@@ -178,6 +182,11 @@ def eval_cases(
             - 'mean_0_to_5': dict of averaged metrics across cases 0 through 5
             - 'complete_data': metrics dict for case 6
     """
+    if isinstance(loader, (str, Path)):
+        from src.mosidata import MOSIData
+        dataset = MOSIData(str(loader), split_type=split)
+        loader = DataLoader(dataset, batch_size=batch_size, shuffle=False, drop_last=False)
+
     if criterion is None:
         criterion = nn.L1Loss()
     if device is None:
@@ -408,6 +417,11 @@ def fit(
     # -------------------------------------------------------------------------
     # Test-Set Reporting Only: reload best checkpoint and evaluate strictly on test
     # -------------------------------------------------------------------------
+    if hasattr(model, "missing_type_prompt"):
+        assert (model.missing_type_prompt == 0).all(), (
+            "Assertion failed: model.missing_type_prompt is not all zeros after training!"
+        )
+
     if not quiet:
         print("\n" + "=" * 65)
         print(
@@ -419,6 +433,11 @@ def fit(
         model.load_state_dict(ckpt["state_dict"])
     else:
         model.load_state_dict(ckpt)
+
+    if hasattr(model, "missing_type_prompt"):
+        assert (model.missing_type_prompt == 0).all(), (
+            "Assertion failed: model.missing_type_prompt is not all zeros in best checkpoint!"
+        )
 
     test_loss, test_metrics, _, _ = evaluate(
         model, test_loader, criterion, device=device

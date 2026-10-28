@@ -326,8 +326,11 @@ def main():
     # Pipeline checks and artifact generation
     missing_type_prompt_all_zeros = None
     if hasattr(model, "missing_type_prompt"):
+        assert (model.missing_type_prompt == 0).all(), (
+            "Assertion failed: model.missing_type_prompt is not all zeros after training!"
+        )
         missing_type_prompt_all_zeros = bool((model.missing_type_prompt == 0).all().item())
-        print(f"\n[PIPELINE CHECK] missing_type_prompt all zeros: {missing_type_prompt_all_zeros}")
+        print(f"\n[PIPELINE CHECK] Asserted (model.missing_type_prompt == 0).all() (zeros confirmed: {missing_type_prompt_all_zeros})")
 
     l_avp_path = run_dir / "model_l_avp.pt"
     if hasattr(model, "l_avp"):
