@@ -26,6 +26,11 @@ from torch.utils.data import DataLoader
 
 # 1. Compatibility and configuration layer
 import lenmod.compat
+from lenmod.ablate import (
+    freeze_time_mixers,
+    swap_fixed_pool,
+    time_mixer_fingerprint,
+)
 from lenmod.config import make_hp
 from lenmod.hooks import evaluate_generation_fidelity
 from lenmod.operator import swap_time_mixers
@@ -80,9 +85,14 @@ def main():
     parser.add_argument(
         "--variant",
         type=str,
-        choices=["baseline", "invariant"],
+        choices=["baseline", "invariant", "frozen_dense", "pool_fixed"],
         default="baseline",
-        help="Model variant: 'baseline' (original dense time-mixers) or 'invariant' (cross-attention)",
+        help=(
+            "Model variant: 'baseline' (original dense time-mixers), "
+            "'invariant' (cross-attention), 'frozen_dense' (arm C: dense "
+            "time-mixers frozen at random init), 'pool_fixed' (arm D: fixed "
+            "average pooling, zero parameters)"
+        ),
     )
     parser.add_argument(
         "--operator",
@@ -264,8 +274,25 @@ def main():
             operator=args.operator,
             num_heads=args.num_heads,
         )
+    elif args.variant == "pool_fixed":
+        print(
+            "[2/7] Arm D: replacing time-mixers with fixed average pooling "
+            "(zero parameters)..."
+        )
+        model = swap_fixed_pool(model)
+    elif args.variant == "frozen_dense":
+        print(
+            "[2/7] Arm C: keeping original dense time-mixers "
+            "(frozen at random init after transfer)."
+        )
     else:
         print("[2/7] Baseline variant: keeping original dense time-mixers.")
+
+    # Arm C must reach training with its dense time-mixers exactly as initialised,
+    # so fingerprint them here and assert the backbone transfer leaves them alone.
+    time_mixers_pre_transfer = (
+        time_mixer_fingerprint(model) if args.variant == "frozen_dense" else None
+    )
 
     # Step 3: transfer_weights (using lenmod.transfer)
     missing_keys = []
@@ -283,6 +310,22 @@ def main():
             print(f"      [WARNING] Expected 5 missing keys, found {len(missing_keys)}: {missing_keys}")
     else:
         print("[3/7] No pretrained backbone specified, skipping transfer.")
+
+    # Step 3b: arm C freeze (after transfer, before the optimiser is built)
+    frozen_time_mixer_params = None
+    time_mixers_fingerprint = None
+    if args.variant == "frozen_dense":
+        time_mixers_fingerprint = time_mixer_fingerprint(model)
+        assert time_mixers_fingerprint == time_mixers_pre_transfer, (
+            "Arm C: backbone transfer modified the dense time-mixing layers; "
+            "they must stay at random initialisation"
+        )
+        frozen_time_mixer_params = freeze_time_mixers(model)
+        trainable_cnt = sum(p.numel() for p in model.parameters() if p.requires_grad)
+        print(
+            f"[3b/7] Arm C: froze {frozen_time_mixer_params:,d} dense time-mixing "
+            f"parameters at random init | Trainable now: {trainable_cnt:,d}"
+        )
 
     # Step 4: .cuda()
     device = torch.device(
@@ -356,7 +399,13 @@ def main():
         "upstream_commit": upstream_commit,
         "project_commit": project_commit,
         "variant": args.variant,
-        "operator": args.operator if args.variant == "invariant" else "mlp_dense",
+        "operator": args.operator
+        if args.variant == "invariant"
+        else {
+            "baseline": "mlp_dense",
+            "frozen_dense": "mlp_dense_frozen_at_init",
+            "pool_fixed": "avg_pool_fixed_zero_param",
+        }[args.variant],
         "dataset": args.dataset,
         "data_path": str(data_file),
         "pretrained_model": str(hp.pretrained_model),
@@ -386,6 +435,8 @@ def main():
             "missing_keys": missing_keys,
             "missing_type_prompt_all_zeros": missing_type_prompt_all_zeros,
             "l_avp_state_dict_path": str(l_avp_path),
+            "frozen_time_mixer_parameters": frozen_time_mixer_params,
+            "time_mixers_fingerprint": time_mixers_fingerprint,
         },
         "test_results": test_results_payload,
         "training_history": fit_result["history"],
