@@ -1,0 +1,134 @@
+{
+  "L1_aligned": {
+    "shapes": {
+      "text": [
+        2199,
+        50,
+        300
+      ],
+      "audio": [
+        2199,
+        50,
+        5
+      ],
+      "vision": [
+        2199,
+        50,
+        20
+      ]
+    },
+    "N_keep": 2197,
+    "pad_frac": {
+      "text": 0.7529968167348795,
+      "audio": 0.7591541609822646,
+      "vision": 0.7607094133697135
+    },
+    "audio-vision": {
+      "masked_z": 0.0374,
+      "null95": 0.0038,
+      "unmasked_z": 0.489,
+      "unmasked_raw": 0.3168
+    },
+    "text-audio": {
+      "masked_z": 0.0173,
+      "null95": 0.0065,
+      "unmasked_z": 0.6896,
+      "unmasked_raw": 0.4484
+    },
+    "text-vision": {
+      "masked_z": 0.0181,
+      "null95": 0.009,
+      "unmasked_z": 0.46,
+      "unmasked_raw": 0.6002
+    },
+    "count_corr_av": 0.999
+  },
+  "L2": {
+    "shapes": {
+      "text": [
+        2199,
+        50,
+        300
+      ],
+      "audio": [
+        2199,
+        50,
+        768
+      ],
+      "vision": [
+        2199,
+        50,
+        512
+      ]
+    },
+    "N_keep": 2199,
+    "pad_frac": {
+      "text": 0.7529968167348795,
+      "audio": 0.0,
+      "vision": 0.0
+    },
+    "audio-vision": {
+      "masked_z": 0.2209,
+      "null95": 0.2189,
+      "unmasked_z": 0.2209,
+      "unmasked_raw": 0.2208
+    },
+    "text-audio": {
+      "masked_z": 0.0649,
+      "null95": 0.0633,
+      "unmasked_z": 0.0746,
+      "unmasked_raw": 0.0602
+    },
+    "text-vision": {
+      "masked_z": 0.0556,
+      "null95": 0.0538,
+      "unmasked_z": 0.0641,
+      "unmasked_raw": 0.0514
+    },
+    "count_corr_av": null
+  },
+  "L2prime": {
+    "shapes": {
+      "text": [
+        2199,
+        50,
+        300
+      ],
+      "audio": [
+        2199,
+        50,
+        5
+      ],
+      "vision": [
+        2199,
+        50,
+        20
+      ]
+    },
+    "N_keep": 2199,
+    "pad_frac": {
+      "text": 0.7529968167348795,
+      "audio": 0.0,
+      "vision": 0.0
+    },
+    "audio-vision": {
+      "masked_z": 0.0138,
+      "null95": 0.0053,
+      "unmasked_z": 0.0138,
+      "unmasked_raw": 0.0153
+    },
+    "text-audio": {
+      "masked_z": 0.0151,
+      "null95": 0.0065,
+      "unmasked_z": 0.0694,
+      "unmasked_raw": 0.0778
+    },
+    "text-vision": {
+      "masked_z": 0.014,
+      "null95": 0.0117,
+      "unmasked_z": 0.0248,
+      "unmasked_raw": 0.0238
+    },
+    "count_corr_av": null
+  }
+}
