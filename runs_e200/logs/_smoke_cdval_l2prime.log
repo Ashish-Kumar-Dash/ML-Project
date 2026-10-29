@@ -1,0 +1,90 @@
+/home/user/Downloads/ML-project/ML-Project/.venv/lib/python3.12/site-packages/torch/__init__.py:1700: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)
+[CONFIG] Validation split drop_rate = 0.0 (train/test remain 0.7)
+[LAUNCHER] hp.when overridden 10 -> 30; num_epochs=2
+======================================================================
+RUN CONFIGURATION: BASELINE
+  Dataset:          mosi (mosi_data_l2_prime.pkl)
+  Sequence lengths: L=50, A=50, V=50
+  Dimensions:       d_l=300, d_a=5, d_v=20
+  Effective Batch:  16 * 4 = 64
+  Run Directory:    /home/user/Downloads/ML-project/ML-Project/runs_e200/_smoke_cdval_l2prime
+======================================================================
+[1/7] Instantiating PromptModel...
+[2/7] Baseline variant: keeping original dense time-mixers.
+[3/7] Transferring backbone weights from /home/user/Downloads/ML-project/ML-Project/pretrained/mosei.pt via lenmod.transfer...
+Missing key(s) in state_dict :proj_l.weight
+Missing key(s) in state_dict :proj_a.weight
+Missing key(s) in state_dict :proj_v.weight
+Missing key(s) in state_dict :out_layer.weight
+Missing key(s) in state_dict :out_layer.bias
+      Missing keys count: 5 | Trainable parameters: 88,141
+      [CHECK PASSED] Exactly 5 missing keys found (dimension-dependent projections & output layer).
+[4/7] Moving model to cuda:0...
+[5/7] Fitting model for 2 epochs...
+Starting training on cuda:0 for 2 epochs...
+Gradient accumulation: 4 steps (no DataParallel)
+Checkpoint target: /home/user/Downloads/ML-project/ML-Project/runs_e200/_smoke_cdval_l2prime/checkpoint.pt
+/home/user/Downloads/ML-project/ML-Project/third_party/MPLMM/modules/position_embedding.py:20: UserWarning: The number of elements in the out tensor of shape [50] is 50 which does not match the computed number of elements 66. Note that this may occur as a result of rounding error. The out tensor will be resized to a tensor of shape (66,). (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/cuda/RangeFactories.cu:262.)
+  torch.arange(padding_idx + 1, max_pos, out=getattr(make_positions, buf_name))
+Epoch  1/ 2 | Train Loss: 1.3291 | Val Loss: 1.4165 | Val Acc-2: 0.5741 | Time: 4.08s *
+Epoch  2/ 2 | Train Loss: 1.3183 | Val Loss: 1.4140 | Val Acc-2: 0.5741 | Time: 3.89s *
+
+=================================================================
+Reloading best checkpoint from Epoch 2 (Val Loss: 1.4140)
+
+============================================================================
+MODALITY EVALUATION SUMMARY (Forced Missing Codes 0 to 6)
+Case                                Acc-2       F1      MAE     Corr   Acc-5
+----------------------------------------------------------------------------
+Case 0: L_missing ({a,v} present)   42.07%   25.54%   1.4630  -0.0026  15.45%
+Case 1: A_missing ({l,v} present)   42.23%   25.07%   1.4709   0.0130  15.45%
+Case 2: V_missing ({l,a} present)   42.23%   25.07%   1.4569  -0.0290  15.45%
+Case 3: LA_missing ({v} present)   42.07%   25.01%   1.4687  -0.0576  15.45%
+Case 4: LV_missing ({a} present)   42.23%   25.07%   1.4534  -0.0015  15.45%
+Case 5: AV_missing ({l} present)   42.23%   25.07%   1.4536   0.1621  15.45%
+----------------------------------------------------------------------------
+MEAN (Cases 0 to 5)                42.17%   25.14%   1.4611   0.0141  15.45%
+----------------------------------------------------------------------------
+Case 6: complete_data ({l,a,v} present)   42.23%   25.07%   1.4667   0.0333  15.45%
+============================================================================
+
+=================================================================
+FINAL TEST-SET EVALUATION RESULTS (Test Split Only)
+  Test Loss:        1.4676
+  Binary Acc-2:     42.23%
+  Weighted F1:      25.07%
+  MAE:              1.4676
+  Corr:             -0.0634
+  Multiclass Acc-7: 15.45%
+  Multiclass Acc-5: 15.45%
+  Cases 0-5 Mean Acc-2: 42.17%
+=================================================================
+
+[6/7] Evaluating all 7 modality conditions on test set...
+
+============================================================================
+MODALITY EVALUATION SUMMARY (Forced Missing Codes 0 to 6)
+Case                                Acc-2       F1      MAE     Corr   Acc-5
+----------------------------------------------------------------------------
+Case 0: L_missing ({a,v} present)   42.07%   25.54%   1.4630  -0.0026  15.45%
+Case 1: A_missing ({l,v} present)   42.23%   25.07%   1.4709   0.0130  15.45%
+Case 2: V_missing ({l,a} present)   42.23%   25.07%   1.4569  -0.0290  15.45%
+Case 3: LA_missing ({v} present)   42.07%   25.01%   1.4687  -0.0576  15.45%
+Case 4: LV_missing ({a} present)   42.23%   25.07%   1.4534  -0.0015  15.45%
+Case 5: AV_missing ({l} present)   42.23%   25.07%   1.4536   0.1621  15.45%
+----------------------------------------------------------------------------
+MEAN (Cases 0 to 5)                42.17%   25.14%   1.4611   0.0141  15.45%
+----------------------------------------------------------------------------
+Case 6: complete_data ({l,a,v} present)   42.23%   25.07%   1.4667   0.0333  15.45%
+============================================================================
+
+[6b/7] Evaluating generation fidelity and CKA via forward hooks...
+
+[PIPELINE CHECK] Asserted (model.missing_type_prompt == 0).all() (zeros confirmed: True)
+[PIPELINE ARTIFACT] Saved model.l_avp.state_dict() to: /home/user/Downloads/ML-project/ML-Project/runs_e200/_smoke_cdval_l2prime/model_l_avp.pt
+[7/7] Writing results JSON to /home/user/Downloads/ML-project/ML-Project/runs_e200/_smoke_cdval_l2prime/results.json...
+Run completed successfully! Output JSON: /home/user/Downloads/ML-project/ML-Project/runs_e200/_smoke_cdval_l2prime/results.json
+Mean Acc-2 (Cases 0 to 5): 42.17%
+
+[LAUNCHER] annotated /home/user/Downloads/ML-project/ML-Project/runs_e200/_smoke_cdval_l2prime/results.json

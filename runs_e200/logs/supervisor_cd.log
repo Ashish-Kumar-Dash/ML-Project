@@ -1,0 +1,22 @@
+[SUP] started 2026-10-29T01:19:39+05:30 pid=3229320
+[SUP] GPU idle and seed 3 incomplete; running missing arms sequentially 2026-10-29T03:13:40+05:30
+[SUP] launching worker_cd.sh frozen_dense 2026-10-29T03:13:40+05:30
+[SKIP] mosi_ladder_l200_frozen_dense_seed1
+[SKIP] mosi_ladder_l200_frozen_dense_seed2
+[START] mosi_ladder_l200_frozen_dense_seed3 2026-10-29T03:13:40+05:30
+[END] mosi_ladder_l200_frozen_dense_seed3 rc=0 2026-10-29T03:41:55+05:30
+[SUP] worker_cd.sh frozen_dense returned rc=0 2026-10-29T03:41:55+05:30
+[SUP] launching worker_cd.sh pool_fixed 2026-10-29T03:41:55+05:30
+[SKIP] mosi_ladder_l200_pool_fixed_seed1
+[SKIP] mosi_ladder_l200_pool_fixed_seed2
+[START] mosi_ladder_l200_pool_fixed_seed3 2026-10-29T03:41:55+05:30
+[END] mosi_ladder_l200_pool_fixed_seed3 rc=0 2026-10-29T04:16:30+05:30
+[SUP] worker_cd.sh pool_fixed returned rc=0 2026-10-29T04:16:30+05:30
+[SUP] both seed-3 records complete 2026-10-29T04:16:30+05:30
+[SUP] exit 2026-10-29T04:16:30+05:30
+[SUP] runs_e200/mosi_ladder_l200_frozen_dense_seed1 json=Y ckpt=Y
+[SUP] runs_e200/mosi_ladder_l200_frozen_dense_seed2 json=Y ckpt=Y
+[SUP] runs_e200/mosi_ladder_l200_frozen_dense_seed3 json=Y ckpt=Y
+[SUP] runs_e200/mosi_ladder_l200_pool_fixed_seed1 json=Y ckpt=Y
+[SUP] runs_e200/mosi_ladder_l200_pool_fixed_seed2 json=Y ckpt=Y
+[SUP] runs_e200/mosi_ladder_l200_pool_fixed_seed3 json=Y ckpt=Y

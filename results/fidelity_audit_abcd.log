@@ -1,0 +1,19 @@
+/home/user/Downloads/ML-project/ML-Project/.venv/lib/python3.12/site-packages/torch/__init__.py:1700: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)
+[resume] mosi_ladder_l200_baseline_seed1
+[resume] mosi_ladder_l200_baseline_seed2
+[resume] mosi_ladder_l200_baseline_seed3
+/home/user/Downloads/ML-project/ML-Project/third_party/MPLMM/modules/position_embedding.py:20: UserWarning: The number of elements in the out tensor of shape [50] is 50 which does not match the computed number of elements 200. Note that this may occur as a result of rounding error. The out tensor will be resized to a tensor of shape (200,). (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/cuda/RangeFactories.cu:262.)
+  torch.arange(padding_idx + 1, max_pos, out=getattr(make_positions, buf_name))
+/home/user/Downloads/ML-project/ML-Project/third_party/MPLMM/modules/position_embedding.py:20: UserWarning: The number of elements in the out tensor of shape [200] is 200 which does not match the computed number of elements 216. Note that this may occur as a result of rounding error. The out tensor will be resized to a tensor of shape (216,). (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/cuda/RangeFactories.cu:262.)
+  torch.arange(padding_idx + 1, max_pos, out=getattr(make_positions, buf_name))
+[ok] mosi_ladder_l200_frozen_dense_seed1: verified (max dev 6.0e-08)
+[ok] mosi_ladder_l200_frozen_dense_seed2: verified (max dev 8.9e-08)
+[ok] mosi_ladder_l200_frozen_dense_seed3: verified (max dev 3.0e-08)
+[resume] mosi_ladder_l200_invariant_seed1
+[resume] mosi_ladder_l200_invariant_seed2
+[resume] mosi_ladder_l200_invariant_seed3
+[ok] mosi_ladder_l200_pool_fixed_seed1: verified (max dev 6.0e-08)
+[ok] mosi_ladder_l200_pool_fixed_seed2: verified (max dev 6.0e-08)
+[ok] mosi_ladder_l200_pool_fixed_seed3: verified (max dev 8.9e-08)
+wrote results/fidelity_audit_abcd_l200.json with 12 runs

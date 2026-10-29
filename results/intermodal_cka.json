@@ -1,0 +1,226 @@
+{
+  "timestamp_utc": "2026-10-28T17:55:33.109080+00:00",
+  "script": "tools/intermodal_cka.py",
+  "null": {
+    "permutations": 200,
+    "seed": 0,
+    "stat": "95th percentile of cka_z under shuffled pairing"
+  },
+  "rungs": {
+    "l50": {
+      "file": "mosi_data_noalign_l50.pkl",
+      "sha256_prefix": "cb29e870",
+      "N_clips": 2199,
+      "N_clips_all_modalities_present": 2197,
+      "padding_fraction": {
+        "text": 0.7529968167348795,
+        "audio": 0.8763346975898135,
+        "vision": 0.888631195998181
+      },
+      "clip_level_masked": {
+        "text-audio": {
+          "cka_raw": 0.006981565957845611,
+          "cka_z": 0.03086913070347712,
+          "perm95_cka_z": 0.0065249955350077885,
+          "dcka_z": 0.024646082542278003
+        },
+        "text-vision": {
+          "cka_raw": 0.013862206484281039,
+          "cka_z": 0.017645219467116748,
+          "perm95_cka_z": 0.008949443144600356,
+          "dcka_z": 0.009766797457821665
+        },
+        "audio-vision": {
+          "cka_raw": 0.013197909724840754,
+          "cka_z": 0.03303969854393632,
+          "perm95_cka_z": 0.003971013907563925,
+          "dcka_z": 0.03039957062745958
+        }
+      },
+      "clip_level_unmasked": {
+        "text-audio": {
+          "cka_raw": 0.4177655537086009,
+          "cka_z": 0.5468773580357886,
+          "perm95_cka_z": 0.0038112263448653455
+        },
+        "text-vision": {
+          "cka_raw": 0.5140986757287377,
+          "cka_z": 0.38871396629658406,
+          "perm95_cka_z": 0.005588862236118151
+        },
+        "audio-vision": {
+          "cka_raw": 0.35091923475348785,
+          "cka_z": 0.5333379828149948,
+          "perm95_cka_z": 0.0035784115265768903
+        }
+      },
+      "valid_frame_count_corr_audio_vision": 0.992048175138226,
+      "frame_level_audio_vision": {
+        "cka_raw": 0.003956396669578131,
+        "cka_z": 0.026174158649242163,
+        "perm95_cka_z": 0.0007261764712192991,
+        "N_frames": 12245
+      }
+    },
+    "l100": {
+      "file": "mosi_data_noalign_l100.pkl",
+      "sha256_prefix": "b526e895",
+      "N_clips": 2199,
+      "N_clips_all_modalities_present": 2197,
+      "padding_fraction": {
+        "text": 0.7529968167348795,
+        "audio": 0.8809913597089586,
+        "vision": 0.8934151887221464
+      },
+      "clip_level_masked": {
+        "text-audio": {
+          "cka_raw": 0.006335591768705328,
+          "cka_z": 0.024961524340289552,
+          "perm95_cka_z": 0.006687061045285776,
+          "dcka_z": 0.01853007813561
+        },
+        "text-vision": {
+          "cka_raw": 0.013913197813131462,
+          "cka_z": 0.01773472038543454,
+          "perm95_cka_z": 0.008903384242665582,
+          "dcka_z": 0.009664899918154942
+        },
+        "audio-vision": {
+          "cka_raw": 0.013746880333799495,
+          "cka_z": 0.03691974120957473,
+          "perm95_cka_z": 0.0039708199886703925,
+          "dcka_z": 0.034250520362681204
+        }
+      },
+      "clip_level_unmasked": {
+        "text-audio": {
+          "cka_raw": 0.4171175538422227,
+          "cka_z": 0.548920561242403,
+          "perm95_cka_z": 0.0038148329220131427
+        },
+        "text-vision": {
+          "cka_raw": 0.5140986757287377,
+          "cka_z": 0.38871396629658406,
+          "perm95_cka_z": 0.005588862236118152
+        },
+        "audio-vision": {
+          "cka_raw": 0.3503832161757018,
+          "cka_z": 0.5338915807882989,
+          "perm95_cka_z": 0.0036266668640652505
+        }
+      },
+      "valid_frame_count_corr_audio_vision": 0.9964571478251874,
+      "frame_level_audio_vision": {
+        "cka_raw": 0.002424850767129407,
+        "cka_z": 0.012204145221385873,
+        "perm95_cka_z": 0.0003948851972039385,
+        "N_frames": 23438
+      }
+    },
+    "l200": {
+      "file": "mosi_data_noalign_l200.pkl",
+      "sha256_prefix": "f035541d",
+      "N_clips": 2199,
+      "N_clips_all_modalities_present": 2197,
+      "padding_fraction": {
+        "text": 0.7529968167348795,
+        "audio": 0.8833128694861301,
+        "vision": 0.8953592542064575
+      },
+      "clip_level_masked": {
+        "text-audio": {
+          "cka_raw": 0.006292125433909184,
+          "cka_z": 0.022022812818750598,
+          "perm95_cka_z": 0.006675272664292165,
+          "dcka_z": 0.015737464864810705
+        },
+        "text-vision": {
+          "cka_raw": 0.013847006229944895,
+          "cka_z": 0.017765542846328197,
+          "perm95_cka_z": 0.008913024768662452,
+          "dcka_z": 0.009521326327655313
+        },
+        "audio-vision": {
+          "cka_raw": 0.014192734921519729,
+          "cka_z": 0.03913974601793697,
+          "perm95_cka_z": 0.0039934340142216375,
+          "dcka_z": 0.03645891756621009
+        }
+      },
+      "clip_level_unmasked": {
+        "text-audio": {
+          "cka_raw": 0.42035618837708255,
+          "cka_z": 0.5483364145756102,
+          "perm95_cka_z": 0.0038103805784746765
+        },
+        "text-vision": {
+          "cka_raw": 0.5140153719495356,
+          "cka_z": 0.3886336710973521,
+          "perm95_cka_z": 0.005582344242085152
+        },
+        "audio-vision": {
+          "cka_raw": 0.3540903784873757,
+          "cka_z": 0.5336238215421587,
+          "perm95_cka_z": 0.0035803225923446433
+        }
+      },
+      "valid_frame_count_corr_audio_vision": 0.9972912139396767,
+      "frame_level_audio_vision": {
+        "cka_raw": 0.0018695694533112704,
+        "cka_z": 0.008919171224132204,
+        "perm95_cka_z": 0.00018777444588800367,
+        "N_frames": 46021
+      }
+    },
+    "native": {
+      "file": "mosi_data_noalign_native.pkl",
+      "sha256_prefix": "8c75b1a2",
+      "N_clips": 2199,
+      "N_clips_all_modalities_present": 2197,
+      "padding_fraction": {
+        "text": 0.7529968167348795,
+        "audio": 0.885737153251478,
+        "vision": 0.8976507503410641
+      },
+      "clip_level_masked": {
+        "text-audio": {
+          "cka_raw": 0.005943679958605352,
+          "cka_z": 0.01744048523017675,
+          "perm95_cka_z": 0.006525653409515823,
+          "dcka_z": 0.011107756592806169
+        },
+        "text-vision": {
+          "cka_raw": 0.014004335563685471,
+          "cka_z": 0.017996508741673422,
+          "perm95_cka_z": 0.008926176680854755,
+          "dcka_z": 0.00954099207444331
+        },
+        "audio-vision": {
+          "cka_raw": 0.013577910981186386,
+          "cka_z": 0.0397137162956962,
+          "perm95_cka_z": 0.003866606881680481,
+          "dcka_z": 0.03699804610690679
+        }
+      },
+      "clip_level_unmasked": {
+        "text-audio": {
+          "cka_raw": 0.41938694620347056,
+          "cka_z": 0.5480398360266239,
+          "perm95_cka_z": 0.0038025613534524243
+        },
+        "text-vision": {
+          "cka_raw": 0.5140986757287377,
+          "cka_z": 0.38871396629658406,
+          "perm95_cka_z": 0.005588862236118152
+        },
+        "audio-vision": {
+          "cka_raw": 0.3532160025390163,
+          "cka_z": 0.5338418568903058,
+          "perm95_cka_z": 0.00360212739669625
+        }
+      },
+      "valid_frame_count_corr_audio_vision": 0.9975538800092842,
+      "frame_level_audio_vision": null
+    }
+  }
+}

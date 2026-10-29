@@ -1,0 +1,91 @@
+/home/user/Downloads/ML-project/ML-Project/.venv/lib/python3.12/site-packages/torch/__init__.py:1700: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)
+[LAUNCHER] hp.when overridden 10 -> 30; num_epochs=1
+======================================================================
+RUN CONFIGURATION: FROZEN_DENSE
+  Dataset:          mosi (mosi_data_noalign_l200.pkl)
+  Sequence lengths: L=50, A=200, V=200
+  Dimensions:       d_l=300, d_a=5, d_v=20
+  Effective Batch:  16 * 4 = 64
+  Run Directory:    /home/user/Downloads/ML-project/ML-Project/runs_e200/_smoke_frozen_dense
+======================================================================
+[1/7] Instantiating PromptModel...
+[2/7] Arm C: keeping original dense time-mixers (frozen at random init after transfer).
+[3/7] Transferring backbone weights from /home/user/Downloads/ML-project/ML-Project/pretrained/mosei.pt via lenmod.transfer...
+Missing key(s) in state_dict :proj_l.weight
+Missing key(s) in state_dict :proj_a.weight
+Missing key(s) in state_dict :proj_v.weight
+Missing key(s) in state_dict :out_layer.weight
+Missing key(s) in state_dict :out_layer.bias
+      Missing keys count: 5 | Trainable parameters: 349,441
+      [CHECK PASSED] Exactly 5 missing keys found (dimension-dependent projections & output layer).
+[3b/7] Arm C: froze 262,950 dense time-mixing parameters at random init | Trainable now: 86,491
+[4/7] Moving model to cuda:0...
+[5/7] Fitting model for 1 epochs...
+Starting training on cuda:0 for 1 epochs...
+Gradient accumulation: 4 steps (no DataParallel)
+Checkpoint target: /home/user/Downloads/ML-project/ML-Project/runs_e200/_smoke_frozen_dense/checkpoint.pt
+/home/user/Downloads/ML-project/ML-Project/third_party/MPLMM/modules/position_embedding.py:20: UserWarning: The number of elements in the out tensor of shape [50] is 50 which does not match the computed number of elements 200. Note that this may occur as a result of rounding error. The out tensor will be resized to a tensor of shape (200,). (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/cuda/RangeFactories.cu:262.)
+  torch.arange(padding_idx + 1, max_pos, out=getattr(make_positions, buf_name))
+/home/user/Downloads/ML-project/ML-Project/third_party/MPLMM/modules/position_embedding.py:20: UserWarning: The number of elements in the out tensor of shape [200] is 200 which does not match the computed number of elements 216. Note that this may occur as a result of rounding error. The out tensor will be resized to a tensor of shape (216,). (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/cuda/RangeFactories.cu:262.)
+  torch.arange(padding_idx + 1, max_pos, out=getattr(make_positions, buf_name))
+Epoch  1/ 1 | Train Loss: 1.3250 | Val Loss: 1.4117 | Val Acc-2: 0.5741 | Time: 14.36s *
+
+=================================================================
+Reloading best checkpoint from Epoch 1 (Val Loss: 1.4117)
+
+============================================================================
+MODALITY EVALUATION SUMMARY (Forced Missing Codes 0 to 6)
+Case                                Acc-2       F1      MAE     Corr   Acc-5
+----------------------------------------------------------------------------
+Case 0: L_missing ({a,v} present)   42.23%   25.07%   1.4584   0.1159  15.45%
+Case 1: A_missing ({l,v} present)   42.23%   25.07%   1.4471   0.2716  15.45%
+Case 2: V_missing ({l,a} present)   42.23%   25.07%   1.4479   0.2692  15.45%
+Case 3: LA_missing ({v} present)   42.23%   25.07%   1.4604   0.0235  15.45%
+Case 4: LV_missing ({a} present)   42.23%   25.07%   1.4600   0.0507  15.45%
+Case 5: AV_missing ({l} present)   42.23%   25.07%   1.4475   0.2761  15.45%
+----------------------------------------------------------------------------
+MEAN (Cases 0 to 5)                42.23%   25.07%   1.4535   0.1678  15.45%
+----------------------------------------------------------------------------
+Case 6: complete_data ({l,a,v} present)   42.23%   25.07%   1.4482   0.2689  15.45%
+============================================================================
+
+=================================================================
+FINAL TEST-SET EVALUATION RESULTS (Test Split Only)
+  Test Loss:        1.4526
+  Binary Acc-2:     42.23%
+  Weighted F1:      25.07%
+  MAE:              1.4526
+  Corr:             0.1964
+  Multiclass Acc-7: 15.45%
+  Multiclass Acc-5: 15.45%
+  Cases 0-5 Mean Acc-2: 42.23%
+=================================================================
+
+[6/7] Evaluating all 7 modality conditions on test set...
+
+============================================================================
+MODALITY EVALUATION SUMMARY (Forced Missing Codes 0 to 6)
+Case                                Acc-2       F1      MAE     Corr   Acc-5
+----------------------------------------------------------------------------
+Case 0: L_missing ({a,v} present)   42.23%   25.07%   1.4584   0.1159  15.45%
+Case 1: A_missing ({l,v} present)   42.23%   25.07%   1.4471   0.2716  15.45%
+Case 2: V_missing ({l,a} present)   42.23%   25.07%   1.4479   0.2692  15.45%
+Case 3: LA_missing ({v} present)   42.23%   25.07%   1.4604   0.0235  15.45%
+Case 4: LV_missing ({a} present)   42.23%   25.07%   1.4600   0.0507  15.45%
+Case 5: AV_missing ({l} present)   42.23%   25.07%   1.4475   0.2761  15.45%
+----------------------------------------------------------------------------
+MEAN (Cases 0 to 5)                42.23%   25.07%   1.4535   0.1678  15.45%
+----------------------------------------------------------------------------
+Case 6: complete_data ({l,a,v} present)   42.23%   25.07%   1.4482   0.2689  15.45%
+============================================================================
+
+[6b/7] Evaluating generation fidelity and CKA via forward hooks...
+
+[PIPELINE CHECK] Asserted (model.missing_type_prompt == 0).all() (zeros confirmed: True)
+[PIPELINE ARTIFACT] Saved model.l_avp.state_dict() to: /home/user/Downloads/ML-project/ML-Project/runs_e200/_smoke_frozen_dense/model_l_avp.pt
+[7/7] Writing results JSON to /home/user/Downloads/ML-project/ML-Project/runs_e200/_smoke_frozen_dense/results.json...
+Run completed successfully! Output JSON: /home/user/Downloads/ML-project/ML-Project/runs_e200/_smoke_frozen_dense/results.json
+Mean Acc-2 (Cases 0 to 5): 42.23%
+
+[LAUNCHER] annotated /home/user/Downloads/ML-project/ML-Project/runs_e200/_smoke_frozen_dense/results.json

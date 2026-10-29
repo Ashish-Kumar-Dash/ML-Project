@@ -23,11 +23,15 @@ CELL_MAP = {
     "mosi_ladder_l200_invariant": ("ladder_l200", "invariant"),
     "mosi_noalign_baseline": ("native_375_500", "baseline"),
     "mosi_noalign_invariant": ("native_375_500", "invariant"),
+    "mosi_l2prime_baseline": ("l2_prime_5_20", "baseline"),
+    "mosi_l2prime_invariant": ("l2_prime_5_20", "invariant"),
+    "mosi_l2_baseline": ("l2_full_768_512", "baseline"),
+    "mosi_l2_invariant": ("l2_full_768_512", "invariant"),
 }
 
 
-def load_all_runs():
-    runs_dir = REPO_ROOT / "runs"
+def load_all_runs(runs_dir_name: str = "runs"):
+    runs_dir = REPO_ROOT / runs_dir_name
     json_files = sorted(runs_dir.glob("*/results.json"))
 
     cell_data = defaultdict(lambda: defaultdict(list))
@@ -101,7 +105,12 @@ def format_cell_summary(cell_data):
 
 
 def main():
-    cell_data = load_all_runs()
+    import argparse
+    parser = argparse.ArgumentParser(description="Summarize runs by cell.")
+    parser.add_argument("--runs_dir", type=str, default="runs", help="Directory containing run results (default: runs)")
+    args = parser.parse_args()
+
+    cell_data = load_all_runs(args.runs_dir)
     table_str, one_liners = format_cell_summary(cell_data)
 
     print(table_str)

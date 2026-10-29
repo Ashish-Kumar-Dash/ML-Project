@@ -23,6 +23,11 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 PYTHON_EXEC = sys.executable
 
 CELL_CONFIGS = {
+    "l50": {
+        "label": "l=50",
+        "data_path": "data/ladder/mosi_data_noalign_l50.pkl",
+        "runs_prefix": "mosi_ladder_l50",
+    },
     "l100": {
         "label": "l=100",
         "data_path": "data/ladder/mosi_data_noalign_l100.pkl",
@@ -37,6 +42,16 @@ CELL_CONFIGS = {
         "label": "l=375/500",
         "data_path": "data/mosi_data_noalign.pkl",
         "runs_prefix": "mosi_noalign",
+    },
+    "l2_prime": {
+        "label": "L2' (5/20/300)",
+        "data_path": "data/mosi_data_l2_prime.pkl",
+        "runs_prefix": "mosi_l2prime",
+    },
+    "l2": {
+        "label": "L2 (768/512/300)",
+        "data_path": "data/mosi_data_l2.pkl",
+        "runs_prefix": "mosi_l2",
     },
 }
 
@@ -68,6 +83,18 @@ def parse_args():
         help="Number of epochs per run (default: 40)",
     )
     parser.add_argument(
+        "--runs_dir",
+        type=str,
+        default="runs",
+        help="Destination directory for runs (e.g. runs or runs_e200)",
+    )
+    parser.add_argument(
+        "--launcher",
+        type=str,
+        default=None,
+        help="Launcher script path (e.g. run.py or runs_e200/launch_e200.py)",
+    )
+    parser.add_argument(
         "--skip_existing",
         action="store_true",
         default=True,
@@ -76,7 +103,14 @@ def parse_args():
     return parser.parse_args()
 
 
-def run_single(variant: str, data_path: str, seed: int, run_name: str, num_epochs: int) -> bool:
+def run_single(
+    variant: str,
+    data_path: str,
+    seed: int,
+    run_name: str,
+    num_epochs: int,
+    launcher: str = "run.py",
+) -> bool:
     run_dir = REPO_ROOT / run_name
     json_path = run_dir / "results.json"
     ckpt_path = run_dir / "checkpoint.pt"
@@ -87,7 +121,7 @@ def run_single(variant: str, data_path: str, seed: int, run_name: str, num_epoch
 
     cmd = [
         PYTHON_EXEC,
-        str(REPO_ROOT / "run.py"),
+        str(REPO_ROOT / launcher),
         "--variant",
         variant,
         "--dataset",
@@ -113,6 +147,7 @@ def run_single(variant: str, data_path: str, seed: int, run_name: str, num_epoch
 
     print(f"\n{'='*75}")
     print(f"STARTING RUN: {run_name}")
+    print(f"  Launcher:   {launcher}")
     print(f"  Variant:    {variant}")
     print(f"  Data Path:  {data_path}")
     print(f"  Seed:       {seed}")
@@ -141,7 +176,15 @@ def main():
     seeds = [int(s.strip()) for s in args.seeds.split(",") if s.strip()]
     variants = [v.strip() for v in args.variants.split(",") if v.strip()]
 
+    launcher = args.launcher
+    if launcher is None:
+        if args.runs_dir == "runs_e200" or args.num_epochs >= 200:
+            launcher = "runs_e200/launch_e200.py"
+        else:
+            launcher = "run.py"
+
     print(f"Executing cells: {cells_to_run} | Variants: {variants} | Seeds: {seeds}")
+    print(f"Runs Dir: {args.runs_dir} | Launcher: {launcher} | Epochs: {args.num_epochs}")
 
     total_runs = len(cells_to_run) * len(variants) * len(seeds)
     run_idx = 0
@@ -155,7 +198,7 @@ def main():
         for variant in variants:
             for seed in seeds:
                 run_idx += 1
-                run_name = f"runs/{cfg['runs_prefix']}_{variant}_seed{seed}"
+                run_name = f"{args.runs_dir}/{cfg['runs_prefix']}_{variant}_seed{seed}"
                 print(f"\n>>> [{run_idx}/{total_runs}] Processing {run_name}...")
                 ok = run_single(
                     variant=variant,
@@ -163,6 +206,7 @@ def main():
                     seed=seed,
                     run_name=run_name,
                     num_epochs=args.num_epochs,
+                    launcher=launcher,
                 )
                 if not ok:
                     print(f"Aborting matrix execution due to failure in {run_name}")

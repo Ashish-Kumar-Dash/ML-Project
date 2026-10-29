@@ -1,0 +1,5 @@
+[frozen_dense rc=0]
+[pool_fixed rc=0]
+frozen_dense op= mlp_dense_frozen_at_init trainable= 163441 frozen_tm= 37650 valid_drop= 0.0
+pool_fixed op= avg_pool_fixed_zero_param trainable= 163441 frozen_tm= None valid_drop= 0.0
+SMOKE_L2CD_DONE

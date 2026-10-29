@@ -1,0 +1,288 @@
+/home/user/Downloads/ML-project/ML-Project/.venv/lib/python3.12/site-packages/torch/__init__.py:1700: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)
+[CONFIG] Validation split drop_rate = 0.0 (train/test remain 0.7)
+[LAUNCHER] hp.when overridden 10 -> 30; num_epochs=200
+======================================================================
+RUN CONFIGURATION: INVARIANT
+  Dataset:          mosi (mosi_data_l2_prime.pkl)
+  Sequence lengths: L=50, A=50, V=50
+  Dimensions:       d_l=300, d_a=5, d_v=20
+  Effective Batch:  16 * 4 = 64
+  Run Directory:    /home/user/Downloads/ML-project/ML-Project/runs_e200/mosi_l2prime_invariant_seed2_cdval
+======================================================================
+[1/7] Instantiating PromptModel...
+[2/7] Swapping time-mixers with invariant operator (cross_attn)...
+[3/7] Transferring backbone weights from /home/user/Downloads/ML-project/ML-Project/pretrained/mosei.pt via lenmod.transfer...
+Missing key(s) in state_dict :proj_l.weight
+Missing key(s) in state_dict :proj_a.weight
+Missing key(s) in state_dict :proj_v.weight
+Missing key(s) in state_dict :out_layer.weight
+Missing key(s) in state_dict :out_layer.bias
+      Missing keys count: 5 | Trainable parameters: 97,471
+      [CHECK PASSED] Exactly 5 missing keys found (dimension-dependent projections & output layer).
+[4/7] Moving model to cuda:0...
+[5/7] Fitting model for 200 epochs...
+Starting training on cuda:0 for 200 epochs...
+Gradient accumulation: 4 steps (no DataParallel)
+Checkpoint target: /home/user/Downloads/ML-project/ML-Project/runs_e200/mosi_l2prime_invariant_seed2_cdval/checkpoint.pt
+/home/user/Downloads/ML-project/ML-Project/third_party/MPLMM/modules/position_embedding.py:20: UserWarning: The number of elements in the out tensor of shape [50] is 50 which does not match the computed number of elements 66. Note that this may occur as a result of rounding error. The out tensor will be resized to a tensor of shape (66,). (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/cuda/RangeFactories.cu:262.)
+  torch.arange(padding_idx + 1, max_pos, out=getattr(make_positions, buf_name))
+Epoch  1/200 | Train Loss: 1.3176 | Val Loss: 1.4174 | Val Acc-2: 0.5694 | Time: 6.52s *
+Epoch  2/200 | Train Loss: 1.3068 | Val Loss: 1.4137 | Val Acc-2: 0.5833 | Time: 6.38s *
+Epoch  3/200 | Train Loss: 1.3027 | Val Loss: 1.4216 | Val Acc-2: 0.5694 | Time: 6.24s
+Epoch  4/200 | Train Loss: 1.2867 | Val Loss: 1.4136 | Val Acc-2: 0.5741 | Time: 6.32s *
+Epoch  5/200 | Train Loss: 1.2638 | Val Loss: 1.4119 | Val Acc-2: 0.5741 | Time: 6.36s *
+Epoch  6/200 | Train Loss: 1.2427 | Val Loss: 1.4165 | Val Acc-2: 0.5694 | Time: 6.47s
+Epoch  7/200 | Train Loss: 1.2293 | Val Loss: 1.4177 | Val Acc-2: 0.5602 | Time: 6.54s
+Epoch  8/200 | Train Loss: 1.1866 | Val Loss: 1.4193 | Val Acc-2: 0.5556 | Time: 6.46s
+Epoch  9/200 | Train Loss: 1.1477 | Val Loss: 1.4355 | Val Acc-2: 0.5926 | Time: 6.49s
+Epoch 10/200 | Train Loss: 1.1086 | Val Loss: 1.4518 | Val Acc-2: 0.5972 | Time: 6.56s
+Epoch 11/200 | Train Loss: 1.0842 | Val Loss: 1.4994 | Val Acc-2: 0.5185 | Time: 6.33s
+Epoch 12/200 | Train Loss: 1.0372 | Val Loss: 1.5406 | Val Acc-2: 0.5185 | Time: 6.31s
+Epoch 13/200 | Train Loss: 1.0284 | Val Loss: 1.5311 | Val Acc-2: 0.5324 | Time: 6.32s
+Epoch 14/200 | Train Loss: 0.9896 | Val Loss: 1.5776 | Val Acc-2: 0.5046 | Time: 6.23s
+Epoch 15/200 | Train Loss: 0.9777 | Val Loss: 1.5824 | Val Acc-2: 0.5093 | Time: 6.32s
+Epoch 16/200 | Train Loss: 0.9654 | Val Loss: 1.5645 | Val Acc-2: 0.5046 | Time: 6.39s
+Epoch 17/200 | Train Loss: 0.9748 | Val Loss: 1.5233 | Val Acc-2: 0.5139 | Time: 6.36s
+Epoch 18/200 | Train Loss: 0.9439 | Val Loss: 1.5475 | Val Acc-2: 0.5139 | Time: 6.36s
+Epoch 19/200 | Train Loss: 0.9360 | Val Loss: 1.5106 | Val Acc-2: 0.5278 | Time: 6.36s
+Epoch 20/200 | Train Loss: 0.9401 | Val Loss: 1.5881 | Val Acc-2: 0.5093 | Time: 6.39s
+Epoch 21/200 | Train Loss: 0.9068 | Val Loss: 1.5566 | Val Acc-2: 0.5231 | Time: 6.36s
+Epoch 22/200 | Train Loss: 0.8809 | Val Loss: 1.5142 | Val Acc-2: 0.5324 | Time: 6.26s
+Epoch 23/200 | Train Loss: 0.8787 | Val Loss: 1.5092 | Val Acc-2: 0.5417 | Time: 6.34s
+Epoch 24/200 | Train Loss: 0.8889 | Val Loss: 1.5155 | Val Acc-2: 0.5417 | Time: 6.34s
+Epoch 25/200 | Train Loss: 0.8734 | Val Loss: 1.5158 | Val Acc-2: 0.5370 | Time: 6.35s
+Epoch 26/200 | Train Loss: 0.8706 | Val Loss: 1.5668 | Val Acc-2: 0.5231 | Time: 6.34s
+Epoch 27/200 | Train Loss: 0.8741 | Val Loss: 1.5009 | Val Acc-2: 0.5417 | Time: 6.38s
+Epoch 28/200 | Train Loss: 0.8569 | Val Loss: 1.4821 | Val Acc-2: 0.5648 | Time: 6.31s
+Epoch 29/200 | Train Loss: 0.8787 | Val Loss: 1.4891 | Val Acc-2: 0.5694 | Time: 6.40s
+Epoch 30/200 | Train Loss: 0.8192 | Val Loss: 1.4679 | Val Acc-2: 0.5694 | Time: 6.25s
+Epoch 31/200 | Train Loss: 0.8379 | Val Loss: 1.5213 | Val Acc-2: 0.5324 | Time: 6.40s
+Epoch 32/200 | Train Loss: 0.8364 | Val Loss: 1.4769 | Val Acc-2: 0.5694 | Time: 6.34s
+Epoch 33/200 | Train Loss: 0.8146 | Val Loss: 1.4339 | Val Acc-2: 0.6111 | Time: 6.38s
+Epoch 34/200 | Train Loss: 0.7897 | Val Loss: 1.4347 | Val Acc-2: 0.6111 | Time: 6.58s
+Epoch 35/200 | Train Loss: 0.7772 | Val Loss: 1.4203 | Val Acc-2: 0.6157 | Time: 6.59s
+Epoch 36/200 | Train Loss: 0.7903 | Val Loss: 1.4094 | Val Acc-2: 0.6157 | Time: 6.62s *
+Epoch 37/200 | Train Loss: 0.8209 | Val Loss: 1.3973 | Val Acc-2: 0.6296 | Time: 6.27s *
+Epoch 38/200 | Train Loss: 0.8129 | Val Loss: 1.3966 | Val Acc-2: 0.6343 | Time: 6.45s *
+Epoch 39/200 | Train Loss: 0.7765 | Val Loss: 1.3905 | Val Acc-2: 0.6204 | Time: 6.27s *
+Epoch 40/200 | Train Loss: 0.7681 | Val Loss: 1.3981 | Val Acc-2: 0.6296 | Time: 6.49s
+Epoch 41/200 | Train Loss: 0.7895 | Val Loss: 1.4117 | Val Acc-2: 0.6065 | Time: 6.40s
+Epoch 42/200 | Train Loss: 0.8116 | Val Loss: 1.3869 | Val Acc-2: 0.6481 | Time: 6.37s *
+Epoch 43/200 | Train Loss: 0.7849 | Val Loss: 1.3872 | Val Acc-2: 0.6250 | Time: 6.39s
+Epoch 44/200 | Train Loss: 0.7855 | Val Loss: 1.3820 | Val Acc-2: 0.6389 | Time: 6.30s *
+Epoch 45/200 | Train Loss: 0.7678 | Val Loss: 1.3758 | Val Acc-2: 0.6343 | Time: 6.35s *
+Epoch 46/200 | Train Loss: 0.7712 | Val Loss: 1.4108 | Val Acc-2: 0.6157 | Time: 6.31s
+Epoch 47/200 | Train Loss: 0.7851 | Val Loss: 1.3804 | Val Acc-2: 0.6296 | Time: 6.38s
+Epoch 48/200 | Train Loss: 0.7811 | Val Loss: 1.3540 | Val Acc-2: 0.6481 | Time: 6.34s *
+Epoch 49/200 | Train Loss: 0.7846 | Val Loss: 1.3659 | Val Acc-2: 0.6343 | Time: 6.39s
+Epoch 50/200 | Train Loss: 0.7675 | Val Loss: 1.3692 | Val Acc-2: 0.6389 | Time: 6.52s
+Epoch 51/200 | Train Loss: 0.7857 | Val Loss: 1.3647 | Val Acc-2: 0.6481 | Time: 6.55s
+Epoch 52/200 | Train Loss: 0.7582 | Val Loss: 1.4071 | Val Acc-2: 0.6019 | Time: 6.45s
+Epoch 53/200 | Train Loss: 0.7739 | Val Loss: 1.3606 | Val Acc-2: 0.6389 | Time: 6.38s
+Epoch 54/200 | Train Loss: 0.7624 | Val Loss: 1.3836 | Val Acc-2: 0.6343 | Time: 6.43s
+Epoch 55/200 | Train Loss: 0.7645 | Val Loss: 1.3836 | Val Acc-2: 0.6435 | Time: 6.41s
+Epoch 56/200 | Train Loss: 0.7741 | Val Loss: 1.3789 | Val Acc-2: 0.6620 | Time: 6.42s
+Epoch 57/200 | Train Loss: 0.7687 | Val Loss: 1.3617 | Val Acc-2: 0.6620 | Time: 6.37s
+Epoch 58/200 | Train Loss: 0.7640 | Val Loss: 1.3503 | Val Acc-2: 0.6528 | Time: 6.42s *
+Epoch 59/200 | Train Loss: 0.7267 | Val Loss: 1.3552 | Val Acc-2: 0.6435 | Time: 6.57s
+Epoch 60/200 | Train Loss: 0.7474 | Val Loss: 1.3467 | Val Acc-2: 0.6481 | Time: 6.47s *
+Epoch 61/200 | Train Loss: 0.7536 | Val Loss: 1.3597 | Val Acc-2: 0.6481 | Time: 6.44s
+Epoch 62/200 | Train Loss: 0.7740 | Val Loss: 1.3625 | Val Acc-2: 0.6435 | Time: 6.37s
+Epoch 63/200 | Train Loss: 0.7519 | Val Loss: 1.3482 | Val Acc-2: 0.6528 | Time: 6.40s
+Epoch 64/200 | Train Loss: 0.7536 | Val Loss: 1.3466 | Val Acc-2: 0.6620 | Time: 6.41s *
+Epoch 65/200 | Train Loss: 0.7541 | Val Loss: 1.3408 | Val Acc-2: 0.6389 | Time: 6.51s *
+Epoch 66/200 | Train Loss: 0.7312 | Val Loss: 1.3430 | Val Acc-2: 0.6481 | Time: 6.22s
+Epoch 67/200 | Train Loss: 0.7385 | Val Loss: 1.3379 | Val Acc-2: 0.6528 | Time: 6.37s *
+Epoch 68/200 | Train Loss: 0.7212 | Val Loss: 1.3219 | Val Acc-2: 0.6620 | Time: 6.42s *
+Epoch 69/200 | Train Loss: 0.7325 | Val Loss: 1.3260 | Val Acc-2: 0.6481 | Time: 6.32s
+Epoch 70/200 | Train Loss: 0.7463 | Val Loss: 1.3456 | Val Acc-2: 0.6574 | Time: 6.21s
+Epoch 71/200 | Train Loss: 0.7332 | Val Loss: 1.3436 | Val Acc-2: 0.6574 | Time: 6.29s
+Epoch 72/200 | Train Loss: 0.7284 | Val Loss: 1.3260 | Val Acc-2: 0.6620 | Time: 6.28s
+Epoch 73/200 | Train Loss: 0.7642 | Val Loss: 1.3315 | Val Acc-2: 0.6574 | Time: 6.20s
+Epoch 74/200 | Train Loss: 0.7538 | Val Loss: 1.3450 | Val Acc-2: 0.6620 | Time: 6.23s
+Epoch 75/200 | Train Loss: 0.7462 | Val Loss: 1.3471 | Val Acc-2: 0.6481 | Time: 6.24s
+Epoch 76/200 | Train Loss: 0.7580 | Val Loss: 1.3535 | Val Acc-2: 0.6528 | Time: 6.19s
+Epoch 77/200 | Train Loss: 0.7224 | Val Loss: 1.3208 | Val Acc-2: 0.6574 | Time: 6.22s *
+Epoch 78/200 | Train Loss: 0.7194 | Val Loss: 1.3503 | Val Acc-2: 0.6574 | Time: 6.33s
+Epoch 79/200 | Train Loss: 0.7569 | Val Loss: 1.3579 | Val Acc-2: 0.6574 | Time: 6.31s
+Epoch 80/200 | Train Loss: 0.7241 | Val Loss: 1.3502 | Val Acc-2: 0.6528 | Time: 6.30s
+Epoch 81/200 | Train Loss: 0.7349 | Val Loss: 1.3570 | Val Acc-2: 0.6435 | Time: 6.26s
+Epoch 82/200 | Train Loss: 0.7356 | Val Loss: 1.3379 | Val Acc-2: 0.6528 | Time: 6.28s
+Epoch 83/200 | Train Loss: 0.7160 | Val Loss: 1.3413 | Val Acc-2: 0.6574 | Time: 6.32s
+Epoch 84/200 | Train Loss: 0.7383 | Val Loss: 1.3384 | Val Acc-2: 0.6574 | Time: 6.31s
+Epoch 85/200 | Train Loss: 0.7288 | Val Loss: 1.3438 | Val Acc-2: 0.6574 | Time: 6.40s
+Epoch 86/200 | Train Loss: 0.7121 | Val Loss: 1.3475 | Val Acc-2: 0.6667 | Time: 6.32s
+Epoch 87/200 | Train Loss: 0.7109 | Val Loss: 1.3246 | Val Acc-2: 0.6528 | Time: 6.34s
+Epoch 88/200 | Train Loss: 0.7006 | Val Loss: 1.3193 | Val Acc-2: 0.6528 | Time: 6.17s *
+Epoch 89/200 | Train Loss: 0.7169 | Val Loss: 1.3113 | Val Acc-2: 0.6528 | Time: 6.17s *
+Epoch 90/200 | Train Loss: 0.7152 | Val Loss: 1.3132 | Val Acc-2: 0.6574 | Time: 6.22s
+Epoch 91/200 | Train Loss: 0.7087 | Val Loss: 1.3257 | Val Acc-2: 0.6620 | Time: 6.32s
+Epoch 92/200 | Train Loss: 0.7095 | Val Loss: 1.3293 | Val Acc-2: 0.6667 | Time: 6.23s
+Epoch 93/200 | Train Loss: 0.7510 | Val Loss: 1.3299 | Val Acc-2: 0.6620 | Time: 6.23s
+Epoch 94/200 | Train Loss: 0.7116 | Val Loss: 1.3262 | Val Acc-2: 0.6759 | Time: 6.25s
+Epoch 95/200 | Train Loss: 0.7238 | Val Loss: 1.3224 | Val Acc-2: 0.6852 | Time: 6.35s
+Epoch 96/200 | Train Loss: 0.7237 | Val Loss: 1.3251 | Val Acc-2: 0.6759 | Time: 6.39s
+Epoch 97/200 | Train Loss: 0.7134 | Val Loss: 1.3266 | Val Acc-2: 0.6574 | Time: 6.51s
+Epoch 98/200 | Train Loss: 0.7434 | Val Loss: 1.3318 | Val Acc-2: 0.6759 | Time: 6.34s
+Epoch 99/200 | Train Loss: 0.7382 | Val Loss: 1.3217 | Val Acc-2: 0.6713 | Time: 6.39s
+Epoch 100/200 | Train Loss: 0.7443 | Val Loss: 1.3203 | Val Acc-2: 0.6667 | Time: 6.52s
+Epoch 101/200 | Train Loss: 0.7163 | Val Loss: 1.3265 | Val Acc-2: 0.6713 | Time: 6.33s
+Epoch 102/200 | Train Loss: 0.7248 | Val Loss: 1.3431 | Val Acc-2: 0.6528 | Time: 6.14s
+Epoch 103/200 | Train Loss: 0.7204 | Val Loss: 1.3330 | Val Acc-2: 0.6620 | Time: 6.46s
+Epoch 104/200 | Train Loss: 0.6947 | Val Loss: 1.3279 | Val Acc-2: 0.6574 | Time: 6.79s
+Epoch 105/200 | Train Loss: 0.7061 | Val Loss: 1.3223 | Val Acc-2: 0.6667 | Time: 6.26s
+Epoch 106/200 | Train Loss: 0.7027 | Val Loss: 1.2938 | Val Acc-2: 0.6620 | Time: 5.86s *
+Epoch 107/200 | Train Loss: 0.6995 | Val Loss: 1.3219 | Val Acc-2: 0.6713 | Time: 5.33s
+Epoch 108/200 | Train Loss: 0.6810 | Val Loss: 1.3222 | Val Acc-2: 0.6667 | Time: 6.27s
+Epoch 109/200 | Train Loss: 0.7035 | Val Loss: 1.3302 | Val Acc-2: 0.6713 | Time: 6.57s
+Epoch 110/200 | Train Loss: 0.6967 | Val Loss: 1.3479 | Val Acc-2: 0.6667 | Time: 6.51s
+Epoch 111/200 | Train Loss: 0.7095 | Val Loss: 1.3540 | Val Acc-2: 0.6574 | Time: 6.45s
+Epoch 112/200 | Train Loss: 0.7218 | Val Loss: 1.3454 | Val Acc-2: 0.6620 | Time: 6.50s
+Epoch 113/200 | Train Loss: 0.7223 | Val Loss: 1.3466 | Val Acc-2: 0.6528 | Time: 6.43s
+Epoch 114/200 | Train Loss: 0.7207 | Val Loss: 1.3430 | Val Acc-2: 0.6481 | Time: 6.31s
+Epoch 115/200 | Train Loss: 0.7041 | Val Loss: 1.3472 | Val Acc-2: 0.6528 | Time: 6.30s
+Epoch 116/200 | Train Loss: 0.7005 | Val Loss: 1.3495 | Val Acc-2: 0.6574 | Time: 6.35s
+Epoch 117/200 | Train Loss: 0.6716 | Val Loss: 1.3371 | Val Acc-2: 0.6713 | Time: 6.41s
+Epoch 118/200 | Train Loss: 0.6981 | Val Loss: 1.3488 | Val Acc-2: 0.6667 | Time: 6.36s
+Epoch 119/200 | Train Loss: 0.6994 | Val Loss: 1.3522 | Val Acc-2: 0.6667 | Time: 6.35s
+Epoch 120/200 | Train Loss: 0.6823 | Val Loss: 1.3612 | Val Acc-2: 0.6620 | Time: 6.30s
+Epoch 121/200 | Train Loss: 0.6900 | Val Loss: 1.3513 | Val Acc-2: 0.6620 | Time: 6.27s
+Epoch 122/200 | Train Loss: 0.6968 | Val Loss: 1.3378 | Val Acc-2: 0.6620 | Time: 6.43s
+Epoch 123/200 | Train Loss: 0.7182 | Val Loss: 1.3556 | Val Acc-2: 0.6528 | Time: 6.26s
+Epoch 124/200 | Train Loss: 0.6783 | Val Loss: 1.3372 | Val Acc-2: 0.6620 | Time: 6.21s
+Epoch 125/200 | Train Loss: 0.6913 | Val Loss: 1.3507 | Val Acc-2: 0.6620 | Time: 6.29s
+Epoch 126/200 | Train Loss: 0.7118 | Val Loss: 1.3426 | Val Acc-2: 0.6528 | Time: 6.32s
+Epoch 127/200 | Train Loss: 0.6849 | Val Loss: 1.3559 | Val Acc-2: 0.6528 | Time: 6.18s
+Epoch 128/200 | Train Loss: 0.6825 | Val Loss: 1.3564 | Val Acc-2: 0.6481 | Time: 6.32s
+Epoch 129/200 | Train Loss: 0.6934 | Val Loss: 1.3489 | Val Acc-2: 0.6528 | Time: 6.37s
+Epoch 130/200 | Train Loss: 0.6893 | Val Loss: 1.3249 | Val Acc-2: 0.6528 | Time: 6.33s
+Epoch 131/200 | Train Loss: 0.7111 | Val Loss: 1.3379 | Val Acc-2: 0.6528 | Time: 6.34s
+Epoch 132/200 | Train Loss: 0.6963 | Val Loss: 1.3298 | Val Acc-2: 0.6481 | Time: 6.36s
+Epoch 133/200 | Train Loss: 0.6752 | Val Loss: 1.3544 | Val Acc-2: 0.6574 | Time: 6.30s
+Epoch 134/200 | Train Loss: 0.6949 | Val Loss: 1.3366 | Val Acc-2: 0.6528 | Time: 6.28s
+Epoch 135/200 | Train Loss: 0.6525 | Val Loss: 1.3369 | Val Acc-2: 0.6620 | Time: 6.33s
+Epoch 136/200 | Train Loss: 0.6962 | Val Loss: 1.3539 | Val Acc-2: 0.6667 | Time: 6.34s
+Epoch 137/200 | Train Loss: 0.6965 | Val Loss: 1.3343 | Val Acc-2: 0.6620 | Time: 6.35s
+Epoch 138/200 | Train Loss: 0.6865 | Val Loss: 1.3371 | Val Acc-2: 0.6620 | Time: 6.38s
+Epoch 139/200 | Train Loss: 0.6670 | Val Loss: 1.3392 | Val Acc-2: 0.6667 | Time: 6.28s
+Epoch 140/200 | Train Loss: 0.6926 | Val Loss: 1.3398 | Val Acc-2: 0.6667 | Time: 6.19s
+Epoch 141/200 | Train Loss: 0.6737 | Val Loss: 1.3398 | Val Acc-2: 0.6667 | Time: 6.12s
+Epoch 142/200 | Train Loss: 0.6848 | Val Loss: 1.3385 | Val Acc-2: 0.6620 | Time: 6.19s
+Epoch 143/200 | Train Loss: 0.6857 | Val Loss: 1.3376 | Val Acc-2: 0.6620 | Time: 6.21s
+Epoch 144/200 | Train Loss: 0.6588 | Val Loss: 1.3386 | Val Acc-2: 0.6620 | Time: 6.26s
+Epoch 145/200 | Train Loss: 0.6893 | Val Loss: 1.3372 | Val Acc-2: 0.6620 | Time: 6.24s
+Epoch 146/200 | Train Loss: 0.6906 | Val Loss: 1.3387 | Val Acc-2: 0.6667 | Time: 6.29s
+Epoch 147/200 | Train Loss: 0.6744 | Val Loss: 1.3388 | Val Acc-2: 0.6667 | Time: 6.32s
+Epoch 148/200 | Train Loss: 0.7022 | Val Loss: 1.3382 | Val Acc-2: 0.6620 | Time: 6.32s
+Epoch 149/200 | Train Loss: 0.6775 | Val Loss: 1.3361 | Val Acc-2: 0.6620 | Time: 6.36s
+Epoch 150/200 | Train Loss: 0.6950 | Val Loss: 1.3353 | Val Acc-2: 0.6620 | Time: 6.36s
+Epoch 151/200 | Train Loss: 0.6504 | Val Loss: 1.3361 | Val Acc-2: 0.6620 | Time: 6.29s
+Epoch 152/200 | Train Loss: 0.6722 | Val Loss: 1.3362 | Val Acc-2: 0.6667 | Time: 6.36s
+Epoch 153/200 | Train Loss: 0.6544 | Val Loss: 1.3378 | Val Acc-2: 0.6620 | Time: 6.41s
+Epoch 154/200 | Train Loss: 0.6765 | Val Loss: 1.3350 | Val Acc-2: 0.6667 | Time: 6.66s
+Epoch 155/200 | Train Loss: 0.6675 | Val Loss: 1.3359 | Val Acc-2: 0.6667 | Time: 6.63s
+Epoch 156/200 | Train Loss: 0.6615 | Val Loss: 1.3366 | Val Acc-2: 0.6620 | Time: 6.59s
+Epoch 157/200 | Train Loss: 0.6574 | Val Loss: 1.3366 | Val Acc-2: 0.6667 | Time: 6.70s
+Epoch 158/200 | Train Loss: 0.6704 | Val Loss: 1.3368 | Val Acc-2: 0.6667 | Time: 6.40s
+Epoch 159/200 | Train Loss: 0.6735 | Val Loss: 1.3367 | Val Acc-2: 0.6620 | Time: 6.28s
+Epoch 160/200 | Train Loss: 0.6575 | Val Loss: 1.3358 | Val Acc-2: 0.6620 | Time: 6.30s
+Epoch 161/200 | Train Loss: 0.6733 | Val Loss: 1.3363 | Val Acc-2: 0.6620 | Time: 6.37s
+Epoch 162/200 | Train Loss: 0.6724 | Val Loss: 1.3381 | Val Acc-2: 0.6574 | Time: 6.37s
+Epoch 163/200 | Train Loss: 0.6636 | Val Loss: 1.3404 | Val Acc-2: 0.6574 | Time: 6.35s
+Epoch 164/200 | Train Loss: 0.6652 | Val Loss: 1.3389 | Val Acc-2: 0.6620 | Time: 6.30s
+Epoch 165/200 | Train Loss: 0.6831 | Val Loss: 1.3379 | Val Acc-2: 0.6620 | Time: 6.35s
+Epoch 166/200 | Train Loss: 0.6578 | Val Loss: 1.3372 | Val Acc-2: 0.6667 | Time: 6.33s
+Epoch 167/200 | Train Loss: 0.6586 | Val Loss: 1.3402 | Val Acc-2: 0.6620 | Time: 6.34s
+Epoch 168/200 | Train Loss: 0.6539 | Val Loss: 1.3395 | Val Acc-2: 0.6620 | Time: 6.26s
+Epoch 169/200 | Train Loss: 0.6728 | Val Loss: 1.3395 | Val Acc-2: 0.6620 | Time: 6.30s
+Epoch 170/200 | Train Loss: 0.6776 | Val Loss: 1.3396 | Val Acc-2: 0.6620 | Time: 6.34s
+Epoch 171/200 | Train Loss: 0.6417 | Val Loss: 1.3397 | Val Acc-2: 0.6620 | Time: 6.43s
+Epoch 172/200 | Train Loss: 0.6737 | Val Loss: 1.3395 | Val Acc-2: 0.6620 | Time: 6.34s
+Epoch 173/200 | Train Loss: 0.6538 | Val Loss: 1.3396 | Val Acc-2: 0.6620 | Time: 6.36s
+Epoch 174/200 | Train Loss: 0.6857 | Val Loss: 1.3396 | Val Acc-2: 0.6620 | Time: 6.43s
+Epoch 175/200 | Train Loss: 0.6628 | Val Loss: 1.3397 | Val Acc-2: 0.6620 | Time: 6.41s
+Epoch 176/200 | Train Loss: 0.6328 | Val Loss: 1.3396 | Val Acc-2: 0.6620 | Time: 6.23s
+Epoch 177/200 | Train Loss: 0.6595 | Val Loss: 1.3395 | Val Acc-2: 0.6620 | Time: 6.19s
+Epoch 178/200 | Train Loss: 0.6739 | Val Loss: 1.3396 | Val Acc-2: 0.6620 | Time: 6.20s
+Epoch 179/200 | Train Loss: 0.6460 | Val Loss: 1.3398 | Val Acc-2: 0.6620 | Time: 6.19s
+Epoch 180/200 | Train Loss: 0.6877 | Val Loss: 1.3399 | Val Acc-2: 0.6620 | Time: 6.27s
+Epoch 181/200 | Train Loss: 0.6814 | Val Loss: 1.3403 | Val Acc-2: 0.6620 | Time: 6.32s
+Epoch 182/200 | Train Loss: 0.6409 | Val Loss: 1.3403 | Val Acc-2: 0.6620 | Time: 6.35s
+Epoch 183/200 | Train Loss: 0.6549 | Val Loss: 1.3401 | Val Acc-2: 0.6620 | Time: 6.30s
+Epoch 184/200 | Train Loss: 0.6601 | Val Loss: 1.3400 | Val Acc-2: 0.6620 | Time: 6.31s
+Epoch 185/200 | Train Loss: 0.6649 | Val Loss: 1.3399 | Val Acc-2: 0.6620 | Time: 6.32s
+Epoch 186/200 | Train Loss: 0.6842 | Val Loss: 1.3395 | Val Acc-2: 0.6620 | Time: 6.38s
+Epoch 187/200 | Train Loss: 0.6764 | Val Loss: 1.3393 | Val Acc-2: 0.6620 | Time: 6.26s
+Epoch 188/200 | Train Loss: 0.6562 | Val Loss: 1.3394 | Val Acc-2: 0.6620 | Time: 6.36s
+Epoch 189/200 | Train Loss: 0.6962 | Val Loss: 1.3394 | Val Acc-2: 0.6620 | Time: 6.31s
+Epoch 190/200 | Train Loss: 0.6733 | Val Loss: 1.3394 | Val Acc-2: 0.6620 | Time: 6.29s
+Epoch 191/200 | Train Loss: 0.6585 | Val Loss: 1.3391 | Val Acc-2: 0.6620 | Time: 6.37s
+Epoch 192/200 | Train Loss: 0.6650 | Val Loss: 1.3390 | Val Acc-2: 0.6620 | Time: 6.34s
+Epoch 193/200 | Train Loss: 0.6795 | Val Loss: 1.3390 | Val Acc-2: 0.6620 | Time: 6.29s
+Epoch 194/200 | Train Loss: 0.6822 | Val Loss: 1.3388 | Val Acc-2: 0.6620 | Time: 6.40s
+Epoch 195/200 | Train Loss: 0.6549 | Val Loss: 1.3387 | Val Acc-2: 0.6620 | Time: 6.44s
+Epoch 196/200 | Train Loss: 0.6772 | Val Loss: 1.3385 | Val Acc-2: 0.6620 | Time: 6.32s
+Epoch 197/200 | Train Loss: 0.6714 | Val Loss: 1.3383 | Val Acc-2: 0.6620 | Time: 6.39s
+Epoch 198/200 | Train Loss: 0.6806 | Val Loss: 1.3381 | Val Acc-2: 0.6620 | Time: 6.35s
+Epoch 199/200 | Train Loss: 0.6811 | Val Loss: 1.3381 | Val Acc-2: 0.6620 | Time: 6.34s
+Epoch 200/200 | Train Loss: 0.6655 | Val Loss: 1.3381 | Val Acc-2: 0.6620 | Time: 6.47s
+
+=================================================================
+Reloading best checkpoint from Epoch 106 (Val Loss: 1.2938)
+
+============================================================================
+MODALITY EVALUATION SUMMARY (Forced Missing Codes 0 to 6)
+Case                                Acc-2       F1      MAE     Corr   Acc-5
+----------------------------------------------------------------------------
+Case 0: L_missing ({a,v} present)   54.88%   55.13%   1.7037   0.0732  20.70%
+Case 1: A_missing ({l,v} present)   66.92%   67.09%   1.2839   0.4005  26.24%
+Case 2: V_missing ({l,a} present)   61.13%   61.36%   1.3825   0.3037  25.95%
+Case 3: LA_missing ({v} present)   50.76%   50.50%   1.7079   0.0788  22.59%
+Case 4: LV_missing ({a} present)   51.52%   51.80%   1.7916   0.0406  19.68%
+Case 5: AV_missing ({l} present)   78.51%   78.27%   0.9347   0.6647  40.09%
+----------------------------------------------------------------------------
+MEAN (Cases 0 to 5)                60.62%   60.69%   1.4674   0.2603  25.87%
+----------------------------------------------------------------------------
+Case 6: complete_data ({l,a,v} present)   62.96%   62.78%   1.3666   0.3749  23.32%
+============================================================================
+
+=================================================================
+FINAL TEST-SET EVALUATION RESULTS (Test Split Only)
+  Test Loss:        1.4064
+  Binary Acc-2:     62.04%
+  Weighted F1:      62.24%
+  MAE:              1.4064
+  Corr:             0.3072
+  Multiclass Acc-7: 24.34%
+  Multiclass Acc-5: 27.70%
+  Cases 0-5 Mean Acc-2: 60.62%
+=================================================================
+
+[6/7] Evaluating all 7 modality conditions on test set...
+
+============================================================================
+MODALITY EVALUATION SUMMARY (Forced Missing Codes 0 to 6)
+Case                                Acc-2       F1      MAE     Corr   Acc-5
+----------------------------------------------------------------------------
+Case 0: L_missing ({a,v} present)   54.88%   55.13%   1.7037   0.0732  20.70%
+Case 1: A_missing ({l,v} present)   66.92%   67.09%   1.2839   0.4005  26.24%
+Case 2: V_missing ({l,a} present)   61.13%   61.36%   1.3825   0.3037  25.95%
+Case 3: LA_missing ({v} present)   50.76%   50.50%   1.7079   0.0788  22.59%
+Case 4: LV_missing ({a} present)   51.52%   51.80%   1.7916   0.0406  19.68%
+Case 5: AV_missing ({l} present)   78.51%   78.27%   0.9347   0.6647  40.09%
+----------------------------------------------------------------------------
+MEAN (Cases 0 to 5)                60.62%   60.69%   1.4674   0.2603  25.87%
+----------------------------------------------------------------------------
+Case 6: complete_data ({l,a,v} present)   62.96%   62.78%   1.3666   0.3749  23.32%
+============================================================================
+
+[6b/7] Evaluating generation fidelity and CKA via forward hooks...
+
+[PIPELINE CHECK] Asserted (model.missing_type_prompt == 0).all() (zeros confirmed: True)
+[PIPELINE ARTIFACT] Saved model.l_avp.state_dict() to: /home/user/Downloads/ML-project/ML-Project/runs_e200/mosi_l2prime_invariant_seed2_cdval/model_l_avp.pt
+[7/7] Writing results JSON to /home/user/Downloads/ML-project/ML-Project/runs_e200/mosi_l2prime_invariant_seed2_cdval/results.json...
+Run completed successfully! Output JSON: /home/user/Downloads/ML-project/ML-Project/runs_e200/mosi_l2prime_invariant_seed2_cdval/results.json
+Mean Acc-2 (Cases 0 to 5): 60.62%
+
+[LAUNCHER] annotated /home/user/Downloads/ML-project/ML-Project/runs_e200/mosi_l2prime_invariant_seed2_cdval/results.json

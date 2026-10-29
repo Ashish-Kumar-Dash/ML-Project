@@ -1,0 +1,13 @@
+[l2 rc=0]
+[CONFIG] Validation split drop_rate = 0.0 (train/test remain 0.7)
+RUN CONFIGURATION: BASELINE
+Epoch  1/ 2 | Train Loss: 1.3150 | Val Loss: 1.4098 | Val Acc-2: 0.5741 | Time: 4.15s *
+Epoch  2/ 2 | Train Loss: 1.3142 | Val Loss: 1.4082 | Val Acc-2: 0.5694 | Time: 3.87s *
+[l2prime rc=0]
+[CONFIG] Validation split drop_rate = 0.0 (train/test remain 0.7)
+RUN CONFIGURATION: BASELINE
+Epoch  1/ 2 | Train Loss: 1.3291 | Val Loss: 1.4165 | Val Acc-2: 0.5741 | Time: 4.08s *
+Epoch  2/ 2 | Train Loss: 1.3183 | Val Loss: 1.4140 | Val Acc-2: 0.5741 | Time: 3.89s *
+l2 valid_drop_rate= 0.0 drop_rate= 0.7 trainable= 201091
+l2prime valid_drop_rate= 0.0 drop_rate= 0.7 trainable= 88141
+SMOKE_CDVAL_DONE
