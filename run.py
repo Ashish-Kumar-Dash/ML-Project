@@ -127,6 +127,16 @@ def main():
         help="Modality drop rate during training (paper optimum: 0.7)",
     )
     parser.add_argument(
+        "--valid_drop_rate",
+        type=float,
+        default=None,
+        help=(
+            "Modality drop rate for the VALIDATION split, which drives checkpoint "
+            "selection and the LR scheduler. Default None = same as --drop_rate "
+            "(upstream behaviour). Set 0.0 to select checkpoints on complete data."
+        ),
+    )
+    parser.add_argument(
         "--lr",
         type=float,
         default=1e-3,
@@ -202,9 +212,17 @@ def main():
     train_dataset = MOSIData(
         str(data_file), split_type="train", drop_rate=args.drop_rate
     )
-    valid_dataset = MOSIData(
-        str(data_file), split_type="valid", drop_rate=args.drop_rate
+    valid_drop_rate = (
+        args.drop_rate if args.valid_drop_rate is None else args.valid_drop_rate
     )
+    valid_dataset = MOSIData(
+        str(data_file), split_type="valid", drop_rate=valid_drop_rate
+    )
+    if args.valid_drop_rate is not None:
+        print(
+            f"[CONFIG] Validation split drop_rate = {valid_drop_rate} "
+            f"(train/test remain {args.drop_rate})"
+        )
     test_dataset = MOSIData(
         str(data_file), split_type="test", drop_rate=args.drop_rate
     )
@@ -417,6 +435,7 @@ def main():
         },
         "hyperparameters": {
             "drop_rate": args.drop_rate,
+            "valid_drop_rate": valid_drop_rate,
             "lr": args.lr,
             "batch_size": args.batch_size,
             "accum_steps": args.accum_steps,
