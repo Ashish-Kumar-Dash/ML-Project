@@ -23,6 +23,10 @@ from lenmod.trainer import (
     evaluate,
     fit,
 )
+from lenmod.extractors import (
+    CLIPVisualExtractor,
+    CLIP_MODELS,
+)
 
 __all__ = [
     "compat",
@@ -40,6 +44,8 @@ __all__ = [
     "cosine_similarity_fidelity",
     "evaluate_generation_fidelity",
     "linear_cka",
+    "CLIPVisualExtractor",
+    "CLIP_MODELS",
 ]
 
 

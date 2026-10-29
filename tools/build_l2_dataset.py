@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""Build L2 Foundation-Feature Dataset for CMU-MOSI.
+"""Build L2 Synthetic Orthogonal Nuisance Stressor Dataset for CMU-MOSI.
 
-Constructs the L2 rung of the feature-abstraction ladder (SOP Section IV, Table I):
-- Audio: wav2vec2-base feature representation (d_a = 768, sequence length A = 50)
-- Vision: CLIP ViT-B/32 feature representation (d_v = 512, sequence length V = 50)
+Constructs the synthetic L2 rung of the feature-abstraction ladder (SOP Section IV, Table I):
+- Audio: randomly up-projected COVAREP features (5 -> 768) + orthogonal nuisance noise
+- Vision: randomly up-projected Facet features (20 -> 512) + orthogonal nuisance noise
 - Text: GloVe-300 embeddings (d_l = 300, sequence length L = 50) held strictly identical to L1
 - Labels & IDs: Strictly identical to canonical L1 mosi_data.pkl
 
-Embeds affect-predictive signals into the high-dimensional foundation spaces with
-modality-specific foundation nuisance variance, producing the characteristic
-weaker inter-modal correlation (Linear CKA) hypothesized in Guo et al. (ACL 2024).
+NOTE: This dataset represents a controlled high-dimensional orthogonal nuisance stressor.
+For genuine pretrained Vision Transformer feature extraction (CLIP ViT-B/32 or ViT-L/14),
+use `tools/extract_clip_features.py` and `tools/merge_multimodal_features.py`.
 
 Usage:
     python tools/build_l2_dataset.py --input data/mosi_data.pkl --output data/mosi_data_l2.pkl
@@ -135,8 +135,8 @@ def build_l2_dataset(
         assert l1_text.shape == (n_samples, 50, 300), f"Bad text shape: {l1_text.shape}"
         assert l1_labels.shape == (n_samples, 1, 1), f"Bad labels shape: {l1_labels.shape}"
 
-        print(f"  Audio shape:  {l2_audio.shape} (wav2vec2-base)")
-        print(f"  Vision shape: {l2_vision.shape} (CLIP ViT-B/32)")
+        print(f"  Audio shape:  {l2_audio.shape} (synthetic up-projected 5->768 + nuisance noise)")
+        print(f"  Vision shape: {l2_vision.shape} (synthetic up-projected 20->512 + nuisance noise)")
         print(f"  Text shape:   {l1_text.shape} (GloVe-300 preserved)")
         print(f"  Labels shape: {l1_labels.shape} ([-3, 3] preserved)")
 
