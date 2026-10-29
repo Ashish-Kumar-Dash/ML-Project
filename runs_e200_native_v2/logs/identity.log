@@ -1,0 +1,3 @@
+baseline: DIFFERS | old commit ebbcb4e new f3cebe4 | first differing epoch: 1 | six-case old 0.685722 new 0.677846 | {'history_len': True, 'history_identical': False, 'best_epoch': False, 'best_val_loss': False, 'trainable_parameters': True, 'test_results': False}
+invariant: DIFFERS | old commit ebbcb4e new f3cebe4 | first differing epoch: 1 | six-case old 0.664126 new 0.668699 | {'history_len': True, 'history_identical': False, 'best_epoch': False, 'best_val_loss': False, 'trainable_parameters': True, 'test_results': False}
+OVERALL: FAIL - see above

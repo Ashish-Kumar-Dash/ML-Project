@@ -1,0 +1,90 @@
+/home/user/Downloads/ML-project/ML-Project/.venv/lib/python3.12/site-packages/torch/__init__.py:1700: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)
+/home/user/Downloads/ML-project/ML-Project/third_party/MPLMM/modules/position_embedding.py:20: UserWarning: The number of elements in the out tensor of shape [50] is 50 which does not match the computed number of elements 375. Note that this may occur as a result of rounding error. The out tensor will be resized to a tensor of shape (375,). (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/cuda/RangeFactories.cu:262.)
+  torch.arange(padding_idx + 1, max_pos, out=getattr(make_positions, buf_name))
+/home/user/Downloads/ML-project/ML-Project/third_party/MPLMM/modules/position_embedding.py:20: UserWarning: The number of elements in the out tensor of shape [375] is 375 which does not match the computed number of elements 500. Note that this may occur as a result of rounding error. The out tensor will be resized to a tensor of shape (500,). (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/cuda/RangeFactories.cu:262.)
+  torch.arange(padding_idx + 1, max_pos, out=getattr(make_positions, buf_name))
+/home/user/Downloads/ML-project/ML-Project/third_party/MPLMM/modules/position_embedding.py:20: UserWarning: The number of elements in the out tensor of shape [500] is 500 which does not match the computed number of elements 516. Note that this may occur as a result of rounding error. The out tensor will be resized to a tensor of shape (516,). (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/cuda/RangeFactories.cu:262.)
+  torch.arange(padding_idx + 1, max_pos, out=getattr(make_positions, buf_name))
+======================================================================
+RUN CONFIGURATION: BASELINE
+  Dataset:          mosi (mosi_data_noalign_native.pkl)
+  Sequence lengths: L=50, A=375, V=500
+  Dimensions:       d_l=300, d_a=5, d_v=20
+  Effective Batch:  16 * 4 = 64
+  Run Directory:    /home/user/Downloads/ML-project/ML-Project/runs_e200_native_v2/_determinism/runB
+======================================================================
+[1/7] Instantiating PromptModel...
+[2/7] Baseline variant: keeping original dense time-mixers.
+[3/7] Transferring backbone weights from /home/user/Downloads/ML-project/ML-Project/pretrained/mosei.pt via lenmod.transfer...
+Missing key(s) in state_dict :proj_l.weight
+Missing key(s) in state_dict :proj_a.weight
+Missing key(s) in state_dict :proj_v.weight
+Missing key(s) in state_dict :out_layer.weight
+Missing key(s) in state_dict :out_layer.bias
+      Missing keys count: 5 | Trainable parameters: 1,115,666
+      [CHECK PASSED] Exactly 5 missing keys found (dimension-dependent projections & output layer).
+[4/7] Moving model to cuda:0...
+[5/7] Fitting model for 2 epochs...
+Starting training on cuda:0 for 2 epochs...
+Gradient accumulation: 4 steps (no DataParallel)
+Checkpoint target: /home/user/Downloads/ML-project/ML-Project/runs_e200_native_v2/_determinism/runB/checkpoint.pt
+Epoch  1/ 2 | Train Loss: 1.3219 | Val Loss: 1.4216 | Val Acc-2: 0.5741 | Time: 32.79s *
+Epoch  2/ 2 | Train Loss: 1.3165 | Val Loss: 1.4137 | Val Acc-2: 0.5741 | Time: 32.20s *
+
+=================================================================
+Reloading best checkpoint from Epoch 2 (Val Loss: 1.4137)
+
+============================================================================
+MODALITY EVALUATION SUMMARY (Forced Missing Codes 0 to 6)
+Case                                Acc-2       F1      MAE     Corr   Acc-5
+----------------------------------------------------------------------------
+Case 0: L_missing ({a,v} present)   42.23%   25.07%   1.4925   0.0726  15.45%
+Case 1: A_missing ({l,v} present)   42.23%   25.07%   1.4517   0.2572  15.45%
+Case 2: V_missing ({l,a} present)   42.23%   25.07%   1.4485   0.2669  15.45%
+Case 3: LA_missing ({v} present)   42.23%   25.07%   1.4665   0.0443  15.45%
+Case 4: LV_missing ({a} present)   42.23%   25.07%   1.4761   0.1587  15.45%
+Case 5: AV_missing ({l} present)   42.23%   25.07%   1.4483   0.2548  15.45%
+----------------------------------------------------------------------------
+MEAN (Cases 0 to 5)                42.23%   25.07%   1.4639   0.1758  15.45%
+----------------------------------------------------------------------------
+Case 6: complete_data ({l,a,v} present)   42.23%   25.07%   1.4547   0.2625  15.45%
+============================================================================
+
+=================================================================
+FINAL TEST-SET EVALUATION RESULTS (Test Split Only)
+  Test Loss:        1.4596
+  Binary Acc-2:     42.23%
+  Weighted F1:      25.07%
+  MAE:              1.4596
+  Corr:             0.1559
+  Multiclass Acc-7: 15.45%
+  Multiclass Acc-5: 15.45%
+  Cases 0-5 Mean Acc-2: 42.23%
+=================================================================
+
+[6/7] Evaluating all 7 modality conditions on test set...
+
+============================================================================
+MODALITY EVALUATION SUMMARY (Forced Missing Codes 0 to 6)
+Case                                Acc-2       F1      MAE     Corr   Acc-5
+----------------------------------------------------------------------------
+Case 0: L_missing ({a,v} present)   42.23%   25.07%   1.4925   0.0726  15.45%
+Case 1: A_missing ({l,v} present)   42.23%   25.07%   1.4517   0.2572  15.45%
+Case 2: V_missing ({l,a} present)   42.23%   25.07%   1.4485   0.2669  15.45%
+Case 3: LA_missing ({v} present)   42.23%   25.07%   1.4665   0.0443  15.45%
+Case 4: LV_missing ({a} present)   42.23%   25.07%   1.4761   0.1587  15.45%
+Case 5: AV_missing ({l} present)   42.23%   25.07%   1.4483   0.2548  15.45%
+----------------------------------------------------------------------------
+MEAN (Cases 0 to 5)                42.23%   25.07%   1.4639   0.1758  15.45%
+----------------------------------------------------------------------------
+Case 6: complete_data ({l,a,v} present)   42.23%   25.07%   1.4547   0.2625  15.45%
+============================================================================
+
+
+[PIPELINE CHECK] Asserted (model.missing_type_prompt == 0).all() (zeros confirmed: True)
+[PIPELINE ARTIFACT] Saved model.l_avp.state_dict() to: /home/user/Downloads/ML-project/ML-Project/runs_e200_native_v2/_determinism/runB/model_l_avp.pt
+[7/7] Writing results JSON to /home/user/Downloads/ML-project/ML-Project/runs_e200_native_v2/_determinism/runB/results.json...
+Run completed successfully! Output JSON: /home/user/Downloads/ML-project/ML-Project/runs_e200_native_v2/_determinism/runB/results.json
+Mean Acc-2 (Cases 0 to 5): 42.23%
+

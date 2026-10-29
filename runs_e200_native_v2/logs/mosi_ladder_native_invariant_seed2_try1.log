@@ -229,3 +229,63 @@ Epoch 196/200 | Train Loss: 0.8898 | Val Loss: 1.0713 | Val Acc-2: 0.7546 | Time
 Epoch 197/200 | Train Loss: 0.8707 | Val Loss: 1.1572 | Val Acc-2: 0.7315 | Time: 36.50s
 Epoch 198/200 | Train Loss: 0.8789 | Val Loss: 1.0922 | Val Acc-2: 0.7130 | Time: 36.51s
 Epoch 199/200 | Train Loss: 0.8882 | Val Loss: 1.0965 | Val Acc-2: 0.7731 | Time: 35.93s
+Epoch 200/200 | Train Loss: 0.8763 | Val Loss: 1.1323 | Val Acc-2: 0.7546 | Time: 32.05s
+
+=================================================================
+Reloading best checkpoint from Epoch 100 (Val Loss: 0.9819)
+
+============================================================================
+MODALITY EVALUATION SUMMARY (Forced Missing Codes 0 to 6)
+Case                                Acc-2       F1      MAE     Corr   Acc-5
+----------------------------------------------------------------------------
+Case 0: L_missing ({a,v} present)   54.57%   52.84%   1.4337   0.2408  17.20%
+Case 1: A_missing ({l,v} present)   78.05%   78.05%   1.0385   0.6272  41.11%
+Case 2: V_missing ({l,a} present)   78.66%   78.58%   1.0127   0.6273  39.65%
+Case 3: LA_missing ({v} present)   52.44%   51.73%   1.4954   0.1562  18.80%
+Case 4: LV_missing ({a} present)   55.64%   55.28%   1.3788   0.2371  17.49%
+Case 5: AV_missing ({l} present)   79.27%   79.10%   0.9897   0.6376  40.82%
+----------------------------------------------------------------------------
+MEAN (Cases 0 to 5)                66.44%   65.93%   1.2248   0.4210  29.18%
+----------------------------------------------------------------------------
+Case 6: complete_data ({l,a,v} present)   78.20%   78.21%   1.0283   0.6308  40.52%
+============================================================================
+
+=================================================================
+FINAL TEST-SET EVALUATION RESULTS (Test Split Only)
+  Test Loss:        1.1745
+  Binary Acc-2:     69.05%
+  Weighted F1:      69.23%
+  MAE:              1.1745
+  Corr:             0.4903
+  Multiclass Acc-7: 28.86%
+  Multiclass Acc-5: 32.07%
+  Cases 0-5 Mean Acc-2: 66.44%
+=================================================================
+
+[6/7] Evaluating all 7 modality conditions on test set...
+
+============================================================================
+MODALITY EVALUATION SUMMARY (Forced Missing Codes 0 to 6)
+Case                                Acc-2       F1      MAE     Corr   Acc-5
+----------------------------------------------------------------------------
+Case 0: L_missing ({a,v} present)   54.57%   52.84%   1.4337   0.2408  17.20%
+Case 1: A_missing ({l,v} present)   78.05%   78.05%   1.0385   0.6272  41.11%
+Case 2: V_missing ({l,a} present)   78.66%   78.58%   1.0127   0.6273  39.65%
+Case 3: LA_missing ({v} present)   52.44%   51.73%   1.4954   0.1562  18.80%
+Case 4: LV_missing ({a} present)   55.64%   55.28%   1.3788   0.2371  17.49%
+Case 5: AV_missing ({l} present)   79.27%   79.10%   0.9897   0.6376  40.82%
+----------------------------------------------------------------------------
+MEAN (Cases 0 to 5)                66.44%   65.93%   1.2248   0.4210  29.18%
+----------------------------------------------------------------------------
+Case 6: complete_data ({l,a,v} present)   78.20%   78.21%   1.0283   0.6308  40.52%
+============================================================================
+
+[6b/7] Evaluating generation fidelity and CKA via forward hooks...
+
+[PIPELINE CHECK] Asserted (model.missing_type_prompt == 0).all() (zeros confirmed: True)
+[PIPELINE ARTIFACT] Saved model.l_avp.state_dict() to: /home/user/Downloads/ML-project/ML-Project/runs_e200_native_v2/mosi_ladder_native_invariant_seed2/model_l_avp.pt
+[7/7] Writing results JSON to /home/user/Downloads/ML-project/ML-Project/runs_e200_native_v2/mosi_ladder_native_invariant_seed2/results.json...
+Run completed successfully! Output JSON: /home/user/Downloads/ML-project/ML-Project/runs_e200_native_v2/mosi_ladder_native_invariant_seed2/results.json
+Mean Acc-2 (Cases 0 to 5): 66.44%
+
+[LAUNCHER] annotated /home/user/Downloads/ML-project/ML-Project/runs_e200_native_v2/mosi_ladder_native_invariant_seed2/results.json

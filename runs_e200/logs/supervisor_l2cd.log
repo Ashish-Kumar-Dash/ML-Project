@@ -1,2 +1,23 @@
 [SUP] started 2026-10-29T14:50:03+05:30 pid=3572827 commit=d1012f0
 [SUP] waiting for GPU (0 min elapsed) 2026-10-29T14:50:03+05:30
+[SUP] waiting for GPU (30 min elapsed) 2026-10-29T15:20:03+05:30
+[SUP] waiting for GPU (60 min elapsed) 2026-10-29T15:50:04+05:30
+[SUP] waiting for GPU (90 min elapsed) 2026-10-29T16:20:05+05:30
+[SUP] waiting for GPU (120 min elapsed) 2026-10-29T16:50:06+05:30
+[SUP] waiting for GPU (150 min elapsed) 2026-10-29T17:20:07+05:30
+[SUP] waiting for GPU (180 min elapsed) 2026-10-29T17:50:07+05:30
+[SUP] waiting for GPU (210 min elapsed) 2026-10-29T18:20:08+05:30
+[SUP] waiting for GPU (240 min elapsed) 2026-10-29T18:50:09+05:30
+[SUP] GPU clear after 266 min; starting arms C/D at L2 2026-10-29T19:16:50+05:30
+[SUP] pass 1 start: 0 of 6 cells complete 2026-10-29T19:16:50+05:30
+[SUP] pass 1 done: 6 of 6 complete 2026-10-29T20:21:18+05:30
+[SUP] pass 2 start: 6 of 6 cells complete 2026-10-29T20:21:18+05:30
+[SUP] final inventory 2026-10-29T20:21:18+05:30
+[SUP] mosi_l2_frozen_dense_seed1_cdval json=Y ckpt=Y
+[SUP] mosi_l2_frozen_dense_seed2_cdval json=Y ckpt=Y
+[SUP] mosi_l2_frozen_dense_seed3_cdval json=Y ckpt=Y
+[SUP] mosi_l2_pool_fixed_seed1_cdval json=Y ckpt=Y
+[SUP] mosi_l2_pool_fixed_seed2_cdval json=Y ckpt=Y
+[SUP] mosi_l2_pool_fixed_seed3_cdval json=Y ckpt=Y
+[SUP] removed @reboot cron line
+[SUP] exit 2026-10-29T20:21:18+05:30

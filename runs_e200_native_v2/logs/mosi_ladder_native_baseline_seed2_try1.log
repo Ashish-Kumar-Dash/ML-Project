@@ -233,3 +233,59 @@ Epoch 200/200 | Train Loss: 0.8513 | Val Loss: 1.1686 | Val Acc-2: 0.7315 | Time
 
 =================================================================
 Reloading best checkpoint from Epoch 25 (Val Loss: 1.0083)
+
+============================================================================
+MODALITY EVALUATION SUMMARY (Forced Missing Codes 0 to 6)
+Case                                Acc-2       F1      MAE     Corr   Acc-5
+----------------------------------------------------------------------------
+Case 0: L_missing ({a,v} present)   53.81%   52.83%   1.4694   0.1720  19.53%
+Case 1: A_missing ({l,v} present)   78.81%   78.65%   0.9872   0.6408  36.88%
+Case 2: V_missing ({l,a} present)   78.51%   78.44%   1.0045   0.6338  38.63%
+Case 3: LA_missing ({v} present)   50.91%   47.69%   1.5209   0.1380  17.93%
+Case 4: LV_missing ({a} present)   50.15%   47.33%   1.4318   0.1983  16.33%
+Case 5: AV_missing ({l} present)   79.27%   79.07%   0.9939   0.6390  36.88%
+----------------------------------------------------------------------------
+MEAN (Cases 0 to 5)                65.24%   64.00%   1.2346   0.4036  27.70%
+----------------------------------------------------------------------------
+Case 6: complete_data ({l,a,v} present)   78.51%   78.42%   0.9991   0.6418  37.03%
+============================================================================
+
+=================================================================
+FINAL TEST-SET EVALUATION RESULTS (Test Split Only)
+  Test Loss:        1.1543
+  Binary Acc-2:     70.43%
+  Weighted F1:      70.60%
+  MAE:              1.1543
+  Corr:             0.5208
+  Multiclass Acc-7: 26.82%
+  Multiclass Acc-5: 30.47%
+  Cases 0-5 Mean Acc-2: 65.24%
+=================================================================
+
+[6/7] Evaluating all 7 modality conditions on test set...
+
+============================================================================
+MODALITY EVALUATION SUMMARY (Forced Missing Codes 0 to 6)
+Case                                Acc-2       F1      MAE     Corr   Acc-5
+----------------------------------------------------------------------------
+Case 0: L_missing ({a,v} present)   53.81%   52.83%   1.4694   0.1720  19.53%
+Case 1: A_missing ({l,v} present)   78.81%   78.65%   0.9872   0.6408  36.88%
+Case 2: V_missing ({l,a} present)   78.51%   78.44%   1.0045   0.6338  38.63%
+Case 3: LA_missing ({v} present)   50.91%   47.69%   1.5209   0.1380  17.93%
+Case 4: LV_missing ({a} present)   50.15%   47.33%   1.4318   0.1983  16.33%
+Case 5: AV_missing ({l} present)   79.27%   79.07%   0.9939   0.6390  36.88%
+----------------------------------------------------------------------------
+MEAN (Cases 0 to 5)                65.24%   64.00%   1.2346   0.4036  27.70%
+----------------------------------------------------------------------------
+Case 6: complete_data ({l,a,v} present)   78.51%   78.42%   0.9991   0.6418  37.03%
+============================================================================
+
+[6b/7] Evaluating generation fidelity and CKA via forward hooks...
+
+[PIPELINE CHECK] Asserted (model.missing_type_prompt == 0).all() (zeros confirmed: True)
+[PIPELINE ARTIFACT] Saved model.l_avp.state_dict() to: /home/user/Downloads/ML-project/ML-Project/runs_e200_native_v2/mosi_ladder_native_baseline_seed2/model_l_avp.pt
+[7/7] Writing results JSON to /home/user/Downloads/ML-project/ML-Project/runs_e200_native_v2/mosi_ladder_native_baseline_seed2/results.json...
+Run completed successfully! Output JSON: /home/user/Downloads/ML-project/ML-Project/runs_e200_native_v2/mosi_ladder_native_baseline_seed2/results.json
+Mean Acc-2 (Cases 0 to 5): 65.24%
+
+[LAUNCHER] annotated /home/user/Downloads/ML-project/ML-Project/runs_e200_native_v2/mosi_ladder_native_baseline_seed2/results.json

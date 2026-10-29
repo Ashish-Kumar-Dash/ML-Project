@@ -1,0 +1,10 @@
+[AUD] started 2026-10-29T19:24:57+05:30 pid=3629348 commit=f3cebe4
+[AUD] waiting for idle GPU (0 min) 2026-10-29T19:24:57+05:30
+[AUD] waiting for idle GPU (30 min) 2026-10-29T19:54:57+05:30
+[AUD] GPU idle after 58 min; starting audit 2026-10-29T20:22:58+05:30
+[AUD] fidelity_audit (L2 family) rc=0 in 4 min 2026-10-29T20:27:06+05:30
+[ok] mosi_l2prime_invariant_seed3_cdval: verified (max dev 3.7e-09)
+wrote results/fidelity_audit_l2.json with 30 runs
+[AUD] scored runs: 30
+[AUD] skipped: ['mosi_ladder_l100_baseline_seed1', 'mosi_ladder_l100_baseline_seed2', 'mosi_ladder_l100_baseline_seed3', 'mosi_ladder_l100_invariant_seed1', 'mosi_ladder_l100_invariant_seed2', 'mosi_ladder_l100_invariant_seed3', 'mosi_ladder_l200_baseline_seed1', 'mosi_ladder_l200_baseline_seed2', 'mosi_ladder_l200_baseline_seed3', 'mosi_ladder_l200_frozen_dense_seed1', 'mosi_ladder_l200_frozen_dense_seed2', 'mosi_ladder_l200_frozen_dense_seed3', 'mosi_ladder_l200_invariant_seed1', 'mosi_ladder_l200_invariant_seed2', 'mosi_ladder_l200_invariant_seed3', 'mosi_ladder_l200_pool_fixed_seed1', 'mosi_ladder_l200_pool_fixed_seed2', 'mosi_ladder_l200_pool_fixed_seed3', 'mosi_ladder_l50_baseline_seed1', 'mosi_ladder_l50_baseline_seed2', 'mosi_ladder_l50_baseline_seed3', 'mosi_ladder_l50_invariant_seed1', 'mosi_ladder_l50_invariant_seed2', 'mosi_ladder_l50_invariant_seed3', 'mosi_ladder_native_baseline_seed1', 'mosi_ladder_native_baseline_seed2', 'mosi_ladder_native_invariant_seed1', 'mosi_ladder_native_invariant_seed2']
+[AUD] exit 2026-10-29T20:27:06+05:30

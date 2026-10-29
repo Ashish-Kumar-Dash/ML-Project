@@ -5,3 +5,8 @@
 [SUP] waiting for L2/L2' grid (90 min) 2026-10-29T12:22:33+05:30
 [SUP] waiting for L2/L2' grid (120 min) 2026-10-29T12:52:33+05:30
 [SUP] GPU queue clear after 121 min 2026-10-29T12:53:33+05:30
+[SUP] training finished: 6 of 6 runs complete 2026-10-29T19:09:16+05:30
+[SUP] identity check rc=0 2026-10-29T19:09:16+05:30
+[SUP] fidelity audit rc=0 2026-10-29T19:15:15+05:30
+[SUP] removed @reboot cron line
+[SUP] exit 2026-10-29T19:15:15+05:30
