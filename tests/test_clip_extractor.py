@@ -153,6 +153,7 @@ def test_e2e_pickle_merge_and_dataloader(tmp_path, device):
         vision_pkl=vis_pkl_path,
         output_path=merged_out_path,
         verify_dataloader=False,
+        require_ids=False,  # random payload carries no segment IDs
     )
     assert merged_out_path.is_file()
 
@@ -179,3 +180,22 @@ def test_e2e_pickle_merge_and_dataloader(tmp_path, device):
     assert vision_b.shape == (8, 50, 512)
     assert not torch.isnan(vision_b).any()
 
+
+
+def test_mmsa_layout_resolution(tmp_path):
+    """MMSA layout {video_id}/{clip}.mp4 resolves for segment '<video_id>_<clip>', including IDs with underscores."""
+    from tools.extract_clip_features import resolve_video_path
+    vid = "c7UH_rxdZv4"
+    (tmp_path / vid).mkdir()
+    (tmp_path / vid / "24.mp4").write_bytes(b"")
+    p, pre = resolve_video_path(tmp_path, f"{vid}_24", vid)
+    assert p == tmp_path / vid / "24.mp4" and pre is True
+    assert resolve_video_path(tmp_path, f"{vid}_25", vid) is None
+
+
+def test_ffmpeg_zero_frames_raises(tmp_path):
+    """A window past the end of a video must raise, never return a substitute black frame."""
+    video_file = tmp_path / "short.mp4"
+    create_synthetic_video(video_file, duration_sec=1.0, fps=30, width=320, height=240)
+    with pytest.raises(RuntimeError):
+        extract_frames_ffmpeg(video_file, start_sec=30.0, end_sec=31.0, fps=30)

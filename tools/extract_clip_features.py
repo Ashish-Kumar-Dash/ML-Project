@@ -69,6 +69,14 @@ def resolve_video_path(
         if p.is_file():
             return p, True
 
+    # 2b. MMSA layout: {video_dir}/{video_id}/{clip_index}.ext with segment_id == f"{video_id}_{clip_index}"
+    if "_" in segment_id:
+        clip_index = segment_id.rsplit("_", 1)[1]
+        for ext in VIDEO_EXTENSIONS:
+            p = video_dir / video_id / f"{clip_index}{ext}"
+            if p.is_file():
+                return p, True
+
     # 3. Check if full video file exists: {video_dir}/{video_id}.ext
     for ext in VIDEO_EXTENSIONS:
         p = video_dir / f"{video_id}{ext}"
@@ -106,8 +114,8 @@ def extract_frames_ffmpeg(
     start_sec: float,
     end_sec: float,
     fps: int = 30,
-    width: int = 224,
-    height: int = 224,
+    width: Optional[int] = 224,
+    height: Optional[int] = 224,
 ) -> np.ndarray:
     """Extract and resize video frames within [start_sec, end_sec] via FFmpeg pipe.
 
@@ -115,6 +123,14 @@ def extract_frames_ffmpeg(
         (T, height, width, 3) uint8 numpy array of RGB frames.
     """
     duration = max(0.04, end_sec - start_sec)
+    if not (width and height):
+        # Native resolution: no resize at decode; the extractor applies CLIP's own preprocessing.
+        probe = subprocess.run(
+            ["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height",
+             "-of", "csv=p=0:s=x", str(video_path)],
+            capture_output=True, text=True, check=True,
+        )
+        width, height = (int(v) for v in probe.stdout.strip().split("x")[:2])
     cmd = [
         "ffmpeg",
         "-ss",
@@ -124,7 +140,7 @@ def extract_frames_ffmpeg(
         "-t",
         f"{duration:.3f}",
         "-vf",
-        f"fps={fps},scale={width}:{height}",
+        f"fps={fps},scale={width}:{height}" if (width and height) else f"fps={fps}",
         "-f",
         "rawvideo",
         "-pix_fmt",
@@ -145,8 +161,10 @@ def extract_frames_ffmpeg(
     n_frames = len(raw_bytes) // frame_bytes
 
     if n_frames == 0:
-        # Fallback: if interval resulted in 0 frames, return 1 black frame
-        return np.zeros((1, height, width, 3), dtype=np.uint8)
+        # Never substitute a black frame: a silent fallback would turn a missing clip into plausible features.
+        raise RuntimeError(
+            f"FFmpeg decoded 0 frames from {video_path} in [{start_sec:.3f}, {end_sec:.3f}] s"
+        )
 
     frames = np.frombuffer(raw_bytes[: n_frames * frame_bytes], dtype=np.uint8).copy()
     return frames.reshape((n_frames, height, width, 3))
@@ -162,7 +180,8 @@ def process_segment(
     batch_size: int,
     synthetic_mode: bool,
     temp_synthetic_dir: Optional[Path] = None,
-) -> np.ndarray:
+    return_frames: bool = False,
+):
     """Extract and temporally pool CLIP features for a single segment."""
     segment_id, t_start, t_end = segment_info
     video_id = segment_id.rsplit("_", 1)[0] if "_" in segment_id else segment_id
@@ -186,11 +205,11 @@ def process_segment(
         video_path, is_pre_segmented = resolved
         if is_pre_segmented:
             # Pre-segmented clip: extract from start 0 to clip duration
-            clip_dur = max(0.04, t_end - t_start)
-            frames = extract_frames_ffmpeg(video_path, 0.0, clip_dur, fps=fps)
+            # Pre-segmented clip: decode the whole file at native resolution (the clip already spans [t_start, t_end]).
+            frames = extract_frames_ffmpeg(video_path, 0.0, 1.0e4, fps=fps, width=None, height=None)
         else:
             # Full raw video: slice from t_start to t_end
-            frames = extract_frames_ffmpeg(video_path, t_start, t_end, fps=fps)
+            frames = extract_frames_ffmpeg(video_path, t_start, t_end, fps=fps, width=None, height=None)
 
     # Extract frame embeddings via frozen CLIP backbone
     frame_embeds = extractor.extract_frames(frames, chunk_size=batch_size)
@@ -199,6 +218,8 @@ def process_segment(
     pooled = extractor.resample_temporal(
         frame_embeds, target_len=seq_len, pad_front=pad_front
     )
+    if return_frames:
+        return pooled, frame_embeds
     return pooled
 
 
@@ -214,6 +235,7 @@ def extract_dataset(
     fps: int = 30,
     limit: Optional[int] = None,
     synthetic_check: bool = False,
+    native_out: Optional[Path] = None,
 ) -> Dict[str, np.ndarray]:
     """Execute CLIP feature extraction over all splits in reference dataset."""
     print(f"\n========================================================")
@@ -240,6 +262,9 @@ def extract_dataset(
         temp_synthetic_dir.mkdir(parents=True, exist_ok=True)
 
     extracted_dict: Dict[str, np.ndarray] = {}
+    ids_dict: Dict[str, List[str]] = {}
+    nframes_dict: Dict[str, List[int]] = {}
+    native_frames: Dict[str, list] = {s: [] for s in ("train", "valid", "test")}
     total_start_time = time.time()
 
     splits = ["train", "valid", "test"]
@@ -253,6 +278,8 @@ def extract_dataset(
 
         print(f"\n--- Processing split '{split}' ({n_process} / {n_total} samples) ---")
         split_features = np.zeros((n_process, seq_len, extractor.feature_dim), dtype=np.float32)
+        split_ids: List[str] = []
+        split_nframes: List[int] = []
 
         split_start = time.time()
         for idx in range(n_process):
@@ -271,9 +298,15 @@ def extract_dataset(
                 batch_size=batch_size,
                 synthetic_mode=synthetic_check,
                 temp_synthetic_dir=temp_synthetic_dir,
+                return_frames=True,
             )
+            feats, frame_embeds = feats
 
             split_features[idx] = feats
+            split_ids.append(seg_id)
+            split_nframes.append(int(frame_embeds.shape[0]))
+            if native_out is not None:
+                native_frames[split].append(frame_embeds.numpy().astype(np.float16))
 
             if (idx + 1) % 50 == 0 or (idx + 1) == n_process:
                 elapsed = time.time() - split_start
@@ -285,6 +318,8 @@ def extract_dataset(
         assert not np.isinf(split_features).any(), f"Inf values detected in extracted features for {split}!"
 
         extracted_dict[split] = split_features
+        ids_dict[split] = split_ids
+        nframes_dict[split] = split_nframes
         print(f"Completed split '{split}': shape {split_features.shape}, dtype {split_features.dtype}")
 
     total_elapsed = time.time() - total_start_time
@@ -301,12 +336,21 @@ def extract_dataset(
         "synthetic": synthetic_check,
         "created_at": time.strftime("%Y-%m-%d %H:%M:%S"),
     }
-    payload = {**extracted_dict, "meta": metadata}
+    metadata["video_dir"] = str(video_dir) if video_dir else None
+    metadata["preprocessing"] = "ffmpeg native-resolution decode; CLIP official bicubic shorter-side resize to 224 + centre crop; L2-normalised"
+    metadata["n_frames"] = {s: {"min": int(min(v)), "median": float(np.median(v)), "max": int(max(v))} for s, v in nframes_dict.items() if v}
+    payload = {**extracted_dict, "ids": ids_dict, "n_frames": nframes_dict, "meta": metadata}
 
     with open(output_path, "wb") as f:
         pickle.dump(payload, f, protocol=pickle.HIGHEST_PROTOCOL)
 
     print(f"Serialized extracted visual features to: {output_path} ({output_path.stat().st_size / 1e6:.2f} MB)")
+    if native_out is not None:
+        native_out = Path(native_out)
+        native_out.parent.mkdir(parents=True, exist_ok=True)
+        with open(native_out, "wb") as f:
+            pickle.dump({"frames": native_frames, "ids": ids_dict, "meta": metadata}, f, protocol=pickle.HIGHEST_PROTOCOL)
+        print(f"Serialized native per-frame features to: {native_out} ({native_out.stat().st_size / 1e6:.2f} MB)")
     return extracted_dict
 
 
@@ -375,6 +419,12 @@ def parse_args() -> argparse.Namespace:
         help="Limit number of segments per split (for testing/validation).",
     )
     parser.add_argument(
+        "--native_out",
+        type=Path,
+        default=None,
+        help="Optional path for native-rate per-frame embeddings (fp16), for re-pooling to any ladder length.",
+    )
+    parser.add_argument(
         "--synthetic_check",
         action="store_true",
         help="Generate synthetic video streams on the fly to test pipeline without raw videos.",
@@ -403,6 +453,7 @@ def main() -> None:
         fps=args.fps,
         limit=args.limit,
         synthetic_check=args.synthetic_check,
+        native_out=args.native_out,
     )
 
 

@@ -26,6 +26,7 @@ from __future__ import annotations
 import argparse
 import os
 from pathlib import Path
+import json
 import pickle
 import sys
 import time
@@ -53,6 +54,8 @@ def merge_datasets(
     output_path: Path,
     audio_pkl: Optional[Path] = None,
     verify_dataloader: bool = True,
+    require_ids: bool = True,
+    allow_synthetic: bool = False,
 ) -> Path:
     """Merge new visual features into reference multimodal dataset pickle."""
     print(f"\n========================================================")
@@ -76,6 +79,10 @@ def merge_datasets(
         vis_payload = pickle.load(f)
 
     # vis_payload may contain {"train": ..., "valid": ..., "test": ..., "meta": ...}
+    vis_meta = vis_payload.get("meta", {}) if isinstance(vis_payload, dict) else {}
+    if vis_meta.get("synthetic") and not allow_synthetic:
+        raise ValueError(f"{vision_pkl} was produced in synthetic mode (meta.synthetic=True); refusing to merge it")
+
     audio_payload: Optional[Dict[str, Any]] = None
     if audio_pkl and audio_pkl.is_file():
         with open(audio_pkl, "rb") as f:
@@ -105,6 +112,17 @@ def merge_datasets(
                 f"Sample count mismatch for split '{split}': reference has {ref_n}, "
                 f"visual features has {vis_n}!"
             )
+
+        vis_ids = (vis_payload.get("ids") or {}).get(split)
+        if vis_ids is None:
+            if require_ids:
+                raise ValueError(f"{vision_pkl} carries no segment IDs for split '{split}'; sample order cannot be verified")
+        else:
+            ref_ids = [r[0].decode("utf-8") if isinstance(r[0], bytes) else str(r[0]) for r in ref_split["id"]]
+            if list(vis_ids) != ref_ids:
+                n_bad = sum(a != b for a, b in zip(vis_ids, ref_ids))
+                raise ValueError(f"Segment ID order mismatch in split '{split}': {n_bad} positions differ")
+            print(f"  Segment IDs:       {len(vis_ids)} match the reference order")
 
         # Standard split count check if standard MOSI
         if ref_n in EXPECTED_SPLIT_COUNTS.values():
@@ -154,6 +172,11 @@ def merge_datasets(
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "wb") as f:
         pickle.dump(merged_data, f, protocol=pickle.HIGHEST_PROTOCOL)
+    sidecar = {"vision": vis_meta, "vision_pkl": str(vision_pkl), "reference_pkl": str(reference_pkl),
+               "audio_source": str(audio_pkl) if audio_payload else "reference pickle audio (unchanged)",
+               "text_source": "reference pickle text (unchanged)"}
+    with open(str(output_path) + ".meta.json", "w") as f:
+        json.dump(sidecar, f, indent=1, default=str)
 
     print(f"\nSuccessfully serialized merged pickle to: {output_path}")
     print(f"File size: {output_path.stat().st_size / 1e6:.2f} MB")

@@ -200,11 +200,12 @@ class CLIPVisualExtractor(nn.Module):
         else:
             tensor_frames = tensor_frames.float()
 
-        # Bicubic resize to (224, 224) with antialiasing
+        # Bicubic resize of the shorter side to 224 (aspect preserved), then 224x224 centre crop:
+        # the official CLIP preprocessing. (Was a 224x224 squash, which distorts 4:3 frames.)
         res = self.input_resolution
         resized = TF.resize(
             tensor_frames,
-            [res, res],
+            res,
             interpolation=TF.InterpolationMode.BICUBIC,
             antialias=True,
         )
