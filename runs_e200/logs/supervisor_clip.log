@@ -1,0 +1,64 @@
+[SUP] started 2026-10-30T18:18:02+05:30 pid=4110290
+[SUP] GPU clear 2026-10-30T18:20:02+05:30
+[SUP] pass 1: 18 of 18 missing 2026-10-30T18:20:02+05:30
+[START] mosi_l1_invariant_seed1_cdval 2026-10-30T18:20:02+05:30
+[START] mosi_l1_baseline_seed1_cdval 2026-10-30T18:20:02+05:30
+[END] mosi_l1_baseline_seed1_cdval rc=0 2026-10-30T18:39:38+05:30
+[START] mosi_l2clip_baseline_seed1_cdval 2026-10-30T18:39:38+05:30
+[END] mosi_l1_invariant_seed1_cdval rc=0 2026-10-30T18:41:44+05:30
+[START] mosi_l2clip_invariant_seed1_cdval 2026-10-30T18:41:44+05:30
+[END] mosi_l2clip_baseline_seed1_cdval rc=0 2026-10-30T18:59:10+05:30
+[START] mosi_l1_baseline_seed2_cdval 2026-10-30T18:59:10+05:30
+[END] mosi_l2clip_invariant_seed1_cdval rc=0 2026-10-30T19:03:32+05:30
+[START] mosi_l1_invariant_seed2_cdval 2026-10-30T19:03:32+05:30
+[END] mosi_l1_baseline_seed2_cdval rc=0 2026-10-30T19:18:43+05:30
+[START] mosi_l2clip_baseline_seed2_cdval 2026-10-30T19:18:43+05:30
+[END] mosi_l1_invariant_seed2_cdval rc=0 2026-10-30T19:25:23+05:30
+[START] mosi_l2clip_invariant_seed2_cdval 2026-10-30T19:25:23+05:30
+[END] mosi_l2clip_baseline_seed2_cdval rc=0 2026-10-30T19:38:11+05:30
+[START] mosi_l1_baseline_seed3_cdval 2026-10-30T19:38:11+05:30
+[END] mosi_l2clip_invariant_seed2_cdval rc=0 2026-10-30T19:47:13+05:30
+[START] mosi_l1_invariant_seed3_cdval 2026-10-30T19:47:13+05:30
+[END] mosi_l1_baseline_seed3_cdval rc=0 2026-10-30T19:57:38+05:30
+[START] mosi_l2clip_baseline_seed3_cdval 2026-10-30T19:57:38+05:30
+[END] mosi_l1_invariant_seed3_cdval rc=0 2026-10-30T20:09:04+05:30
+[START] mosi_l2clip_invariant_seed3_cdval 2026-10-30T20:09:04+05:30
+[END] mosi_l2clip_baseline_seed3_cdval rc=0 2026-10-30T20:17:06+05:30
+[START] mosi_l2pclip_baseline_seed1_cdval 2026-10-30T20:17:06+05:30
+[END] mosi_l2clip_invariant_seed3_cdval rc=0 2026-10-30T20:30:55+05:30
+[START] mosi_l2pclip_invariant_seed1_cdval 2026-10-30T20:30:55+05:30
+[END] mosi_l2pclip_baseline_seed1_cdval rc=0 2026-10-30T20:36:49+05:30
+[START] mosi_l2pclip_baseline_seed2_cdval 2026-10-30T20:36:49+05:30
+[END] mosi_l2pclip_invariant_seed1_cdval rc=0 2026-10-30T20:52:22+05:30
+[START] mosi_l2pclip_invariant_seed2_cdval 2026-10-30T20:52:22+05:30
+[END] mosi_l2pclip_baseline_seed2_cdval rc=0 2026-10-30T20:56:51+05:30
+[START] mosi_l2pclip_baseline_seed3_cdval 2026-10-30T20:56:51+05:30
+[END] mosi_l2pclip_invariant_seed2_cdval rc=0 2026-10-30T21:14:35+05:30
+[START] mosi_l2pclip_invariant_seed3_cdval 2026-10-30T21:14:35+05:30
+[END] mosi_l2pclip_baseline_seed3_cdval rc=0 2026-10-30T21:16:08+05:30
+[WORKER] baseline finished 2026-10-30T21:16:08+05:30
+[END] mosi_l2pclip_invariant_seed3_cdval rc=0 2026-10-30T21:30:01+05:30
+[WORKER] invariant finished 2026-10-30T21:30:01+05:30
+[SUP] pass 2: 0 of 18 missing 2026-10-30T21:30:01+05:30
+[SUP] inventory 2026-10-30T21:30:01+05:30
+[SUP] mosi_l1_baseline_seed1_cdval json=Y ckpt=Y
+[SUP] mosi_l1_baseline_seed2_cdval json=Y ckpt=Y
+[SUP] mosi_l1_baseline_seed3_cdval json=Y ckpt=Y
+[SUP] mosi_l1_invariant_seed1_cdval json=Y ckpt=Y
+[SUP] mosi_l1_invariant_seed2_cdval json=Y ckpt=Y
+[SUP] mosi_l1_invariant_seed3_cdval json=Y ckpt=Y
+[SUP] mosi_l2clip_baseline_seed1_cdval json=Y ckpt=Y
+[SUP] mosi_l2clip_baseline_seed2_cdval json=Y ckpt=Y
+[SUP] mosi_l2clip_baseline_seed3_cdval json=Y ckpt=Y
+[SUP] mosi_l2clip_invariant_seed1_cdval json=Y ckpt=Y
+[SUP] mosi_l2clip_invariant_seed2_cdval json=Y ckpt=Y
+[SUP] mosi_l2clip_invariant_seed3_cdval json=Y ckpt=Y
+[SUP] mosi_l2pclip_baseline_seed1_cdval json=Y ckpt=Y
+[SUP] mosi_l2pclip_baseline_seed2_cdval json=Y ckpt=Y
+[SUP] mosi_l2pclip_baseline_seed3_cdval json=Y ckpt=Y
+[SUP] mosi_l2pclip_invariant_seed1_cdval json=Y ckpt=Y
+[SUP] mosi_l2pclip_invariant_seed2_cdval json=Y ckpt=Y
+[SUP] mosi_l2pclip_invariant_seed3_cdval json=Y ckpt=Y
+[SUP] fidelity audit 2026-10-30T21:30:01+05:30
+[SUP] audit rc=0 2026-10-30T21:32:22+05:30
+[SUP] exit 2026-10-30T21:32:22+05:30

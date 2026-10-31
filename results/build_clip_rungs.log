@@ -1,0 +1,102 @@
+
+========================================================
+Merging Multimodal Features into Dataset Pickle
+Reference dataset: data/mosi_data.pkl
+Visual features:   data/clip/_vision_l2clip.pkl
+Target output:     data/clip/mosi_l2clip.pkl
+========================================================
+
+--- Processing Split 'train' ---
+  Reference samples: 1284
+  Visual samples:    1284
+  Segment IDs:       1284 match the reference order
+  Final Shapes -> Vision: (1284, 50, 512), Audio: (1284, 50, 5), Text: (1284, 50, 300), Labels: (1284, 1, 1)
+--- Processing Split 'valid' ---
+  Reference samples: 229
+  Visual samples:    229
+  Segment IDs:       229 match the reference order
+  Final Shapes -> Vision: (229, 50, 512), Audio: (229, 50, 5), Text: (229, 50, 300), Labels: (229, 1, 1)
+--- Processing Split 'test' ---
+  Reference samples: 686
+  Visual samples:    686
+  Segment IDs:       686 match the reference order
+  Final Shapes -> Vision: (686, 50, 512), Audio: (686, 50, 5), Text: (686, 50, 300), Labels: (686, 1, 1)
+
+Successfully serialized merged pickle to: data/clip/mosi_l2clip.pkl
+File size: 359.42 MB
+
+--- Verifying Compatibility with MOSIData & PyTorch DataLoader ---
+/home/user/Downloads/ML-project/ML-Project/.venv/lib/python3.12/site-packages/torch/__init__.py:1700: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)
+  [train] MOSIData initialized: len=1284, seq_lens (text, audio, vision)=(50, 50, 50), dims=(300, 5, 512), lbl_info=(1, 1)
+  [valid] MOSIData initialized: len=229, seq_lens (text, audio, vision)=(50, 50, 50), dims=(300, 5, 512), lbl_info=(1, 1)
+  [test] MOSIData initialized: len=686, seq_lens (text, audio, vision)=(50, 50, 50), dims=(300, 5, 512), lbl_info=(1, 1)
+  Mini-batch test: vision_batch=torch.Size([16, 50, 512]), audio_batch=torch.Size([16, 50, 5]), text_batch=torch.Size([16, 50, 300]), labels=torch.Size([16, 1, 1]), missing_modes=torch.Size([16])
+  MOSIData compatibility verified successfully!
+
+
+========================================================
+Merging Multimodal Features into Dataset Pickle
+Reference dataset: data/mosi_data.pkl
+Visual features:   data/clip/_vision_l2pclip.pkl
+Target output:     data/clip/mosi_l2pclip.pkl
+========================================================
+
+--- Processing Split 'train' ---
+  Reference samples: 1284
+  Visual samples:    1284
+  Segment IDs:       1284 match the reference order
+  Final Shapes -> Vision: (1284, 50, 20), Audio: (1284, 50, 5), Text: (1284, 50, 300), Labels: (1284, 1, 1)
+--- Processing Split 'valid' ---
+  Reference samples: 229
+  Visual samples:    229
+  Segment IDs:       229 match the reference order
+  Final Shapes -> Vision: (229, 50, 20), Audio: (229, 50, 5), Text: (229, 50, 300), Labels: (229, 1, 1)
+--- Processing Split 'test' ---
+  Reference samples: 686
+  Visual samples:    686
+  Segment IDs:       686 match the reference order
+  Final Shapes -> Vision: (686, 50, 20), Audio: (686, 50, 5), Text: (686, 50, 300), Labels: (686, 1, 1)
+
+Successfully serialized merged pickle to: data/clip/mosi_l2pclip.pkl
+File size: 143.04 MB
+
+--- Verifying Compatibility with MOSIData & PyTorch DataLoader ---
+  [train] MOSIData initialized: len=1284, seq_lens (text, audio, vision)=(50, 50, 50), dims=(300, 5, 20), lbl_info=(1, 1)
+  [valid] MOSIData initialized: len=229, seq_lens (text, audio, vision)=(50, 50, 50), dims=(300, 5, 20), lbl_info=(1, 1)
+  [test] MOSIData initialized: len=686, seq_lens (text, audio, vision)=(50, 50, 50), dims=(300, 5, 20), lbl_info=(1, 1)
+  Mini-batch test: vision_batch=torch.Size([16, 50, 20]), audio_batch=torch.Size([16, 50, 5]), text_batch=torch.Size([16, 50, 300]), labels=torch.Size([16, 1, 1]), missing_modes=torch.Size([16])
+  MOSIData compatibility verified successfully!
+
+{
+ "built": {
+  "l2clip": {
+   "path": "data/clip/mosi_l2clip.pkl",
+   "sha256": "d2b33787df0980960fd4d6d04aed89dd3ce2b6266e8bfcefe1bcf10429851dab"
+  },
+  "l2pclip": {
+   "path": "data/clip/mosi_l2pclip.pkl",
+   "sha256": "f9f229f2ea5f1ffc97b6d542075df4cd5d6f8a4d73ba5d4b018c3a33e3931f99"
+  }
+ },
+ "slot_stats": {
+  "train": {
+   "clips": 1284,
+   "clips_without_word_slots": 0,
+   "slot_agreement_with_L1_facet_rows": 0.9922741433021807
+  },
+  "valid": {
+   "clips": 229,
+   "clips_without_word_slots": 0,
+   "slot_agreement_with_L1_facet_rows": 0.9951091703056768
+  },
+  "test": {
+   "clips": 686,
+   "clips_without_word_slots": 0,
+   "slot_agreement_with_L1_facet_rows": 0.9910204081632653
+  }
+ }
+}
+BUILD_OK
+rc=0
+BUILD_DONE

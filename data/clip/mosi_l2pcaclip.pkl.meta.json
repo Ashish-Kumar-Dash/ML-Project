@@ -1,0 +1,43 @@
+{
+ "vision": {
+  "synthetic": false,
+  "model": "ViT-B/32",
+  "source_native": "data/mosi_clip_b32_native.pkl",
+  "source_native_sha256": "dd47d772585985bc9193597aa14f533f3873aabd6afcd10b88b5fbce73128560",
+  "layout": "text word slots (L1 alignment structure); per-clip uniform split of 30-fps frames into k windows",
+  "audio": "COVAREP 5-d from data/mosi_data.pkl (unchanged)",
+  "text": "GloVe 300-d from data/mosi_data.pkl (unchanged)",
+  "pipeline_mix": "CLIP vision + COVAREP audio + GloVe text",
+  "slot_stats": {
+   "train": {
+    "clips": 1284,
+    "clips_without_word_slots": 0,
+    "slot_agreement_with_L1_facet_rows": 0.9922741433021807
+   },
+   "valid": {
+    "clips": 229,
+    "clips_without_word_slots": 0,
+    "slot_agreement_with_L1_facet_rows": 0.9951091703056768
+   },
+   "test": {
+    "clips": 686,
+    "clips_without_word_slots": 0,
+    "slot_agreement_with_L1_facet_rows": 0.9910204081632653
+   }
+  },
+  "vision_dim": 20,
+  "projection": "PCA(n_components=20) fit on TRAIN clip-level means, label-free",
+  "pca_explained_variance_ratio_sum": 0.7823482447731502,
+  "rescale_divisor": 0.4181341282693746,
+  "target_median_row_norm_L1_facet": 1.0655726171946738,
+  "linear_fit_r_train_valid_test": {
+   "train": 0.345,
+   "valid": 0.2,
+   "test": 0.053
+  }
+ },
+ "vision_pkl": "data/clip/_vision_l2clip.pkl",
+ "reference_pkl": "data/mosi_data.pkl",
+ "audio_source": "reference pickle audio (unchanged)",
+ "text_source": "reference pickle text (unchanged)"
+}

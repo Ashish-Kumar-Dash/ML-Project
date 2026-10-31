@@ -1,0 +1,130 @@
+{
+ "videos_per_split": {
+  "train": 52,
+  "valid": 10,
+  "test": 31
+ },
+ "speaker_overlap_train_test": 0,
+ "between_video_variance_share": {
+  "CLIP 512-d": 0.9272498843739464,
+  "Facet 20-d": 0.6278202367925609,
+  "COVAREP 5-d": 0.4054937606597945,
+  "GloVe 300-d": 0.11107368786676275
+ },
+ "probe_raw": {
+  "CLIP 512-d": {
+   "alpha": 1000000.0,
+   "alpha_at_grid_edge": true,
+   "test_r": -0.0037508853666599535,
+   "test_r_ci95": [
+    -0.07417274935032453,
+    0.0699320823741391
+   ],
+   "test_r_within_video": 0.010240317037437675
+  },
+  "Facet 20-d": {
+   "alpha": 0.01,
+   "alpha_at_grid_edge": true,
+   "test_r": 0.17838266850218798,
+   "test_r_ci95": [
+    0.10203997694108596,
+    0.25271057388497886
+   ],
+   "test_r_within_video": 0.04715044639352333
+  },
+  "COVAREP 5-d": {
+   "alpha": 0.01,
+   "alpha_at_grid_edge": true,
+   "test_r": 0.24191200600773372,
+   "test_r_ci95": [
+    0.1732098015269669,
+    0.3087305811253306
+   ],
+   "test_r_within_video": 0.06814914768333936
+  },
+  "GloVe 300-d": {
+   "alpha": 1000.0,
+   "alpha_at_grid_edge": false,
+   "test_r": 0.5760553094386902,
+   "test_r_ci95": [
+    0.5214271454861731,
+    0.627267400147124
+   ],
+   "test_r_within_video": 0.4733499722903762
+  }
+ },
+ "probe_video_centred": {
+  "CLIP 512-d": {
+   "alpha": 100.0,
+   "alpha_at_grid_edge": false,
+   "test_r": 0.07174941181821837,
+   "test_r_ci95": [
+    -0.005036319396576178,
+    0.14941945491444295
+   ],
+   "test_r_within_video": 0.08554074474661158
+  },
+  "Facet 20-d": {
+   "alpha": 1000000.0,
+   "alpha_at_grid_edge": true,
+   "test_r": 0.031823806306781346,
+   "test_r_ci95": [
+    -0.04819944422945842,
+    0.1134868661005207
+   ],
+   "test_r_within_video": 0.037940827989655604
+  },
+  "COVAREP 5-d": {
+   "alpha": 1000000.0,
+   "alpha_at_grid_edge": true,
+   "test_r": 0.02771597259356065,
+   "test_r_ci95": [
+    -0.05305664969905439,
+    0.09951820107313791
+   ],
+   "test_r_within_video": 0.033043405889328054
+  },
+  "GloVe 300-d": {
+   "alpha": 1000.0,
+   "alpha_at_grid_edge": false,
+   "test_r": 0.4279364941268789,
+   "test_r_ci95": [
+    0.3679328095753908,
+    0.48854983285632125
+   ],
+   "test_r_within_video": 0.5101924250558432
+  }
+ },
+ "intermodal_cka_test_video_centred": {
+  "Facet 20-d | GloVe 300-d": {
+   "cka": 0.040833190549792835,
+   "null_mean": 0.026486253259293126,
+   "null95": 0.03140645173448299,
+   "excess_over_null": 0.014346937290499708,
+   "p_perm": 0.001996007984031936
+  },
+  "Facet 20-d | COVAREP 5-d": {
+   "cka": 0.008967972131557322,
+   "null_mean": 0.010281716751374737,
+   "null95": 0.014276226186354612,
+   "excess_over_null": -0.0013137446198174148,
+   "p_perm": 0.654690618762475
+  },
+  "CLIP 512-d | GloVe 300-d": {
+   "cka": 0.07842250253020268,
+   "null_mean": 0.058324889007311684,
+   "null95": 0.06253491800857716,
+   "excess_over_null": 0.020097613522890995,
+   "p_perm": 0.001996007984031936
+  },
+  "CLIP 512-d | COVAREP 5-d": {
+   "cka": 0.02472620500355295,
+   "null_mean": 0.02152988399785061,
+   "null95": 0.02555859750268001,
+   "excess_over_null": 0.00319632100570234,
+   "p_perm": 0.09580838323353294
+  }
+ }
+}
+rc=0
+SPK_DONE

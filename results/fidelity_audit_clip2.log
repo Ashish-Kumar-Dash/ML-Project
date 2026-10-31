@@ -1,0 +1,11 @@
+/home/user/Downloads/ML-project/ML-Project/.venv/lib/python3.12/site-packages/torch/__init__.py:1700: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:434.)
+  _C._set_default_tensor_type(t)
+/home/user/Downloads/ML-project/ML-Project/third_party/MPLMM/modules/position_embedding.py:20: UserWarning: The number of elements in the out tensor of shape [50] is 50 which does not match the computed number of elements 66. Note that this may occur as a result of rounding error. The out tensor will be resized to a tensor of shape (66,). (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/cuda/RangeFactories.cu:262.)
+  torch.arange(padding_idx + 1, max_pos, out=getattr(make_positions, buf_name))
+[ok] mosi_l2pclipsc_baseline_seed1_cdval: verified (max dev 3.0e-08)
+[ok] mosi_l2pclipsc_baseline_seed2_cdval: verified (max dev 4.5e-08)
+[ok] mosi_l2pclipsc_baseline_seed3_cdval: verified (max dev 6.0e-08)
+[ok] mosi_l2pclipsc_invariant_seed1_cdval: verified (max dev 6.0e-08)
+[ok] mosi_l2pclipsc_invariant_seed2_cdval: verified (max dev 3.0e-08)
+[ok] mosi_l2pclipsc_invariant_seed3_cdval: verified (max dev 6.0e-08)
+wrote results/fidelity_audit_clip2.json with 6 runs

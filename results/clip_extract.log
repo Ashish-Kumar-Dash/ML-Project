@@ -1,0 +1,72 @@
+
+========================================================
+Starting CLIP Feature Extraction: ViT-B/32
+Reference dataset: data/mosi_data.pkl
+Output path:       data/mosi_clip_b32_v50_vision.pkl
+Target seq_len:    50 (unaligned/pad_front=False)
+Mode:              REAL VIDEO
+========================================================
+
+Loaded ViT-B/32 (dim=512) on cuda:0
+
+--- Processing split 'train' (1284 / 1284 samples) ---
+[train] 50/1284 clips (2.3 clips/s, elapsed: 21.5s)
+[train] 100/1284 clips (2.3 clips/s, elapsed: 44.3s)
+[train] 150/1284 clips (1.9 clips/s, elapsed: 80.4s)
+[train] 200/1284 clips (1.7 clips/s, elapsed: 117.2s)
+[train] 250/1284 clips (1.8 clips/s, elapsed: 140.2s)
+[train] 300/1284 clips (1.9 clips/s, elapsed: 161.9s)
+[train] 350/1284 clips (1.9 clips/s, elapsed: 187.1s)
+[train] 400/1284 clips (1.9 clips/s, elapsed: 210.3s)
+[train] 450/1284 clips (2.0 clips/s, elapsed: 229.9s)
+[train] 500/1284 clips (1.9 clips/s, elapsed: 259.6s)
+[train] 550/1284 clips (1.8 clips/s, elapsed: 301.2s)
+[train] 600/1284 clips (1.9 clips/s, elapsed: 319.7s)
+[train] 650/1284 clips (1.9 clips/s, elapsed: 335.7s)
+[train] 700/1284 clips (2.0 clips/s, elapsed: 357.0s)
+[train] 750/1284 clips (2.0 clips/s, elapsed: 377.3s)
+[train] 800/1284 clips (2.0 clips/s, elapsed: 395.7s)
+[train] 850/1284 clips (2.1 clips/s, elapsed: 413.8s)
+[train] 900/1284 clips (2.0 clips/s, elapsed: 453.7s)
+[train] 950/1284 clips (2.0 clips/s, elapsed: 486.8s)
+[train] 1000/1284 clips (2.0 clips/s, elapsed: 506.1s)
+[train] 1050/1284 clips (2.0 clips/s, elapsed: 528.4s)
+[train] 1100/1284 clips (2.0 clips/s, elapsed: 548.9s)
+[train] 1150/1284 clips (2.0 clips/s, elapsed: 572.6s)
+[train] 1200/1284 clips (2.0 clips/s, elapsed: 601.1s)
+[train] 1250/1284 clips (2.0 clips/s, elapsed: 612.4s)
+[train] 1284/1284 clips (2.1 clips/s, elapsed: 623.4s)
+Completed split 'train': shape (1284, 50, 512), dtype float32
+
+--- Processing split 'valid' (229 / 229 samples) ---
+[valid] 50/229 clips (3.0 clips/s, elapsed: 16.9s)
+[valid] 100/229 clips (2.9 clips/s, elapsed: 34.0s)
+[valid] 150/229 clips (3.0 clips/s, elapsed: 50.7s)
+[valid] 200/229 clips (2.7 clips/s, elapsed: 75.0s)
+[valid] 229/229 clips (2.5 clips/s, elapsed: 93.2s)
+Completed split 'valid': shape (229, 50, 512), dtype float32
+
+--- Processing split 'test' (686 / 686 samples) ---
+[test] 50/686 clips (2.0 clips/s, elapsed: 24.8s)
+[test] 100/686 clips (1.8 clips/s, elapsed: 55.2s)
+[test] 150/686 clips (2.0 clips/s, elapsed: 76.1s)
+[test] 200/686 clips (2.0 clips/s, elapsed: 101.5s)
+[test] 250/686 clips (2.0 clips/s, elapsed: 127.3s)
+[test] 300/686 clips (2.0 clips/s, elapsed: 147.9s)
+[test] 350/686 clips (1.9 clips/s, elapsed: 185.4s)
+[test] 400/686 clips (1.9 clips/s, elapsed: 211.2s)
+[test] 450/686 clips (1.8 clips/s, elapsed: 244.3s)
+[test] 500/686 clips (1.8 clips/s, elapsed: 273.6s)
+[test] 550/686 clips (1.8 clips/s, elapsed: 303.7s)
+[test] 600/686 clips (1.9 clips/s, elapsed: 322.0s)
+[test] 650/686 clips (1.9 clips/s, elapsed: 350.2s)
+[test] 686/686 clips (1.9 clips/s, elapsed: 362.7s)
+Completed split 'test': shape (686, 50, 512), dtype float32
+
+Extraction complete in 1079.33s!
+Serialized extracted visual features to: data/mosi_clip_b32_v50_vision.pkl (225.22 MB)
+Serialized native per-frame features to: data/mosi_clip_b32_native.pkl (289.63 MB)
+rc=0 wall_s=1085
+24a6df0800d8d8673d385021d07a4366366461df43de25ce588899595b391821  data/mosi_clip_b32_v50_vision.pkl
+dd47d772585985bc9193597aa14f533f3873aabd6afcd10b88b5fbce73128560  data/mosi_clip_b32_native.pkl
+EXTRACT_DONE
