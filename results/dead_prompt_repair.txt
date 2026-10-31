@@ -1,0 +1,49 @@
+{
+ "released_zero_init": {
+  "first_step_max_abs_grad": {
+   "missing_type_prompt": 0.0,
+   "m_a": 0.0,
+   "m_v": 0.0,
+   "m_l": 0.0
+  },
+  "final_max_abs": {
+   "missing_type_prompt": 0.0,
+   "m_a": 0.0,
+   "m_v": 0.0,
+   "m_l": 0.0
+  },
+  "max_abs_change_from_init": {
+   "missing_type_prompt": 0.0,
+   "m_a": 0.0,
+   "m_v": 0.0,
+   "m_l": 0.0
+  },
+  "first_step_with_nonzero_grad": null,
+  "mp_max_abs": 0.0,
+  "output_change_if_missing_type_prompt_zeroed": 0.0
+ },
+ "repair_normal_0p02": {
+  "first_step_max_abs_grad": {
+   "missing_type_prompt": 0.0,
+   "m_a": 0.0,
+   "m_v": 0.0,
+   "m_l": 0.0
+  },
+  "final_max_abs": {
+   "missing_type_prompt": 0.0781739130616188,
+   "m_a": 0.07941201329231262,
+   "m_v": 0.07858334481716156,
+   "m_l": 0.08016923069953918
+  },
+  "max_abs_change_from_init": {
+   "missing_type_prompt": 0.022470498457551003,
+   "m_a": 0.027744200080633163,
+   "m_v": 0.022087180987000465,
+   "m_l": 0.029443226754665375
+  },
+  "first_step_with_nonzero_grad": 2,
+  "mp_max_abs": 0.010069252923130989,
+  "output_change_if_missing_type_prompt_zeroed": 0.9525597095489502
+ }
+}
+OK: released prompt is inert; repaired prompt trains and changes the output
